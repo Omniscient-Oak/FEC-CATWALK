@@ -1,15 +1,9 @@
 import React from 'react';
 
-class App extends React.Component {
-  constructor() {
-    super()
-  }
-
-  render() {
-    return(
-      <div>this is an app!</div>
-    )
-  }
-}
+const App = () => {
+  return (
+    <div>This works</div>
+  )
+};
 
 export default App;

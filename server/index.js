@@ -1,4 +1,7 @@
+/* eslint-disable */
 const express = require('express');
+const controller = require('./controllers')
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -9,3 +12,6 @@ app.listen(PORT, () => {
 });
 
 app.use(express.static(__dirname + '/../client/dist'));
+
+app.route('/products')
+  .get(controller.products.get)
