@@ -19,8 +19,8 @@ app.route('/products')
 
 //QA ROUTES
 app.route('/qa/questions')
-  .get(controller.qa.get)
-  .post(controller.qa.post)
+  .get(controller.qa.q.get)
+  .post(controller.qa.q.post)
 app.route('/qa/questions/answers')
   .get(controller.qa.a.get)
   .post(controller.qa.a.post)
