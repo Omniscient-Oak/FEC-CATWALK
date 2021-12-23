@@ -15,3 +15,10 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.route('/products')
   .get(controller.products.get)
+
+app.route('/qa/questions')
+  .get(controller.qa.get)
+  .post(controller.qa.post)
+
+app.route('/qa/helpful')
+  .put(controller.qa.helpful.put)
