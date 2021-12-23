@@ -9,7 +9,9 @@
     "test": "jest"
   },
   "babel": {
-    "plugins": ["@babel/plugin-syntax-jsx"]
+    "plugins": [
+      "@babel/plugin-syntax-jsx"
+    ]
   },
   "keywords": [],
   "author": "",
