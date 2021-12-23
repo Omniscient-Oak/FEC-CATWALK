@@ -1,3 +1,5 @@
+import React from 'react';
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -5,7 +7,9 @@ class Search extends React.Component {
   }
 
   render() {
-    return;
+    return (
+      <div />
+    );
   }
 }
 

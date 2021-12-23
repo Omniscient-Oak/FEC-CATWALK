@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './Search';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -7,13 +8,13 @@ class QAList extends React.Component {
   }
 
   render() {
-    return(
-      <div id='qa'>
+    return (
+      <div id="qa">
         <h3>QUESTIONS AND ANSWERS</h3>
         <Search />
 
       </div>
-    )
+    );
   }
 }
 
