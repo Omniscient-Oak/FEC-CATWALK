@@ -13,9 +13,15 @@ app.listen(PORT, () => {
 
 app.use(express.static(__dirname + '/../client/dist'));
 
+//PRODUCT ROUTES
 app.route('/products')
   .get(controller.products.get)
-
+app.route('/products/info')
+  .get(controller.products.info)
+app.route('/products/styles')
+  .get(controller.products.styles)
+app.route('/products/allinfo')
+  .get(controller.products.allinfo)
 
 //QA ROUTES
 app.route('/qa/questions')
