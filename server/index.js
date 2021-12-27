@@ -22,6 +22,8 @@ app.route('/products/styles')
   .get(controller.products.styles)
 app.route('/products/allinfo')
   .get(controller.products.allinfo)
+app.route('/products/related')
+  .get(controller.products.related)
 
 //QA ROUTES
 app.route('/qa/questions')
@@ -49,3 +51,7 @@ app.route('/reviews/helpful')
   .put(controller.reviews.helpful)
 app.route('/reviews/report')
   .put(controller.reviews.report)
+
+//RELATED ROUTES
+app.route('/related')
+  .get(controller.related.get)

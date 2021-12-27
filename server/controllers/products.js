@@ -28,6 +28,15 @@ module.exports = {
       console.error(error);
     }
   },
+  related: async (req, res) => {
+    try {
+      let related = await model.related(req.query);
+      res.send(related);
+    } catch (error) {
+      res.send(error.data);
+      console.error(error);
+    }
+  },
   allinfo: async (req, res) => {
     try {
       const info = await model.info(req.query);

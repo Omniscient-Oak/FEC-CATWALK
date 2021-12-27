@@ -49,5 +49,21 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-  }
+  },
+  related: async (query) => {
+    try {
+      let related = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${query.product_id}/related`, {
+      headers: {
+        Authorization: auth
+      },
+      params: {
+        product_id: query.product_id,
+      }
+    })
+    return related.data;
+    } catch (error) {
+      return(error.data);
+      console.error(error);
+    }
+  },
 }
