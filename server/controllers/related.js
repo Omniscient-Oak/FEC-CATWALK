@@ -13,9 +13,18 @@ module.exports = {
         const getRes = await Promise.all (getReq.map(async (get)=> {return get(query);}))
         let styleInfo, itemInfo, reviewMeta;
         [styleInfo, itemInfo, reviewMeta] = [...getRes];
-        styleInfo.forEach((style) => {
-
-        })
+        let photo = null
+        //Sets image to first image of default
+        for(let style of styleInfo.results) {
+          //console.log(style)
+          if (style['default?']) {
+              photo = style.photos[0]['thumbnail_url'];
+          }
+        }
+        //If there is no default, image is first of the first style
+        if (!photo) {
+          photo = styleInfo.results[0]['photos'][0]['thumbnail_url']
+        }
 
         if (Object.keys(reviewMeta.ratings).length > 0) {
           //Calculate average rating by reducing ratings and then dividing,
