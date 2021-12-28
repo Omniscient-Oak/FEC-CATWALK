@@ -12,6 +12,9 @@ import StarRating from './Product-Info/StarRating.jsx';
 //images
 import Images from './Image-Gallery/Images.jsx';
 
+//styles
+import Styles from './Styles/Styles.jsx';
+
 const axios = require('axios');
 
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63609
@@ -34,22 +37,47 @@ function Overview() {
 
   return (
     <div className='overview'>
-      <Wrapper>
-        <Images product={product.styles} />
-        <Category />
-        <ProductDescription />
-        <ProductName />
-        <ProductSlogan />
-        <Price />
+      <WrapperStyled>
+        <ImageWrapperStyled>
+          <Images
+            productStyles={product.styles}
+            currentImage={product.styles}
+          />
+        </ImageWrapperStyled>
+        <Styles productStyles={product.styles} />
+        <Category category={product.category} />
+        <ProductName name={product.name} />
+        <Price productStyles={product.styles} />
         <StarRating />
-      </Wrapper>
+        <ProductDescriptionStyled>
+          <ProductDescription
+            description={product.description}
+            slogan={product.slogan}
+          />
+        </ProductDescriptionStyled>
+      </WrapperStyled>
     </div>
   );
 }
 
 export default Overview;
 
-const Wrapper = styled.section`
-  padding: 5em;
+const ImageWrapperStyled = styled.div`
+  grid-row-start: 1;
+  grid-row-end: 6;
+`;
+
+const ProductDescriptionStyled = styled.div`
+  display: grid;
+  grid-template-columns: 4fr 6.2fr 0.75fr;
+  grid-column-start: 1;
+  grid-row-start: 7;
+`;
+
+const WrapperStyled = styled.section`
+  padding: 2em 5em 5em 5em;
   background: grey;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.05fr 1fr;
 `;

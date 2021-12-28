@@ -1,49 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Images = (props) => {
   // needs to render based off of which style is being used
-  const count = 1;
-  if (props.product === undefined) {
+  // want to render the image based off of the click url
+  const [currentImage, setImage] = useState('empty');
+
+  useEffect(() => {
+    if (props.productStyles === undefined) {
+      setImage(<div>loading</div>);
+    } else {
+      setImage(props.productStyles[0].photos[0].url);
+    }
+  }, []);
+
+  if (props.productStyles === undefined) {
     return <div>loading...</div>;
   } else {
-    {
-      console.log(props.product);
-    }
     return (
-      <GridAssignment>
-        <MainImage src={props.product[0].photos[0].thumbnail_url} />
-        {props.product[0].photos.slice(1).map((photo) => {
-          return <Image src={photo.thumbnail_url} />;
+      <GridAssignmentStyled>
+        <MainImageStyled src={currentImage} />
+        {props.productStyles[0].photos.map((photo) => {
+          return (
+            <ImageStyled
+              onClick={(event) => setImage(photo.url)}
+              src={photo.thumbnail_url}
+            />
+          );
         })}
-      </GridAssignment>
+      </GridAssignmentStyled>
     );
   }
 };
 
 export default Images;
 
-const Image = styled.img`
-  height: 75px;
-  grid-column-start: 1;
-  padding: 1em;
-`;
-
-const MainImage = styled.img`
-  grid-row-start: 1;
-  grid-row-end: 7;
+const ImageStyled = styled.img`
   grid-column-start: 2;
+  padding: 0.5em;
+  min-height: 30%;
+  min-width: 30%;
+  max-width: 30%;
   align-self: center;
+  justify-self: right;
+  &:hover {
+    background-color: palevioletred;
+    color: white;
+    opacity: 0.95;
+  }
 `;
 
-const Wrapper = styled.div`
-  padding: 5em;
-  background: papayawhip;
+const MainImageStyled = styled.img`
+  grid-row-start: 1;
+  grid-row-end: 8;
+  grid-column-start: 3;
+  align-self: top;
+  max-width: 85%;
+  min-height: 85%;
+  min-width: 85%;
+  max-width: 85%;
+  object-fit: cover;
+  align-self: center;
+  justify-self: right;
 `;
 
-const GridAssignment = styled.section`
+const GridAssignmentStyled = styled.section`
   display: grid;
-  background: blue;
-  grid-template-columns: 2fr 4fr 4fr;
+  // background: blue;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.25fr 2.5fr 6fr 0.25fr;
   justify-items: center;
 `;
