@@ -22,10 +22,12 @@ const axios = require('axios');
 
 function Overview() {
   const [product, setProduct] = useState('empty');
+  const [productId, setProductId] = useState(63612);
+  const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
 
   useEffect(() => {
     axios
-      .get('/products/allinfo/', { params: { product_id: 63609 } })
+      .get('/products/allinfo/', { params: { product_id: productId } })
       .then((response) => {
         setProduct(response.data);
         // console.log(response.data);
@@ -42,11 +44,15 @@ function Overview() {
           <Images
             productStyles={product.styles}
             currentImage={product.styles}
+            currentStyleIndex={currentStyleIndex}
           />
         </ImageWrapperStyled>
-        <Styles productStyles={product.styles} />
         <Category category={product.category} />
         <ProductName name={product.name} />
+        <Styles
+          productStyles={product.styles}
+          setCurrentStyleIndex={setCurrentStyleIndex}
+        />
         <Price productStyles={product.styles} />
         <StarRating />
         <ProductDescriptionStyled>

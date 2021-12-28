@@ -8,11 +8,11 @@ const Images = (props) => {
 
   useEffect(() => {
     if (props.productStyles === undefined) {
-      setImage(<div>loading</div>);
+      return <div>loading...</div>;
     } else {
-      setImage(props.productStyles[0].photos[0].url);
+      setImage(props.productStyles[props.currentStyleIndex].photos[0].url); // this 0 needs to use context to use style
     }
-  }, []);
+  }, [props]);
 
   if (props.productStyles === undefined) {
     return <div>loading...</div>;
@@ -20,7 +20,8 @@ const Images = (props) => {
     return (
       <GridAssignmentStyled>
         <MainImageStyled src={currentImage} />
-        {props.productStyles[0].photos.map((photo) => {
+        {props.productStyles[props.currentStyleIndex].photos.map((photo) => {
+          // this 0 needs to use contex to use style
           return (
             <ImageStyled
               onClick={(event) => setImage(photo.url)}
