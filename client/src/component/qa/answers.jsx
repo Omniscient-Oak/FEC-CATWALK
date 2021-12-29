@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Answers;
+const Answers ;
 
 export default Answers;

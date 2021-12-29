@@ -1,5 +1,12 @@
 import React from 'react';
+import List from './qa/List.jsx';
 
-const App = () => <h1>hello world!</h1>;
+const App = () => {
+
+  return (
+
+    <List />
+  )
+}
 
 export default App;
