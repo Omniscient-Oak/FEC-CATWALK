@@ -1,10 +1,11 @@
 import React from 'react';
 import Search from './Search';
+import AddAnswer from './AddAnswer';
 
 
 // the main app contains all the components of the Q&A
 
-class QAList extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -21,4 +22,4 @@ class QAList extends React.Component {
   }
 }
 
-export default QAList;
+export default List;
