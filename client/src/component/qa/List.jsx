@@ -3,7 +3,8 @@ import Search from './Search.jsx';
 //import AddAnswer from './AddAnswer';
 // import config from '../../../../server/config.js';
 // import q from '../../../../server/controllers/qa.js';
-import axios from 'axios';
+import Question from './Question.jsx';
+const axios = require('axios');
 
 
 // the main app contains all the components of the Q&A
@@ -16,13 +17,21 @@ const List = () => {
   const [productId, setProductId] = useState(63609);
 
   let params = {
-    product_id: productId
-  }
-  useEffect(() => {
+    product_id: productId,
+    count: 500,
+    page: 1
+  };
+
+  function getData() {
     axios.get('/qa/questions', {params: params}).then(
-      (res) => {setQuestion(res.data.results);
+      (res) => {setQuestion(res.data.results.sort((a, b) => (b.helpfulness - a.helpfulness)));
       }).catch((err) => {throw err;})
-  }, []);
+  };
+
+  useEffect(() => {
+    getData();
+    console.log('get all questions');
+  }, [productId]);
 
   //console.log(questions);
 
@@ -33,10 +42,9 @@ const List = () => {
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
         <div>
-
-        {questions.map(entry => {
-          console.log(entry);
-          <p>Q: <span>{entry.question_body}</span></p>
+        {questions.map(q => {
+         console.log(q);
+          <Question productId={productId} question={q}/>
         })}
         </div>
 

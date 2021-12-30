@@ -4,8 +4,10 @@ import List from './qa/List.jsx';
 const App = () => {
 
   return (
+    <div>
 
-    <List />
+      <List />
+    </div>
   )
 }
 
