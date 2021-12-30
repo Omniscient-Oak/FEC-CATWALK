@@ -7,7 +7,6 @@ const Thumbnails = (props) => {
   } else {
     return (
       <ThumbnailStyled
-        // onClick={() => props.setProductId(props.style.style_id)}
         onClick={() => props.setCurrentStyleIndex(props.index)}
         src={props.style.photos[0].thumbnail_url}
       />
