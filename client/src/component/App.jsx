@@ -1,5 +1,12 @@
 import React from 'react';
+import Overview from './Overview/Overview.jsx';
 
-const App = () => <h1>hello world!</h1>;
+const App = () => {
+  return (
+    <div>
+      <Overview />
+    </div>
+  );
+};
 
 export default App;
