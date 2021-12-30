@@ -7,8 +7,6 @@ module.exports = {
   get: async (req, res) => {
     try{
       const relatedItems = await productsModel.related(req.query);
-      //console.log(req.query)
-      console.log(relatedItems);
       const relatedItemInfo = await Promise.all (relatedItems.map( async (item)=> {
         let query = {product_id: item}
         const getReq = [productsModel.styles, productsModel.info, reviewsModel.meta];
