@@ -34,7 +34,7 @@ export default CurrentImage;
 const MainImageStyled = styled.img`
   grid-column-start: 2;
   grid-row-start: 1;
-  align-self: top;
+  align-self: center;
   object-fit: cover;
   justify-self: left;
   height: 100%;

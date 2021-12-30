@@ -18,6 +18,7 @@ const ImageStyled = styled.img`
   padding: 0.5em;
   object-fit: cover;
   width: 50px;
+  height: 50px;
   &:hover {
     background-color: palevioletred;
     color: white;

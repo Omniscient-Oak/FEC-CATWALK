@@ -27,7 +27,7 @@ const ThemeContext = React.createContext('light');
 function Overview() {
   const [product, setProduct] = useState('empty');
   const [productId, setProductId] = useState(63609);
-  const [currentStyleIndex, setCurrentStyleIndex] = useState(1);
+  const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [mainImage, setMainImage] = useState(0);
 
   useEffect(() => {
