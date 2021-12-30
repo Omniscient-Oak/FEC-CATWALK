@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import RelatedItem from './RelatedItem.jsx'
+import RelatedItem from './RelatedItem.jsx';
+import styled from 'styled-components';
+
 const RelatedItemsMenu = () => {
   const [relatedList, changeRelated] = useState([]);
   useEffect(()=>{
