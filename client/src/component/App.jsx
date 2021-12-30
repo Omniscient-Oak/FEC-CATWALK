@@ -10,6 +10,5 @@ const App = () => {
     </div>
   );
 };
->>>>>>> master
 
 export default App;

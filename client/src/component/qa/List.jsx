@@ -5,8 +5,14 @@ import Search from './Search.jsx';
 // import q from '../../../../server/controllers/qa.js';
 import Question from './Question.jsx';
 const axios = require('axios');
+import styled from 'styled-components';
 
 
+const ListStyle = styled.section`
+padding: 2em 10em 5em 10em;
+justify-items: right;
+font-family: Helvetica;
+`;
 // the main app contains all the components of the Q&A
 //getQuetions
 
@@ -30,24 +36,24 @@ const List = () => {
 
   useEffect(() => {
     getData();
-    console.log('get all questions');
   }, [productId]);
 
-  //console.log(questions);
 
     return (
       <div id="qa">
+        <ListStyle>
+
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
         <div>
         {questions.map(q => {
-         //console.log(q);
          return (
          <Question productId={productId} question={q} key={q.question_id}/>
          );
         })}
-        </div>
 
+        </div>
+        </ListStyle>
 
       </div>
     );

@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
 import Answer from './Answer.jsx';
+import styled from 'styled-components';
+
+const QuestionStyle = styled.div`
+display: flex;
+
+`;
 
 
 // handle single question
@@ -29,6 +35,8 @@ const Question = ({productId, question}) => {
 
   return (
     <div>
+      <br></br>
+      <br></br>
       <span>
         <b>Q: {question.question_body} </b>
 
