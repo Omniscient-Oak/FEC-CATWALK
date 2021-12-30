@@ -63,15 +63,21 @@ function Overview() {
             setCurrentStyleIndex={setCurrentStyleIndex}
           />
         </ProductStylesWrapper>
-
-        <SelectedStyle
-          productStyles={product.styles}
-          currentStyleIndex={currentStyleIndex}
-        />
+        <SelectedStyleWrapper>
+          <SelectedStyle
+            productStyles={product.styles}
+            currentStyleIndex={currentStyleIndex}
+          />
+        </SelectedStyleWrapper>
         <Category category={product.category} />
         <ProductName name={product.name} />
-        <Price productStyles={product.styles} />
-        <StarRating />
+        <PriceStyledWrapper>
+          <Price
+            productStyles={product.styles}
+            currentStyleIndex={currentStyleIndex}
+          />
+        </PriceStyledWrapper>
+        {/* <StarRating /> */}
       </WrapperStyled>
     </div>
   );
@@ -84,6 +90,8 @@ const ImageWrapperStyled = styled.section`
   grid-column-start: 1;
   grid-row: 1 / span 8;
   display: grid;
+  height: 750px;
+  width: 750px;
 `;
 
 const ProductDescriptionStyled = styled.div`
@@ -94,14 +102,26 @@ const ProductDescriptionStyled = styled.div`
 `;
 
 const WrapperStyled = styled.section`
-  padding: 2em 5em 5em 5em;
+  padding: 2em 10em 5em 10em;
   display: grid;
   grid-template-columns: 7fr 3fr;
-  grid-template-rows: 1fr 0.1fr 0.1fr 1fr 1fr 0.05fr 1fr;
+  grid-column-gap: 10px;
+  grid-template-rows: 0.05fr 0.1fr 0.05fr 0.1fr 0.15fr 0.05fr 1fr 1fr 1fr;
+  font-family: Helvetica;
+`;
+
+const PriceStyledWrapper = styled.section`
+  display: grid;
+  grid-row-start: 5;
 `;
 
 const ProductStylesWrapper = styled.section`
-  grid-row-start: 5;
+  display: grid;
+  grid-row-start: 6;
+`;
+
+const SelectedStyleWrapper = styled.section`
+  grid-row-start: 4;
 `;
 
 // {

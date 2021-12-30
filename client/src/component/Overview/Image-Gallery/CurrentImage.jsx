@@ -35,10 +35,10 @@ const MainImageStyled = styled.img`
   grid-column-start: 2;
   grid-row-start: 1;
   align-self: top;
-  height: 90%;
-  width: 90%;
   object-fit: cover;
   justify-self: left;
+  height: 100%;
+  width: 100%;
 `;
 
 // const GridAssignmentStyled = styled.section`
