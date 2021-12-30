@@ -20,6 +20,7 @@ module.exports = {
     }
   },
   info: async (query) => {
+    
     try {
       let info = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${query.product_id}/`, {
       headers: {
@@ -51,6 +52,7 @@ module.exports = {
     }
   },
   related: async (query) => {
+    console.log(query);
     try {
       let related = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${query.product_id}/related`, {
       headers: {
@@ -60,6 +62,7 @@ module.exports = {
         product_id: query.product_id,
       }
     })
+    console.log(related);
     return related.data;
     } catch (error) {
       return(error.data);
