@@ -35,16 +35,16 @@ const List = () => {
 
   //console.log(questions);
 
-
-
     return (
       <div id="qa">
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
         <div>
         {questions.map(q => {
-         console.log(q);
-          <Question productId={productId} question={q}/>
+         //console.log(q);
+         return (
+         <Question productId={productId} question={q} key={q.question_id}/>
+         );
         })}
         </div>
 

@@ -8,10 +8,7 @@ const Question = ({productId, question}) => {
   const [expandAll, setExpanded] = useState(false);
   const [helpful, markHelpful] = useState(false);
 
-  let allAnswers = [];
-  for (let key in question.answers) {
-    allAnswers.push(question.answer[key]);
-  }
+  let allAnswers = Object.entries(question.answers).map((ans) => ans[1]);
 
   let sortedAnswers = allAnswers.sort((a, b) => (b.helpfulness - a.helpfulness)).sort((a, b) => { if (a.answerer_name.toLowerCase() === 'seller') {
     return -1;
@@ -32,15 +29,15 @@ const Question = ({productId, question}) => {
 
   return (
     <div>
-      <p>
+      <span>
         <b>Q: {question.question_body} </b>
 
-      </p>
-      <p>
+      </span>
+      <span>
         {sortedAnswers.map((ans) => {
           return (<Answer answer={ans} key={ans.id}/>)
         })}
-      </p>
+      </span>
 
     </div>
 

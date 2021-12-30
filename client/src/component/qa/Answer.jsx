@@ -19,14 +19,14 @@ const Answer = ({answer}) => {
 
   return (
     <div>
-      <p>
+      <span>
         <b>A: </b> {answer.body}
-      </p>
-      <p>
-      {isSeller? 'by ' + answer.answerer_name + '- Seller' : 'by ' + answer.answerer_name},
-      {moment(answer.date).format('MMMM D, YYYY')
+      </span>
+      <span>
+      {isSeller? 'by ' + answer.answerer_name + '- Seller' : 'by ' + answer.answerer_name },
+      {moment(answer.date).format(' MMMM D, YYYY')
       }   |   Helpful?   |   Report
-      </p>
+      </span>
 
     </div>
   );
