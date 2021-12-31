@@ -8,12 +8,8 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const AddAnswer = () => {
-  return (
-    <Container>
-    </Container>
-  );
-};
+const AddAnswer = () => (
+  <Container />
+);
 
 export default AddAnswer;
-

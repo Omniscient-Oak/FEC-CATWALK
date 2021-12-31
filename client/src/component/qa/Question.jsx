@@ -1,24 +1,25 @@
-import React, {useState} from 'react';
-import Answer from './Answer.jsx';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Answer from './Answer.jsx';
 
 const QuestionStyle = styled.div`
 display: flex;
 `;
 
-const Question = ({productId, question}) => {
+const Question = ({ productId, question }) => {
   const [answers, showMoreAnswers] = useState(2);
   const [expandAll, setExpanded] = useState(false);
   const [helpful, markHelpful] = useState(false);
 
-  let allAnswers = Object.entries(question.answers).map((ans) => ans[1]);
+  const allAnswers = Object.entries(question.answers).map((ans) => ans[1]);
 
-  let sortedAnswers = allAnswers.sort((a, b) => (b.helpfulness - a.helpfulness)).sort((a, b) => {
+  const sortedAnswers = allAnswers.sort((a, b) => (b.helpfulness - a.helpfulness)).sort((a, b) => {
     if (a.answerer_name.toLowerCase() === 'seller') {
       return -1;
-    } else if (b.answerer_name.toLowerCase() === 'seller') {
+    } if (b.answerer_name.toLowerCase() === 'seller') {
       return 1;
     }
+    return 0;
   });
 
   const expandAnswers = () => {
@@ -30,18 +31,24 @@ const Question = ({productId, question}) => {
     setExpanded(!expandAll);
   };
 
-
   return (
     <div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <span>
-        <b>Q: {question.question_body} </b>
+        <b>
+          Q:
+          {' '}
+          {question.question_body}
+          {' '}
+        </b>
+        <span>
+          {' '}
+&nbsp; | &nbsp;Helpful? &nbsp;| &nbsp; Report
+        </span>
       </span>
       <span>
-        {sortedAnswers.map((ans) => {
-          return (<Answer answer={ans} key={ans.id}/>);
-        })}
+        {sortedAnswers.map((ans) => (<Answer answer={ans} key={ans.id} />))}
       </span>
     </div>
   );
