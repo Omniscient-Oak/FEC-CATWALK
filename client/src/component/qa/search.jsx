@@ -2,13 +2,7 @@ import React from 'react';
 
 
 // find the key words of the Q or A when typing 3 or more chars.
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
+const Search = (props) => {
     return (
       <div>
         <form>
@@ -20,7 +14,6 @@ class Search extends React.Component {
     </form>
       </div>
     );
-  }
-}
+};
 
 export default Search;
