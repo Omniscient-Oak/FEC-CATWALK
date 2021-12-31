@@ -6,15 +6,14 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-`
+`;
 
-export const AddAnswer = () => {
+const AddAnswer = () => {
   return (
     <Container>
-
     </Container>
   );
-}
+};
 
+export default AddAnswer;
 
-// handle add an answer modal window
