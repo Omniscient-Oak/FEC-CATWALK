@@ -38,7 +38,7 @@ const List = () => {
 
   const handleShowQuestions = () => {
     if (showAllQuestions) {
-      showMoreQuestions(2);
+      showMoreQuestions(4);
     } else {
       showMoreQuestions(questions.length);
     }
@@ -51,14 +51,14 @@ const List = () => {
       <ListStyle>
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
-        <div>
+        <div style={{ maxHeight: '100%', overflow: 'auto' }}>
           {questions.slice(0, questionShowed).map((q) => (
             <Question question={q} key={q.question_id} />
           ))}
         </div>
         <div>
           {' '}
-          {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? '--Collapse Questions--' : 'More Answered Questions'}</button> : null}
+          {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? null : 'More Answered Questions'}</button> : null}
           {' '}
         </div>
         <button type="button"> Add A Question </button>

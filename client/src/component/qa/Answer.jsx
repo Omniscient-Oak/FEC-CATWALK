@@ -49,14 +49,16 @@ const Answer = ({ answer }) => {
   return (
     <div>
       <br />
-      <span>
-        <b>A: </b>
-        {' '}
-        {answer.body}
-      </span>
+      <div style={{ width: '70%' }}>
+        <span>
+          <b>A: </b>
+          {' '}
+          {answer.body}
+        </span>
+      </div>
       <br />
-      <span>
-        by
+      <span style={{ 'font-size': '12px' }}>
+&nbsp;&nbsp;&nbsp; by
         {' '}
         {isSeller ? <b>Seller</b> : answer.answerer_name}
         ,

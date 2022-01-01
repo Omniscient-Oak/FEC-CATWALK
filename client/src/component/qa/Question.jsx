@@ -76,17 +76,18 @@ const Question = ({ question }) => {
   return (
     <div>
       <br />
-      <br />
       <span>
-        <b>
-          Q:
+        <div style={{ width: '70%' }}>
+          <b>
+            Q:
+            {' '}
+            {question.question_body}
+            {' '}
+          </b>
+        </div>
+        <span style={{ float: 'right', 'font-size': '12px' }}>
           {' '}
-          {question.question_body}
-          {' '}
-        </b>
-        <span>
-          {' '}
-&nbsp; | &nbsp;Helpful?
+&nbsp; &nbsp;Helpful?
           {' '}
           <button type="button" name="helpful" onClick={handleUpdate}>
             {' '}
@@ -97,12 +98,15 @@ const Question = ({ question }) => {
 &nbsp;| &nbsp;
           {reported ? 'Reported'
             : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
-&nbsp; | &nbsp; Add An Answer
+&nbsp; | &nbsp;
+          <button type="button">Add Answer</button>
         </span>
       </span>
       <span>
         {sortedAnswers.slice(0, answers).map((ans) => (<Answer answer={ans} key={ans.id} />))}
       </span>
+      &nbsp;&nbsp;&nbsp;
+      {' '}
       {sortedAnswers.length > 2 ? <button type="button" onClick={handleShowAnswers}>{showAllAnswers ? '--Collapse answers--' : '--See more answers--'}</button> : null}
     </div>
   );
