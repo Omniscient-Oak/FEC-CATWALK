@@ -33,6 +33,8 @@ const List = () => {
     getData();
   }, [productId]);
 
+  console.log(questions);
+
   return (
     <div id="qa">
       <ListStyle>
@@ -43,6 +45,12 @@ const List = () => {
             <Question productId={productId} question={q} key={q.question_id} />
           ))}
         </div>
+        <div>
+          {' '}
+          {questions.length > 4 ? 'More Answered Questions' : null }
+          {' '}
+        </div>
+        <button type="button"> Add A Question </button>
       </ListStyle>
     </div>
   );

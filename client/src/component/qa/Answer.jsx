@@ -56,7 +56,9 @@ const Answer = ({ answer }) => {
       </span>
       <br />
       <span>
-        {isSeller ? ` by ${answer.answerer_name} - Seller` : ` by ${answer.answerer_name}` }
+        by
+        {' '}
+        {isSeller ? <b>Seller</b> : answer.answerer_name}
         ,
         {moment(answer.date).format(' MMMM D, YYYY')}
         {' '}
@@ -69,7 +71,8 @@ const Answer = ({ answer }) => {
         {' '}
         {`(${helpfulCount})`}
 &nbsp;| &nbsp;
-        <button type="button" name="report" onClick={handleUpdate}> Report </button>
+        {reported ? 'Reported'
+          : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
       </span>
       <br />
     </div>
