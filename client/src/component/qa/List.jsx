@@ -13,7 +13,10 @@ font-family: Helvetica;
 
 const List = () => {
   const [questions, setQuestion] = useState([]);
-  const [productId, setProductId] = useState(63609);
+  const [productId] = useState(63609);
+
+  const [questionShowed, showMoreQuestions] = useState(4);
+  const [showAllQuestions, setShowQuestions] = useState(false);
 
   const params = {
     product_id: productId,
@@ -33,6 +36,14 @@ const List = () => {
     getData();
   }, [productId]);
 
+  const handleShowQuestions = () => {
+    if (showAllQuestions) {
+      showMoreQuestions(2);
+    } else {
+      showMoreQuestions(questions.length);
+    }
+    setShowQuestions(!showAllQuestions);
+  };
   console.log(questions);
 
   return (
@@ -41,13 +52,13 @@ const List = () => {
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
         <div>
-          {questions.map((q) => (
-            <Question productId={productId} question={q} key={q.question_id} />
+          {questions.slice(0, questionShowed).map((q) => (
+            <Question question={q} key={q.question_id} />
           ))}
         </div>
         <div>
           {' '}
-          {questions.length > 4 ? 'More Answered Questions' : null }
+          {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? '--Collapse Questions--' : 'More Answered Questions'}</button> : null}
           {' '}
         </div>
         <button type="button"> Add A Question </button>

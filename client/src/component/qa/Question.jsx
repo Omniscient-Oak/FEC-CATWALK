@@ -9,12 +9,14 @@ const QuestionStyle = styled.div`
 display: flex;
 `;
 
-const Question = ({ productId, question }) => {
+const Question = ({ question }) => {
   const [answers, showMoreAnswers] = useState(2);
-  const [expandAll, setExpanded] = useState(false);
+  const [showAllAnswers, setShowAnswers] = useState(false);
+
   const [helpful, markHelpful] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness);
   const [reported, markReport] = useState(false);
+  const [status, setStatus] = useState(question.reported);
 
   const allAnswers = Object.entries(question.answers).map((ans) => ans[1]);
 
@@ -27,13 +29,13 @@ const Question = ({ productId, question }) => {
     return 0;
   });
 
-  const expandAnswers = () => {
-    if (expandAll) {
-      setExpanded(2);
+  const handleShowAnswers = () => {
+    if (showAllAnswers) {
+      showMoreAnswers(2);
     } else {
-      setExpanded(sortedAnswers.length);
+      showMoreAnswers(sortedAnswers.length);
     }
-    setExpanded(!expandAll);
+    setShowAnswers(!showAllAnswers);
   };
 
   const handleUpdate = (event) => {
@@ -65,10 +67,12 @@ const Question = ({ productId, question }) => {
 
       axios(options).then(() => {
         markReport(true);
+        setStatus(!status);
       }).catch((err) => console.log('handle question report error', err));
     }
   };
 
+  console.log(status);
   return (
     <div>
       <br />
@@ -93,13 +97,13 @@ const Question = ({ productId, question }) => {
 &nbsp;| &nbsp;
           {reported ? 'Reported'
             : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
-          | &nbsp; Add An Answer
+&nbsp; | &nbsp; Add An Answer
         </span>
       </span>
       <span>
-        {sortedAnswers.map((ans) => (<Answer answer={ans} key={ans.id} />))}
+        {sortedAnswers.slice(0, answers).map((ans) => (<Answer answer={ans} key={ans.id} />))}
       </span>
-      <span>{sortedAnswers.length > 2 ? '--See More Answers--' : null }</span>
+      {sortedAnswers.length > 2 ? <button type="button" onClick={handleShowAnswers}>{showAllAnswers ? '--Collapse answers--' : '--See more answers--'}</button> : null}
     </div>
   );
 };
