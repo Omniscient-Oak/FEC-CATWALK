@@ -26,11 +26,9 @@ const axios = require('axios');
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63609
 // const queryString = window.location.search;
 
-const ThemeContext = React.createContext('light');
-
 function Overview() {
   const [product, setProduct] = useState([]);
-  const [productId, setProductId] = useState(63609);
+  const [productId, setProductId] = useState(63613);
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [mainImage, setMainImage] = useState(0);
 

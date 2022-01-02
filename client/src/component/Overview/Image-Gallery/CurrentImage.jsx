@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Sidebar from './Sidebar.jsx';
 
 const CurrentImage = (props) => {
   // needs to render based off of which style is being used

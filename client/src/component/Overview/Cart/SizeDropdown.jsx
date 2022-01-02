@@ -32,7 +32,7 @@ const SizeDropdown = (props) => {
           return <option>{size}</option>;
         })}
       </select>
-      <Quantity currentQuantity={currentQuantity} />
+      <Quantity currentQuantity={currentQuantity} selectedSize={selectedSize} />
       <div>
         <AddToCart />
       </div>
