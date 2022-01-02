@@ -16,11 +16,7 @@ const Quantity = (props) => {
   }
 
   if (props.currentQuantity === '-') {
-    return (
-      <select>
-        <option>-</option>
-      </select>
-    );
+    return <select> </select>;
   } else {
     return (
       <select>
@@ -33,10 +29,3 @@ const Quantity = (props) => {
 };
 
 export default Quantity;
-
-/*
-<select name="selectList" id="selectList">
-   <option value="option 1">Option 1</option>
-   <option value="option 2">Option 2</option>
-</select>
-*/
