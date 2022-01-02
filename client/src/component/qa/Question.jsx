@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
 
 const auth = require('../../../../server/config.js');
-
-const QuestionStyle = styled.div`
-display: flex;
-`;
 
 const Question = ({ question }) => {
   const [answers, showMoreAnswers] = useState(2);
@@ -72,7 +67,10 @@ const Question = ({ question }) => {
     }
   };
 
-  console.log(status);
+  useEffect(() => {
+    console.log(status);
+  }, [status]);
+
   return (
     <div>
       <br />
@@ -85,7 +83,7 @@ const Question = ({ question }) => {
             {' '}
           </b>
         </div>
-        <span style={{ float: 'right', 'font-size': '12px' }}>
+        <span style={{ float: 'right', fontSize: '12px' }}>
           {' '}
 &nbsp; &nbsp;Helpful?
           {' '}

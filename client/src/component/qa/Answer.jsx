@@ -57,7 +57,7 @@ const Answer = ({ answer }) => {
         </span>
       </div>
       <br />
-      <span style={{ 'font-size': '12px' }}>
+      <span style={{ fontSize: '12px' }}>
 &nbsp;&nbsp;&nbsp; by
         {' '}
         {isSeller ? <b>Seller</b> : answer.answerer_name}

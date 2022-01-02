@@ -18,6 +18,9 @@ const List = () => {
   const [questionShowed, showMoreQuestions] = useState(4);
   const [showAllQuestions, setShowQuestions] = useState(false);
 
+  const [isSearch, setSearch] = useState(false);
+  const [filteredQuestions, setFilteredQuestion] = useState([]);
+
   const params = {
     product_id: productId,
     count: 500,
@@ -44,15 +47,28 @@ const List = () => {
     }
     setShowQuestions(!showAllQuestions);
   };
-  console.log(questions);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (event.target.value.length >= 3) {
+      setSearch(true);
+      setFilteredQuestion(questions.filter(
+        (q) => q.question_body.toLowerCase().includes(event.target.value.toLowerCase()),
+      ));
+    } else {
+      setSearch(false);
+    }
+  };
 
   return (
     <div id="qa">
       <ListStyle>
         <h3>QUESTIONS & ANSWERS</h3>
-        <Search />
+        <Search handleSearch={handleSearch} />
         <div style={{ maxHeight: '100%', overflow: 'auto' }}>
-          {questions.slice(0, questionShowed).map((q) => (
+          {isSearch ? filteredQuestions.slice(0, questionShowed).map((q) => (
+            <Question question={q} key={q.question_id} />
+          )) : questions.slice(0, questionShowed).map((q) => (
             <Question question={q} key={q.question_id} />
           ))}
         </div>
