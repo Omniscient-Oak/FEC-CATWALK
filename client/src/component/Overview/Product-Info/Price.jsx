@@ -18,16 +18,14 @@ const Price = (props) => {
       return (
         <div>
           <OriginalPrice>
-            Original: $
-            {props.productStyles[props.currentStyleIndex].original_price}{' '}
+            ${props.productStyles[props.currentStyleIndex].original_price}
           </OriginalPrice>
           <SalePrice>
-            Sale: ${props.productStyles[props.currentStyleIndex].sale_price}
+            ${props.productStyles[props.currentStyleIndex].sale_price}
           </SalePrice>
         </div>
       );
     }
-    return <div>insert price here</div>;
 
     // return <div>{props.productStyles}</div>;
   }
