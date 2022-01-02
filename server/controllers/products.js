@@ -5,7 +5,7 @@ const model = require('../models/products.js');
 module.exports = {
   get: async (req, res) => {
     try {
-      let products = await model.get(req.query);
+      const products = await model.get(req.query);
       res.send(products);
     } catch (error) {
       console.error(error);
@@ -13,7 +13,7 @@ module.exports = {
   },
   info: async (req, res) => {
     try {
-      let info = await model.info(req.query);
+      const info = await model.info(req.query);
       res.send(info);
     } catch (error) {
       console.error(error);
@@ -21,7 +21,7 @@ module.exports = {
   },
   styles: async (req, res) => {
     try {
-      let styles = await model.styles(req.query);
+      const styles = await model.styles(req.query);
       res.send(styles);
     } catch (error) {
       res.send(error.data);
@@ -30,7 +30,7 @@ module.exports = {
   },
   related: async (req, res) => {
     try {
-      let related = await model.related(req.query);
+      const related = await model.related(req.query);
       res.send(related);
     } catch (error) {
       res.send(error.data);
@@ -41,11 +41,11 @@ module.exports = {
     try {
       const info = await model.info(req.query);
       const styles = await model.styles(req.query);
-      const combined = {...info, styles: styles.results}
+      const combined = { ...info, styles: styles.results };
       res.send(combined);
     } catch (error) {
       res.send(error.data);
       console.error(error);
     }
-  }
+  },
 };
