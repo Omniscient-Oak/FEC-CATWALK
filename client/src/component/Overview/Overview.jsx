@@ -17,6 +17,9 @@ import Sidebar from './Image-Gallery/Sidebar.jsx';
 import Styles from './Styles/Styles.jsx';
 import SelectedStyle from './Styles/SelectedStyle.jsx';
 
+//cart
+import SizeDropdown from './Cart/SizeDropdown.jsx';
+
 const axios = require('axios');
 
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63609
@@ -25,7 +28,7 @@ const axios = require('axios');
 const ThemeContext = React.createContext('light');
 
 function Overview() {
-  const [product, setProduct] = useState('empty');
+  const [product, setProduct] = useState([]);
   const [productId, setProductId] = useState(63609);
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [mainImage, setMainImage] = useState(0);
@@ -35,7 +38,6 @@ function Overview() {
       .get('/products/allinfo/', { params: { product_id: productId } })
       .then((response) => {
         setProduct(response.data);
-        // console.log(response.data);
       })
       .catch((err) => {
         throw err;
@@ -77,7 +79,11 @@ function Overview() {
             currentStyleIndex={currentStyleIndex}
           />
         </PriceStyledWrapper>
-        {/* <StarRating /> */}
+        <SizeDropdownWrapper>
+          {product.styles && (
+            <SizeDropdown skus={product.styles[currentStyleIndex].skus} />
+          )}
+        </SizeDropdownWrapper>
       </WrapperStyled>
     </div>
   );
@@ -122,6 +128,10 @@ const ProductStylesWrapper = styled.section`
 
 const SelectedStyleWrapper = styled.section`
   grid-row-start: 4;
+`;
+
+const SizeDropdownWrapper = styled.section`
+  grid-row-start: 7;
 `;
 
 // {
