@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Search from './search.jsx';
 import Question from './Question.jsx';
+import ProductContext from '../ProductContext';
 import AddQuestion from './AddQuestion.jsx';
 
 const axios = require('axios');
@@ -13,12 +14,10 @@ font-family: Helvetica;
 `;
 
 const List = () => {
+  const {productId} = useContext(ProductContext);
   const [questions, setQuestion] = useState([]);
-  const [productId] = useState(63609);
-
   const [questionShowed, showMoreQuestions] = useState(4);
   const [showAllQuestions, setShowQuestions] = useState(false);
-
   const [isSearch, setSearch] = useState(false);
   const [filteredQuestions, setFilteredQuestion] = useState([]);
 
