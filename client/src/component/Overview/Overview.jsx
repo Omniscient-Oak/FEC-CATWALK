@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 
 // product-info
@@ -20,6 +20,9 @@ import SelectedStyle from './Styles/SelectedStyle.jsx';
 //cart
 import SizeDropdown from './Cart/SizeDropdown.jsx';
 
+//context
+import ProductContext from '../ProductContext';
+
 const axios = require('axios');
 
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63609
@@ -28,21 +31,21 @@ const axios = require('axios');
 const ThemeContext = React.createContext('light');
 
 function Overview() {
+  const productContext = useContext(ProductContext);
   const [product, setProduct] = useState([]);
-  const [productId, setProductId] = useState(63609);
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [mainImage, setMainImage] = useState(0);
 
   useEffect(() => {
     axios
-      .get('/products/allinfo/', { params: { product_id: productId } })
+      .get('/products/allinfo/', { params: { product_id: productContext.productId } })
       .then((response) => {
         setProduct(response.data);
       })
       .catch((err) => {
         throw err;
       });
-  }, []);
+  }, [productContext.productId]);
 
   return (
     <div className='overview'>

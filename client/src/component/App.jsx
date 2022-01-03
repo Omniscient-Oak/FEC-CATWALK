@@ -7,11 +7,11 @@ import RelatedItemsMenu from './relateditems/RelatedItemsMenu.jsx';
 
 const App = () => {
   const params = useParams();
-  const [productId, changeProduct] = useState('');
-  useEffect(() => {console.log('Params:' + params.productId)}, []);
+  const [productId, setProductId] = useState(params.productId);
+  useEffect(() => {}, []);
   return (
     <div>
-      <ProductContext.Provider value={params.productId}>
+      <ProductContext.Provider value={{productId, setProductId}}>
         <Overview />
         <RelatedItemsMenu />
         <List />
