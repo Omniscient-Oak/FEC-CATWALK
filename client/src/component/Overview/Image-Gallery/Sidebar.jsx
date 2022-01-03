@@ -9,7 +9,7 @@ const Sidebar = (props) => {
     return <div>hello world</div>;
   } else {
     return (
-      <div>
+      <SidebarScroll>
         {props.images[props.currentStyleIndex].photos.map((photo) => (
           <TinyImage
             photo={photo}
@@ -17,9 +17,16 @@ const Sidebar = (props) => {
             setMainImage={props.setMainImage}
           />
         ))}
-      </div>
+      </SidebarScroll>
     );
   }
 };
 
 export default Sidebar;
+
+const SidebarScroll = styled.div`
+  height: 458px;
+  overflow: scroll;
+  padding: 10px;
+  margin: 5px;
+`;
