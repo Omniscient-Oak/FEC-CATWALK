@@ -48,20 +48,23 @@ const AddQuestion = ({ productId }) => {
     } else if (event.target.name === 'email') {
       setEmail(event.target.value);
     }
+  });
 
-    if (question.length < 1 || name.length < 1 || email.length < 1 || !validateEmail(email)) {
-      return 'You must enter the following:';
-    }
-    const params = {
+  const handleSubmit = () => {
+    const newQuestion = {
       body: question,
       name,
       email,
       product_id: productId,
     };
-    return axios.post('/qa/questions', params).then(() => {
+
+    if (question.length < 1 || name.length < 1 || email.length < 1 || !validateEmail(email)) {
+      return <p>You must enter the following:</p>;
+    }
+    axios.post('/qa/questions', newQuestion).then(() => {
       console.log('sent');
     }).catch((err) => { console.log('post question error', err); });
-  });
+  };
 
   return (
     <div>
@@ -72,7 +75,7 @@ const AddQuestion = ({ productId }) => {
             <Modal.Title>Ask Your Question</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form onSubmit={handleAddQuestion}>
+            <form onSubmit={handleSubmit}>
               <h5>
                 About the
                 {' '}
@@ -81,12 +84,12 @@ const AddQuestion = ({ productId }) => {
                 ]
               </h5>
               <p>(1) Your Question *</p>
-              <textarea maxLength="1000" name="questionBody" placeholder="Why did you like the product or not?" />
+              <textarea maxLength="1000" name="questionBody" placeholder="Why did you like the product or not?" required onChange={(e) => { handleAddQuestion(e); }} />
               <p>(2) What is your nickname? *</p>
-              <input maxLength="60" placeholder="Example: jackson11!" name="nickname" />
+              <input maxLength="60" placeholder="Example: jackson11!" name="nickname" required onChange={(e) => { handleAddQuestion(e); }} />
               <p>For privacy reasons, do not use your full name or email address</p>
               <p>(3) Your email *</p>
-              <input maxLength="60" placeholder="Example@example.com" name="email" />
+              <input maxLength="60" placeholder="Example@example.com" name="email" required onChange={(e) => { handleAddQuestion(e); }} />
               <p>For authentication reasons, you will not be emailed.</p>
               <button type="submit" onClick={handleClose}>Submit</button>
             </form>

@@ -3,8 +3,6 @@ import axios from 'axios';
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
 
-const auth = require('../../../../server/config.js');
-
 const Question = ({ question }) => {
   const [answers, showMoreAnswers] = useState(2);
   const [showAllAnswers, setShowAnswers] = useState(false);
@@ -36,32 +34,14 @@ const Question = ({ question }) => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    const helpfulUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${question.question_id}/helpful`;
-    const reportUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${question.question_id}/report`;
-
+    console.log(question.question_id);
     if (!helpful && event.target.name === 'helpful') {
-      const options = {
-        method: 'put',
-        url: helpfulUrl,
-        headers: {
-          Authorization: auth,
-        },
-      };
-
-      axios(options).then(() => {
+      axios.put(`qa/questions/helpful?question_id=${question.question_id}`).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      const options = {
-        method: 'put',
-        url: reportUrl,
-        headers: {
-          Authorization: auth,
-        },
-      };
-
-      axios(options).then(() => {
+      axios.put(`qa/questions/report?question_id=${question.question_id}`).then(() => {
         markReport(true);
         setStatus(!status);
       }).catch((err) => console.log('handle question report error', err));

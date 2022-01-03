@@ -30,9 +30,6 @@ module.exports = {
         headers: {
           Authorization: auth,
         },
-        params: {
-          question_id: req.query.question_id,
-        },
       })
         .then((r) => { res.send(JSON.stringify(r.status)); })
         .catch((e) => { res.send(e); });
@@ -80,7 +77,6 @@ module.exports = {
         body: req.body.body,
         name: req.body.name,
         email: req.body.email,
-        question_id: req.body.question_id,
         photos: req.body.photos,
       },
       {
