@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App';
+import { Link, Outlet } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -10,8 +10,10 @@ const Index = () => {
           paddingBottom: "1rem"
         }}
       >
-        <Link to="/App">App</Link> |{" "}
+        <Link to="/">Home</Link> |{" "}
+        <Link to={`/store/${63611}`}>Load Store Page</Link> |{" "}
       </nav>
+      <Outlet />
     </div>
   )
 };

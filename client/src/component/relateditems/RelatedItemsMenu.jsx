@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ProductContext from '../ProductContext';
 import RelatedItem from './RelatedItem';
 
 const RelatedItemsMenu = () => {
   const [relatedList, changeRelated] = useState([]);
+  const productId = useContext(ProductContext);
   useEffect(() => {
+    console.log(productId);
     axios.get('/related', {
       params: {
-        product_id: 63609,
+        product_id: productId,
       },
     }).then((related) => changeRelated(related.data));
   }, []);
