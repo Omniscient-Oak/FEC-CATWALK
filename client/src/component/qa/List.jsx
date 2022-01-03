@@ -75,7 +75,7 @@ const List = () => {
         </div>
         <div>
           {' '}
-          {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? null : 'More Answered Questions'}</button> : null}
+          {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? 'Collapsed' : 'More Answered Questions'}</button> : null}
           {' '}
         </div>
         <AddQuestion productId={productId} />
