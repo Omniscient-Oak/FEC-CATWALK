@@ -1,23 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import RelatedItem from './RelatedItem.jsx';
 import styled from 'styled-components';
+import RelatedItem from './RelatedItem';
 
 const RelatedItemsMenu = () => {
   const [relatedList, changeRelated] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
     axios.get('/related', {
       params: {
-        product_id: 63609
-      }
-    }).then((related)=>changeRelated(related.data))
-  }, [])
+        product_id: 63609,
+      },
+    }).then((related) => changeRelated(related.data));
+  }, []);
   return (
-    <div className='relatedmenu'>
+    <div className="relatedmenu">
       <h3>Related Items:</h3>
-      {relatedList.map((item) => {return <RelatedItem item={item} key={item.name}/>})}
+      {relatedList.map((item) => <RelatedItem item={item} key={item.name}/>)}
     </div>
-  )
-}
+  );
+};
 
 export default RelatedItemsMenu;
