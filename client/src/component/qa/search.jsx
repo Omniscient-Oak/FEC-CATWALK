@@ -1,19 +1,11 @@
 import React from 'react';
 
-
-// find the key words of the Q or A when typing 3 or more chars.
-const Search = (props) => {
-    return (
-      <div>
-        <form>
-      <label>
-        <input type="text" name="search" placeholder="Have a question? Search for answers..." />
-      </label>
-      <button type="submit"> search </button>
-
+const Search = ({ handleSearch }) => (
+  <div>
+    <form>
+      <input type="text" name="search" onChange={handleSearch} placeholder="Have a question? Search for answers..." style={{ width: '50%', height: '30px' }} />
     </form>
-      </div>
-    );
-};
+  </div>
+);
 
 export default Search;
