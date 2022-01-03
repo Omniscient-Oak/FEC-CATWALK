@@ -14,33 +14,33 @@ const Answer = ({ answer }) => {
   }
 
   const handleUpdate = (event) => {
-    event.preventDefault();
-    const helpfulUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${answer.id}/helpful`;
-    const reportUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${answer.id}/report`;
+    // event.preventDefault();
+    // const helpfulUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${answer.id}/helpful`;
+    // const reportUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${answer.id}/report`;
 
     if (!helpful && event.target.name === 'helpful') {
-      const options = {
-        method: 'put',
-        url: helpfulUrl,
-        headers: {
-          Authorization: auth,
-        },
-      };
+    //   const options = {
+    //     method: 'put',
+    //     url: helpfulUrl,
+    //     headers: {
+    //       Authorization: auth,
+    //     },
+    //   };
 
-      axios(options).then(() => {
+      axios.put('qa/answers/helpful', { answer_id: answer.id }).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle answer helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      const options = {
-        method: 'put',
-        url: reportUrl,
-        headers: {
-          Authorization: auth,
-        },
-      };
+      // const options = {
+      //   method: 'put',
+      //   url: reportUrl,
+      //   headers: {
+      //     Authorization: auth,
+      //   },
+      // };
 
-      axios(options).then(() => {
+      axios.put('qa/answers/report', { answer_id: answer.id }).then(() => {
         markReport(true);
       }).catch((err) => console.log('handle answer report error', err));
     }
@@ -56,7 +56,6 @@ const Answer = ({ answer }) => {
           {answer.body}
         </span>
       </div>
-      <br />
       <span style={{ fontSize: '12px' }}>
 &nbsp;&nbsp;&nbsp; by
         {' '}

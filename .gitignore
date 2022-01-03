@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-'node_modules/'
-=======
 '/node_modules/'
->>>>>>> master
 server/config.js
 config.js
 client/dist/bundle.js

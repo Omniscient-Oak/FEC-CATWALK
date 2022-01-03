@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
+import AddAnswer from './AddAnswer.jsx';
 
 const auth = require('../../../../server/config.js');
 
@@ -36,7 +37,7 @@ const Question = ({ question }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     const helpfulUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${question.question_id}/helpful`;
-    const reportUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${question.question_id}/report`;
+    const reportUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${question.question_id}/report`;
 
     if (!helpful && event.target.name === 'helpful') {
       const options = {
@@ -66,10 +67,6 @@ const Question = ({ question }) => {
       }).catch((err) => console.log('handle question report error', err));
     }
   };
-
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
 
   return (
     <div>

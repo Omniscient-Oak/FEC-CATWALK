@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Search from './search.jsx';
 import Question from './Question.jsx';
+import AddQuestion from './AddQuestion.jsx';
 
 const axios = require('axios');
 
@@ -77,7 +78,7 @@ const List = () => {
           {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? null : 'More Answered Questions'}</button> : null}
           {' '}
         </div>
-        <button type="button"> Add A Question </button>
+        <AddQuestion productId={productId} />
       </ListStyle>
     </div>
   );
