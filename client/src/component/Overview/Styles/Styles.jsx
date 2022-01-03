@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Thumbnails from './Thumbnails.jsx';
 
 const Styles = (props) => {
-  var index = 0;
+  let index = 0;
+
   if (props.productStyles === undefined) {
     return <div>loading...</div>;
   } else {
@@ -15,6 +16,7 @@ const Styles = (props) => {
               style={style}
               index={index++}
               setCurrentStyleIndex={props.setCurrentStyleIndex}
+              currentStyleIndex={props.currentStyleIndex}
             />
           );
         })}
