@@ -56,3 +56,8 @@ app.route('/reviews/report')
 //RELATED ROUTES
 app.route('/related')
   .get(controller.related.get)
+
+//CART ROUTES
+app.route('/cart')
+  .get(controller.cart.get)
+  .post(controller.cart.post)

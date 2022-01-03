@@ -15,7 +15,7 @@ const RelatedItem = (props) => {
 
       <div className='related-item' onClick={()=>setProductId(props.item.id)}>
       <ItemStyle>
-      <img src={props.item.photo} width="300" height="300" />
+      <img src={props.item.photo} width="auto" height="300" />
       </ItemStyle>,
       {props.item.name},
       ${props.item.default_price},
