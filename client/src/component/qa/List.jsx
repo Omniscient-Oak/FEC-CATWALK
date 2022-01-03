@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Search from './search.jsx';
 import Question from './Question.jsx';
+import ProductContext from '../ProductContext';
 
 const axios = require('axios');
 
@@ -12,8 +13,8 @@ font-family: Helvetica;
 `;
 
 const List = () => {
+  const {productId} = useContext(ProductContext);
   const [questions, setQuestion] = useState([]);
-  const [productId, setProductId] = useState(63609);
 
   const params = {
     product_id: productId,
