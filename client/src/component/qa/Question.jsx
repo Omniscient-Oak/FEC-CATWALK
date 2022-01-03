@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import axios from 'axios';
 import Answer from './Answer.jsx';
+import AddAnswer from './AddAnswer.jsx';
 
-const QuestionStyle = styled.div`
-display: flex;
-`;
-
-const Question = ({ productId, question }) => {
+const Question = ({ question }) => {
   const [answers, showMoreAnswers] = useState(2);
-  const [expandAll, setExpanded] = useState(false);
+  const [showAllAnswers, setShowAnswers] = useState(false);
+
   const [helpful, markHelpful] = useState(false);
+  const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness);
+  const [reported, markReport] = useState(false);
+  const [status, setStatus] = useState(question.reported);
 
   const allAnswers = Object.entries(question.answers).map((ans) => ans[1]);
 
@@ -22,34 +23,66 @@ const Question = ({ productId, question }) => {
     return 0;
   });
 
-  const expandAnswers = () => {
-    if (expandAll) {
-      setExpanded(2);
+  const handleShowAnswers = () => {
+    if (showAllAnswers) {
+      showMoreAnswers(2);
     } else {
-      setExpanded(sortedAnswers.length);
+      showMoreAnswers(sortedAnswers.length);
     }
-    setExpanded(!expandAll);
+    setShowAnswers(!showAllAnswers);
+  };
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    console.log(question.question_id);
+    if (!helpful && event.target.name === 'helpful') {
+      axios.put(`qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+        setHelpfulCount(helpfulCount + 1);
+        markHelpful(true);
+      }).catch((err) => console.log('handle question helpful error', err));
+    } else if (!reported && event.target.name === 'report') {
+      axios.put(`qa/questions/report?question_id=${question.question_id}`).then(() => {
+        markReport(true);
+        setStatus(!status);
+      }).catch((err) => console.log('handle question report error', err));
+    }
   };
 
   return (
     <div>
       <br />
-      <br />
       <span>
-        <b>
-          Q:
+        <div style={{ width: '70%' }}>
+          <b>
+            Q:
+            {' '}
+            {question.question_body}
+            {' '}
+          </b>
+        </div>
+        <span style={{ float: 'right', fontSize: '12px' }}>
           {' '}
-          {question.question_body}
+&nbsp; &nbsp;Helpful?
           {' '}
-        </b>
-        <span>
+          <button type="button" name="helpful" onClick={handleUpdate}>
+            {' '}
+            Yes
+          </button>
           {' '}
-&nbsp; | &nbsp;Helpful? &nbsp;| &nbsp; Report
+          {`(${helpfulCount})`}
+&nbsp;| &nbsp;
+          {reported ? 'Reported'
+            : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
+&nbsp; | &nbsp;
+          <button type="button">Add Answer</button>
         </span>
       </span>
       <span>
-        {sortedAnswers.map((ans) => (<Answer answer={ans} key={ans.id} />))}
+        {sortedAnswers.slice(0, answers).map((ans) => (<Answer answer={ans} key={ans.id} />))}
       </span>
+      &nbsp;&nbsp;&nbsp;
+      {' '}
+      {sortedAnswers.length > 2 ? <button type="button" onClick={handleShowAnswers}>{showAllAnswers ? '--Collapse answers--' : '--See more answers--'}</button> : null}
     </div>
   );
 };
