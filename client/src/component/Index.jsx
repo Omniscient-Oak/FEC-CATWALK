@@ -11,7 +11,7 @@ const Index = () => {
         }}
       >
         <Link to="/">Home</Link> |{" "}
-        <Link to={`/store/${63611}`}>Load Store Page</Link> |{" "}
+        <Link to={`/store/${63611}`}>Store</Link> |{" "}
       </nav>
       <Outlet />
     </div>
