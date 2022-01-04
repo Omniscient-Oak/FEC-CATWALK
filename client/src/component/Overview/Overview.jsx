@@ -50,6 +50,9 @@ const Overview = () => {
   return (
     <div className='overview'>
       <WrapperStyled>
+        {product.category && <Category category={product.category} />}
+        {product.name && <ProductName name={product.name} />}
+
         <ImageWrapperStyled>
           {product.styles && (
             <CurrentImage
@@ -58,7 +61,6 @@ const Overview = () => {
               mainImage={mainImage}
             />
           )}
-
           {product.styles && (
             <Sidebar
               images={product.styles[currentStyleIndex].photos}
@@ -86,9 +88,6 @@ const Overview = () => {
           )}
         </SelectedStyleWrapper>
 
-        {product.category && <Category category={product.category} />}
-        {product.name && <ProductName name={product.name} />}
-
         <PriceStyledWrapper>
           {product.styles && (
             <Price currentStyle={product.styles[currentStyleIndex]} />
@@ -100,6 +99,7 @@ const Overview = () => {
             <SizeDropdown skus={product.styles[currentStyleIndex].skus} />
           )}
         </SizeDropdownWrapper>
+        
       </WrapperStyled>
     </div>
   );
