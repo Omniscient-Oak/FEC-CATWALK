@@ -23,9 +23,6 @@ import ProductContext from '../ProductContext';
 
 const axios = require('axios');
 
-// https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63609
-// const queryString = window.location.search;
-
 const Overview = () => {
   const productContext = useContext(ProductContext);
   const [product, setProduct] = useState([]);

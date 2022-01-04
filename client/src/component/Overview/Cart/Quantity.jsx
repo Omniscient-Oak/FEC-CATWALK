@@ -1,36 +1,32 @@
 import React from 'react';
 
-const Quantity = (props) => {
-  let quantityOptions = [];
+const Quantity = ({ currentQuantity, selectedSize }) => {
+  const quantityOptions = [];
 
-  if (props.currentQuantity > 0 && props.currentQuantity >= 15) {
-    for (let x = 1; x < 16; x++) {
+  if (currentQuantity > 0 && currentQuantity >= 15) {
+    for (let x = 1; x < 16; x += 1) {
       quantityOptions.push(x);
     }
   } else {
-    for (let x = 1; x < props.currentQuantity + 1; x++) {
+    for (let x = 1; x < currentQuantity + 1; x += 1) {
       quantityOptions.push(x);
     }
   }
 
-  if (
-    (props.currentQuantity === '-') |
-    (props.selectedSize === 'Select Size')
-  ) {
+  if (currentQuantity === '-' || selectedSize === 'Select Size') {
     return (
       <select>
         <option>-</option>
       </select>
     );
-  } else {
-    return (
-      <select>
-        {quantityOptions.map((number) => (
-          <option>{number}</option>
-        ))}
-      </select>
-    );
   }
+  return (
+    <select>
+      {quantityOptions.map((number) => (
+        <option>{number}</option>
+      ))}
+    </select>
+  );
 };
 
 export default Quantity;
