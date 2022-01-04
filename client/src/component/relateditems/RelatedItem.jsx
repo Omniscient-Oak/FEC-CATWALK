@@ -44,7 +44,7 @@ const TextBoxStyle = styled.div`
 
 const NameTitleStyle = styled.p`
   margin-left: 5%;
-  margin-top: 5%;
+  margin-top: 3%;
   font-size: 16px;
   font-weight: bold;
   color: black;
@@ -100,8 +100,14 @@ const RelatedItem = (props) => {
               {props.item.name}
             </NameTitleStyle>
             <TextStyle>
-              ${props.item.default_price},
-              Rating: {props.item.rating}
+              ${props.item.default_price}
+              {props.item.rating > 0
+              && (
+              <div>
+                Rating:
+                {props.item.rating}
+              </div>
+              )}
             </TextStyle>
           </TextBoxStyle>
         </ItemStyle>
