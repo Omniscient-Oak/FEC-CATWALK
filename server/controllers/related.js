@@ -30,10 +30,10 @@ module.exports = {
           //Calculate average rating by reducing ratings and then dividing,
           //then rounding to nearest int
           let rating = Math.round(
-          Object.values(reviewMeta.ratings).reduce(
+          (Object.values(reviewMeta.ratings).reduce(
           (total, rating) => {return parseInt(total) + parseInt(rating)})
-          / Object.values(reviewMeta.ratings).length
-          );
+          / Object.values(reviewMeta.ratings).length) * 100
+          ) / 100;
           return {...itemInfo, photo: photo, rating: rating};
         } else {
           return {...itemInfo, photo: photo, rating: 0};

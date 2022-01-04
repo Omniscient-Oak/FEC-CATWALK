@@ -36,7 +36,7 @@ const Question = ({ question }) => {
     event.preventDefault();
     console.log(question.question_id);
     if (!helpful && event.target.name === 'helpful') {
-      axios.put(`qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+      axios.put(`http://127.0.0.1:3000/qa/questions/helpful?question_id=${question.question_id}`).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));
