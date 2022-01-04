@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from 'styled-components';
 import ProductContext from '../ProductContext';
 import CompareModal from './CompareModal';
+import CompareTable from './CompareTable';
 
 const fadeIn = keyframes`
   0% {opacity: 0;}
@@ -67,7 +68,7 @@ const ImageStyle = styled.img`
 
 const CompareButtonDivStyle = styled.div`
   text-align: center;
-`
+`;
 
 const CompareButtonStyle = styled.button`
 margin-top: 1em;
@@ -113,7 +114,7 @@ const RelatedItem = (props) => {
         </ItemStyle>
       </Link>
       <CompareButtonDivStyle>
-        {popup && <CompareModal content={<div>Test</div>} toggle={setPopup} />}
+        {popup && <CompareModal content={<CompareTable currentProduct={props.item} compareProduct={props.item}/>} toggle={setPopup} />}
         <CompareButtonStyle onClick={() => { setPopup(!popup); }}>Compare</CompareButtonStyle>
       </CompareButtonDivStyle>
     </div>
