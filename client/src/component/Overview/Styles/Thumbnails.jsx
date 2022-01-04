@@ -1,35 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { CheckSquare } from '@styled-icons/fa-solid';
 
-const Thumbnails = (props) => {
-  const renderCheckmark = props.currentStyleIndex === props.index;
-  if (props.style === undefined) {
-    return <div>loading...</div>;
-  }
+const Thumbnails = ({
+  style,
+  index,
+  setCurrentStyleIndex,
+  currentStyleIndex,
+}) => {
+  const renderCheckmark = currentStyleIndex === index;
   return (
     <div>
       <ThumbnailStyled
-        onClick={() => props.setCurrentStyleIndex(props.index)}
-        imageUrl={props.style.photos[0].thumbnail_url}
-        checkmark={props.currentStyleIndex === props.index}
+        onClick={() => setCurrentStyleIndex(index)}
+        imageUrl={style.photos[0].thumbnail_url}
+        checkmark={currentStyleIndex === index}
       >
         {renderCheckmark && <StyledIcon />}
       </ThumbnailStyled>
     </div>
   );
 };
-// {product.styles && (
-//   <SizeDropdown skus={product.styles[currentStyleIndex].skus} />
-// )}
 
 export default Thumbnails;
-
-const Wrapper = styled.div`
-  width: 60px
-  height: 60px;
-
-`;
 
 const ThumbnailStyled = styled.div`
   position: relative;

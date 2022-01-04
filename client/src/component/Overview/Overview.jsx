@@ -43,41 +43,54 @@ const Overview = () => {
       .catch((err) => {
         throw err;
       });
+
+    return function cleanup() {
+      setCurrentStyleIndex(0);
+      setMainImage(0);
+    };
   }, [productContext.productId]);
 
   return (
     <div className='overview'>
       <WrapperStyled>
         <ImageWrapperStyled>
-          <CurrentImage
-            productStyles={product.styles}
-            currentStyleIndex={currentStyleIndex}
-            mainImage={mainImage}
-          />
-          <Sidebar
-            images={product.styles}
-            currentStyleIndex={currentStyleIndex}
-            setMainImage={setMainImage}
-          />
+          {product.styles && (
+            <CurrentImage
+              productStyles={product.styles}
+              currentStyleIndex={currentStyleIndex}
+              mainImage={mainImage}
+            />
+          )}
+
+          {product.styles && (
+            <Sidebar
+              images={product.styles[currentStyleIndex].photos}
+              setMainImage={setMainImage}
+            />
+          )}
           {product.styles && <ProductDescription currentProduct={product} />}
         </ImageWrapperStyled>
 
         <ProductStylesWrapper>
-          <Styles
-            productStyles={product.styles}
-            setCurrentStyleIndex={setCurrentStyleIndex}
-            currentStyleIndex={currentStyleIndex}
-          />
+          {product.styles && (
+            <Styles
+              productStyles={product.styles}
+              setCurrentStyleIndex={setCurrentStyleIndex}
+              currentStyleIndex={currentStyleIndex}
+            />
+          )}
         </ProductStylesWrapper>
 
         <SelectedStyleWrapper>
-          <SelectedStyle
-            productStyles={product.styles}
-            currentStyleIndex={currentStyleIndex}
-          />
+          {product.styles && (
+            <SelectedStyle
+              currentStyleName={product.styles[currentStyleIndex].name}
+            />
+          )}
         </SelectedStyleWrapper>
+
         {product.category && <Category category={product.category} />}
-        <ProductName name={product.name} />
+        {product.name && <ProductName name={product.name} />}
 
         <PriceStyledWrapper>
           {product.styles && (
@@ -102,7 +115,7 @@ const ImageWrapperStyled = styled.section`
   grid-column-start: 1;
   grid-row: 1 / span 10;
   display: grid;
-  height: 500px;
+  height: 650px;
   width: 750px;
 `;
 

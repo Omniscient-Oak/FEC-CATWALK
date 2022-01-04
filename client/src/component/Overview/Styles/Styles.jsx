@@ -2,23 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import Thumbnails from './Thumbnails.jsx';
 
-const Styles = (props) => {
+const Styles = ({ productStyles, setCurrentStyleIndex, currentStyleIndex }) => {
   let index = 0;
 
-  if (props.productStyles === undefined) {
-    return <div>loading...</div>;
-  }
   return (
-    <ThumbnailGrid>
-      {props.productStyles.map((style) => (
-        <Thumbnails
-          style={style}
-          index={index++}
-          setCurrentStyleIndex={props.setCurrentStyleIndex}
-          currentStyleIndex={props.currentStyleIndex}
-        />
-      ))}
-    </ThumbnailGrid>
+    <div>
+      <ThumbnailGrid>
+        {productStyles.map((style) => (
+          <Thumbnails
+            style={style}
+            index={index++}
+            setCurrentStyleIndex={setCurrentStyleIndex}
+            currentStyleIndex={currentStyleIndex}
+          />
+        ))}
+      </ThumbnailGrid>
+    </div>
   );
 };
 
