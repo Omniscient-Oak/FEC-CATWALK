@@ -14,7 +14,6 @@ app.listen(PORT, () => {
 });
 
 app.use(express.static(__dirname + '/../client/dist'));
-// app.use('/store/*', express.static(__dirname + '/../client/dist'));
 
 //PRODUCT ROUTES
 app.route('/products')

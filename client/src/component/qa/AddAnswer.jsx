@@ -121,5 +121,3 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
 };
 
 export default AddAnswer;
-
-// rgba(183, 178, 176, 0.4);

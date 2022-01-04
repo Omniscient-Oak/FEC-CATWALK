@@ -47,11 +47,7 @@ module.exports = {
           Authorization: auth,
         },
       })
-<<<<<<< HEAD
         .then((r) => { res.sendStatus(r.status); })
-=======
-        .then((r) => {console.log(r); res.send(JSON.stringify(r.status)); })
->>>>>>> master
         .catch((e) => { console.log(e); res.send(e); });
     },
 
