@@ -60,7 +60,11 @@ const Question = ({ question, productId }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     if (!helpful && event.target.name === 'helpful') {
+<<<<<<< HEAD
       axios.put(`http://localhost:3000/qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+=======
+      axios.put(`http://127.0.0.1:3000/qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+>>>>>>> master
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));

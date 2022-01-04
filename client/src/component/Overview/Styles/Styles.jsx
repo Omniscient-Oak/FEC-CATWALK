@@ -2,34 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import Thumbnails from './Thumbnails.jsx';
 
-const Styles = (props) => {
+const Styles = ({ productStyles, setCurrentStyleIndex, currentStyleIndex }) => {
   let index = 0;
 
-  if (props.productStyles === undefined) {
-    return <div>loading...</div>;
-  } else {
-    return (
+  return (
+    <div>
       <ThumbnailGrid>
-        {props.productStyles.map((style) => {
-          return (
-            <Thumbnails
-              style={style}
-              index={index++}
-              setCurrentStyleIndex={props.setCurrentStyleIndex}
-              currentStyleIndex={props.currentStyleIndex}
-            />
-          );
-        })}
+        {productStyles.map((style) => (
+          <Thumbnails
+            style={style}
+            index={index++}
+            setCurrentStyleIndex={setCurrentStyleIndex}
+            currentStyleIndex={currentStyleIndex}
+          />
+        ))}
       </ThumbnailGrid>
-    );
-  }
+    </div>
+  );
 };
 
 export default Styles;
-
-const ButtonStyled = styled.button`
-  background: blue;
-`;
 
 const ThumbnailGrid = styled.section`
   display: grid;

@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ProductName = (props) => {
-  if (props.name === undefined) {
-    return <div>loading...</div>;
-  } else {
-    return <ProductNameStyled>{props.name}</ProductNameStyled>;
-  }
-};
+const ProductName = ({ name }) => <ProductNameStyled>{name}</ProductNameStyled>;
 
 export default ProductName;
 
