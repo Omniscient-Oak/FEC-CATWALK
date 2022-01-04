@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 
@@ -82,6 +82,15 @@ const RelatedItemsMenu = () => {
     changeToShow(relatedList.slice(currentRange[0], currentRange[1]));
   };
 
+  const scrollHandler = (e) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      handleCarouselRight();
+    } else {
+      handleCarouselLeft();
+    }
+  };
+
   useEffect(() => {
     console.log(productId);
     axios.get('/related', {
@@ -99,7 +108,7 @@ const RelatedItemsMenu = () => {
       <RelatedTitleStyle>
         <h3>Related Items</h3>
       </RelatedTitleStyle>
-      <RelatedItemWrapperStyle>
+      <RelatedItemWrapperStyle onWheel={(e)=>{scrollHandler(e)}}>
         {toShow.length > 0 && <CarouselButton onClick={handleCarouselLeft}>&lt;</CarouselButton>}
         {toShow.map((item) => <RelatedItem item={item} key={item.name} />)}
         {toShow.length > 0 && <CarouselButton onClick={handleCarouselRight}>&gt;</CarouselButton>}
