@@ -50,7 +50,7 @@ const AddQuestion = ({ productId }) => {
     }
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (() => {
     const newQuestion = {
       body: question,
       name,
@@ -59,12 +59,12 @@ const AddQuestion = ({ productId }) => {
     };
 
     if (question.length < 1 || name.length < 1 || email.length < 1 || !validateEmail(email)) {
-      return <p>You must enter the following:</p>;
+      // return <p>You must enter the following:</p>;
     }
     axios.post('/qa/questions', newQuestion).then(() => {
       console.log('sent');
     }).catch((err) => { console.log('post question error', err); });
-  };
+  });
 
   return (
     <div>

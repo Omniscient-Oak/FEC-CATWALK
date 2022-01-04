@@ -14,7 +14,7 @@ font-family: Helvetica;
 `;
 
 const List = () => {
-  const {productId} = useContext(ProductContext);
+  const { productId } = useContext(ProductContext);
   const [questions, setQuestion] = useState([]);
   const [questionShowed, showMoreQuestions] = useState(4);
   const [showAllQuestions, setShowQuestions] = useState(false);
@@ -67,7 +67,7 @@ const List = () => {
         <Search handleSearch={handleSearch} />
         <div style={{ maxHeight: '100%', overflow: 'auto' }}>
           {isSearch ? filteredQuestions.slice(0, questionShowed).map((q) => (
-            <Question question={q} key={q.question_id} />
+            <Question question={q} productId={productId} key={q.question_id} />
           )) : questions.slice(0, questionShowed).map((q) => (
             <Question question={q} key={q.question_id} />
           ))}

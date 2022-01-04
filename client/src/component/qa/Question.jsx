@@ -3,7 +3,7 @@ import axios from 'axios';
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
 
-const Question = ({ question }) => {
+const Question = ({ question, productId }) => {
   const [answers, showMoreAnswers] = useState(2);
   const [showAllAnswers, setShowAnswers] = useState(false);
 
@@ -11,6 +11,8 @@ const Question = ({ question }) => {
   const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness);
   const [reported, markReport] = useState(false);
   const [status, setStatus] = useState(question.reported);
+
+  const [productName, setProductName] = useState('');
 
   const allAnswers = Object.entries(question.answers).map((ans) => ans[1]);
 
@@ -48,6 +50,14 @@ const Question = ({ question }) => {
     }
   };
 
+  axios.get('/products/info/', { params: { product_id: productId } })
+    .then((response) => {
+      setProductName(response.data.name);
+    })
+    .catch((err) => {
+      throw err;
+    });
+
   return (
     <div>
       <br />
@@ -74,7 +84,11 @@ const Question = ({ question }) => {
           {reported ? 'Reported'
             : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
 &nbsp; | &nbsp;
-          <button type="button">Add Answer</button>
+          <AddAnswer
+            productName={productName}
+            questionId={question.question_id}
+            questionBody={question.question_body}
+          />
         </span>
       </span>
       <span>
