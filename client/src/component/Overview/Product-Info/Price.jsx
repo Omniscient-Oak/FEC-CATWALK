@@ -1,34 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// you would need to pass down the specific style to know what the price is
-// you also need to check the sale price
-const Price = (props) => {
-  if (props.productStyles === undefined) {
-    return <div>loading...</div>;
-  } else {
-    // console.log(props.productStyles[props.currentStyleIndex].original_price);
-    if (props.productStyles[props.currentStyleIndex].sale_price === null) {
-      return (
-        <div>
-          ${props.productStyles[props.currentStyleIndex].original_price}
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <OriginalPrice>
-            ${props.productStyles[props.currentStyleIndex].original_price}
-          </OriginalPrice>
-          <SalePrice>
-            ${props.productStyles[props.currentStyleIndex].sale_price}
-          </SalePrice>
-        </div>
-      );
-    }
-
-    // return <div>{props.productStyles}</div>;
+const Price = ({ currentStyle }) => {
+  if (currentStyle.sale_price === null) {
+    return <div>${currentStyle.original_price}</div>;
   }
+  return (
+    <div>
+      <OriginalPrice>${currentStyle.original_price}</OriginalPrice>
+      <SalePrice>${currentStyle.sale_price}</SalePrice>
+    </div>
+  );
 };
 
 export default Price;

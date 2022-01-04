@@ -2,24 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import TinyImage from './TinyImage.jsx';
 
-const Sidebar = (props) => {
-  var index = 0;
+const Sidebar = ({ images, setMainImage }) => {
+  let index = 0;
 
-  if (props.images === undefined) {
-    return <div>hello world</div>;
-  } else {
-    return (
-      <SidebarScroll>
-        {props.images[props.currentStyleIndex].photos.map((photo) => (
-          <TinyImage
-            photo={photo}
-            index={index++}
-            setMainImage={props.setMainImage}
-          />
-        ))}
-      </SidebarScroll>
-    );
-  }
+  return (
+    <SidebarScroll>
+      {images.map((photo) => (
+        <TinyImage photo={photo} index={index++} setMainImage={setMainImage} />
+      ))}
+    </SidebarScroll>
+  );
 };
 
 export default Sidebar;

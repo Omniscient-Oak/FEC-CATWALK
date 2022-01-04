@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductContext from './ProductContext';
 import Overview from './Overview/Overview.jsx';
@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {}, []);
   return (
     <div>
-      <ProductContext.Provider value={{productId, setProductId}}>
+      <ProductContext.Provider value={{ productId, setProductId }}>
         <Overview />
         <RelatedItemsMenu />
         <List />
