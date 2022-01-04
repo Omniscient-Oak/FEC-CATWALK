@@ -3,25 +3,22 @@ import styled from 'styled-components';
 
 // product-info
 import Category from './Product-Info/Category.jsx';
-import ProductDescription from './Product-Info/ProductDescription.jsx';
 import ProductName from './Product-Info/ProductName.jsx';
-import ProductSlogan from './Product-Info/ProductSlogan.jsx';
 import Price from './Product-Info/Price.jsx';
-import StarRating from './Product-Info/StarRating.jsx';
+import ProductDescription from './Product-Info/ProductDescription.jsx';
 
-//images
+// images
 import CurrentImage from './Image-Gallery/CurrentImage.jsx';
 import Sidebar from './Image-Gallery/Sidebar.jsx';
 
-//styles
+// styles
 import Styles from './Styles/Styles.jsx';
 import SelectedStyle from './Styles/SelectedStyle.jsx';
 
-//cart
+// cart
 import SizeDropdown from './Cart/SizeDropdown.jsx';
-import AddToCart from './Cart/AddToCart.jsx';
 
-//context
+// context
 import ProductContext from '../ProductContext';
 
 const axios = require('axios');
@@ -29,7 +26,7 @@ const axios = require('axios');
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/63609
 // const queryString = window.location.search;
 
-function Overview() {
+const Overview = () => {
   const productContext = useContext(ProductContext);
   const [product, setProduct] = useState([]);
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
@@ -37,7 +34,9 @@ function Overview() {
 
   useEffect(() => {
     axios
-      .get('/products/allinfo/', { params: { product_id: productContext.productId } })
+      .get('/products/allinfo/', {
+        params: { product_id: productContext.productId },
+      })
       .then((response) => {
         setProduct(response.data);
       })
@@ -60,6 +59,7 @@ function Overview() {
             currentStyleIndex={currentStyleIndex}
             setMainImage={setMainImage}
           />
+          {product.styles && <ProductDescription currentProduct={product} />}
         </ImageWrapperStyled>
 
         <ProductStylesWrapper>
@@ -76,15 +76,13 @@ function Overview() {
             currentStyleIndex={currentStyleIndex}
           />
         </SelectedStyleWrapper>
-
-        <Category category={product.category} />
+        {product.category && <Category category={product.category} />}
         <ProductName name={product.name} />
 
         <PriceStyledWrapper>
-          <Price
-            productStyles={product.styles}
-            currentStyleIndex={currentStyleIndex}
-          />
+          {product.styles && (
+            <Price currentStyle={product.styles[currentStyleIndex]} />
+          )}
         </PriceStyledWrapper>
 
         <SizeDropdownWrapper>
@@ -95,32 +93,25 @@ function Overview() {
       </WrapperStyled>
     </div>
   );
-}
+};
 
 export default Overview;
 
 const ImageWrapperStyled = styled.section`
   grid-template-columns: 3fr 7fr;
   grid-column-start: 1;
-  grid-row: 1 / span 8;
+  grid-row: 1 / span 10;
   display: grid;
-  height: 750px;
+  height: 500px;
   width: 750px;
 `;
 
-const ProductDescriptionStyled = styled.div`
-  display: grid;
-  grid-template-columns: 4fr 6.2fr 0.75fr;
-  grid-column-start: 1;
-  grid-row-start: 7;
-`;
-
 const WrapperStyled = styled.section`
-  padding: 2em 10em 5em 10em;
+  padding: 2% 15% 2% 15%;
   display: grid;
   grid-template-columns: 7fr 3fr;
   grid-column-gap: 10px;
-  grid-template-rows: 0.05fr 0.1fr 0.05fr 0.1fr 0.15fr 0.05fr 1fr 1fr 1fr;
+  grid-template-rows: 0.05fr 0.1fr 0.05fr 0.1fr 0.15fr 0.05fr 1fr 1fr 1fr 0.2fr;
   font-family: Helvetica;
 `;
 
@@ -141,16 +132,3 @@ const SelectedStyleWrapper = styled.section`
 const SizeDropdownWrapper = styled.section`
   grid-row-start: 7;
 `;
-
-// {
-//   /* <Category category={product.category} />
-//         <ProductName name={product.name} />
-//         <Price productStyles={product.styles} />
-//         <StarRating />
-//         <ProductDescriptionStyled>
-//           <ProductDescription
-//             description={product.description}
-//             slogan={product.slogan}
-//           />
-//   </ProductDescriptionStyled>*/
-// }

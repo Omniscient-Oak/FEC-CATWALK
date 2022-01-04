@@ -6,19 +6,18 @@ const Thumbnails = (props) => {
   const renderCheckmark = props.currentStyleIndex === props.index;
   if (props.style === undefined) {
     return <div>loading...</div>;
-  } else {
-    return (
-      <div>
-        <ThumbnailStyled
-          onClick={() => props.setCurrentStyleIndex(props.index)}
-          imageUrl={props.style.photos[0].thumbnail_url}
-          checkmark={props.currentStyleIndex === props.index}
-        >
-          {renderCheckmark && <StyledIcon />}
-        </ThumbnailStyled>
-      </div>
-    );
   }
+  return (
+    <div>
+      <ThumbnailStyled
+        onClick={() => props.setCurrentStyleIndex(props.index)}
+        imageUrl={props.style.photos[0].thumbnail_url}
+        checkmark={props.currentStyleIndex === props.index}
+      >
+        {renderCheckmark && <StyledIcon />}
+      </ThumbnailStyled>
+    </div>
+  );
 };
 // {product.styles && (
 //   <SizeDropdown skus={product.styles[currentStyleIndex].skus} />

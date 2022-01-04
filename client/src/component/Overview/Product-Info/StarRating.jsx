@@ -1,7 +1,5 @@
 import React from 'react';
 
-const StarRating = () => {
-  return <div>StarRating</div>;
-};
+const StarRating = () => <div>StarRating</div>;
 
 export default StarRating;

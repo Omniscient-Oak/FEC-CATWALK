@@ -9,23 +9,21 @@ const CurrentImage = (props) => {
   useEffect(() => {
     if (props.productStyles === undefined) {
       return <div>loading...</div>;
-    } else {
-      setImage(
-        props.productStyles[props.currentStyleIndex].photos[props.mainImage].url
-      ); // this 0 needs to use context to use style
     }
+    setImage(
+      props.productStyles[props.currentStyleIndex].photos[props.mainImage].url
+    ); // this 0 needs to use context to use style
   }, [props]);
 
   if (props.productStyles === undefined) {
     return <div>loading...</div>;
-  } else {
-    return (
-      <MainImageStyled
-        onClick={() => console.log('hello world!')}
-        src={currentImage}
-      />
-    );
   }
+  return (
+    <MainImageStyled
+      onClick={() => console.log('hello world!')}
+      src={currentImage}
+    />
+  );
 };
 
 export default CurrentImage;
@@ -39,11 +37,3 @@ const MainImageStyled = styled.img`
   height: 100%;
   width: 100%;
 `;
-
-// const GridAssignmentStyled = styled.section`
-//   display: grid;
-//   // background: blue;
-//   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-//   grid-template-columns: 0.25fr 2.5fr 6fr 0.25fr;
-//   justify-items: center;
-// `;

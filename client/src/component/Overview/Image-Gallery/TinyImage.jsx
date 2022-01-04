@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TinyImage = (props) => {
-  return (
-    <Wrapper>
-      <ImageStyled
-        onClick={() => props.setMainImage(props.index)}
-        src={props.photo.thumbnail_url}
-      />
-    </Wrapper>
-  );
-};
+const TinyImage = (props) => (
+  <Wrapper>
+    <ImageStyled
+      onClick={() => props.setMainImage(props.index)}
+      src={props.photo.thumbnail_url}
+    />
+  </Wrapper>
+);
 
 export default TinyImage;
 

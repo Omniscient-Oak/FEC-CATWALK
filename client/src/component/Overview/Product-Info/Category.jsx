@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Category = (props) => {
-  if (props.category === undefined) {
-    return <div>loading...</div>;
-  } else {
-    return <ProductCategory>{props.category}</ProductCategory>;
-  }
-};
+const Category = ({ category }) => (
+  <ProductCategory>{category}</ProductCategory>
+);
 
 export default Category;
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -23,7 +23,7 @@ padding: 2em 10em 0em 10em;
 
 const RelatedItemsMenu = () => {
   const [relatedList, changeRelated] = useState([]);
-  const {productId} = useContext(ProductContext);
+  const { productId } = useContext(ProductContext);
   useEffect(() => {
     console.log(productId);
     axios.get('/related', {
@@ -34,14 +34,14 @@ const RelatedItemsMenu = () => {
   }, [productId]);
   return (
 
-      <div className="relatedmenu">
-        <RelatedTitleStyle>
-          <h3>Related Items</h3>
-        </RelatedTitleStyle>
-        <RelatedItemWrapperStyle>
-        {relatedList.map((item) => <RelatedItem item={item} key={item.name}/>)}
-        </RelatedItemWrapperStyle>
-      </div>
+    <div className="relatedmenu">
+      <RelatedTitleStyle>
+        <h3>Related Items</h3>
+      </RelatedTitleStyle>
+      <RelatedItemWrapperStyle>
+        {relatedList.map((item) => <RelatedItem item={item} key={item.name} />)}
+      </RelatedItemWrapperStyle>
+    </div>
   );
 };
 
