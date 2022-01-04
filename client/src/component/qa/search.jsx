@@ -9,12 +9,12 @@ const Search = ({ handleSearch }) => (
         onChange={handleSearch}
         placeholder="Have a question? Search for answers..."
         style={{
-          'font-size': '18px',
+          fontSize: '18px',
           width: '50%',
           height: '30px',
-          'box-sizing': 'border-box',
+          boxSizing: 'border-box',
           border: 'none',
-          'border-bottom': '2px solid',
+          borderBottom: '2px solid',
         }}
       />
     </form>

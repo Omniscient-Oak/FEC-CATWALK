@@ -20,6 +20,7 @@ background-color: white;
 margin: 10px;
 font-size: 15px;
 border-radius: 10px;
+cursor: pointer;
 &:hover{
   color: blue;
 }

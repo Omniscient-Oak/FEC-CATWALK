@@ -3,12 +3,29 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const Container = styled.div`
+position: fixed;
+z-index: 100;
+top: 0;
+left: 0;
 justifyContent: center;
-backgroundColor: rgba(0, 0, 0, 0.5)
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+display: flex;
+align-items: center;
+`;
+
+const Modal = styled.div`
+border-radius: 10px;
+background-color: black;
+color: white;
+text-align: center;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+border: 2px solid;
+z-index: 100;
+width: 60%;
+height: 60%;
+overflow: auto;
 `;
 
 const AddButton = styled.button`
@@ -18,6 +35,7 @@ background-color: white;
 margin: 10px;
 font-size: 15px;
 border-radius: 10px;
+cursor: pointer;
 &:hover{
   color: blue;
 }
@@ -52,7 +70,7 @@ const AddQuestion = ({ productId }) => {
       setQuestion(event.target.value);
     } else if (event.target.name === 'nickname') {
       setName(event.target.value);
-    } else if (event.target.name === 'email') {
+    } else if (event.target.name === 'email' && validateEmail(event.target.value)) {
       setEmail(event.target.value);
     }
   });
@@ -65,9 +83,6 @@ const AddQuestion = ({ productId }) => {
       product_id: productId,
     };
 
-    // if (question.length < 1 || name.length < 1 || email.length < 1 || !validateEmail(email)) {
-
-    // }
     axios.post('http://localhost:3000/qa/questions', newQuestion).then(() => {
       console.log('sent');
     }).catch((err) => { console.log('post question error', err); });
@@ -79,28 +94,35 @@ const AddQuestion = ({ productId }) => {
       {show
         ? (
           <Container>
+            <Modal>
+              <form style={{ display: 'inline-block' }} onSubmit={handleSubmit}>
+                <h4 style={{ fontSize: '20px' }}>Ask Your Question</h4>
+                <h5 style={{ fontSize: '12px' }}>
+                  About the
+                  {' '}
+                  [
+                  {productName}
+                  ]
+                </h5>
+                {question.length <= 0 || name.length <= 0 || email.length <= 0 ? <p style={{ color: 'red', fontSize: '10px' }}>You must enter the followings:</p> : null}
+                <p style={{ fontSize: '15px' }}>(1) Your Question *</p>
+                <textarea style={{ width: '80%', height: '15%' }} maxLength="1000" name="questionBody" placeholder="Why did you like the product or not?" required onChange={(e) => { handleAddQuestion(e); }} />
+                <p style={{ fontSize: '15px' }}>(2) What is your nickname? *</p>
+                <input style={{ width: '80%', height: '8%' }} maxLength="60" placeholder="Example: jackson11!" name="nickname" required onChange={(e) => { handleAddQuestion(e); }} />
+                <p style={{ fontSize: '10px' }}>For privacy reasons, do not use your full name or email address</p>
+                <p style={{ fontSize: '15px' }}>(3) Your email *</p>
+                <input style={{ width: '80%', height: '8%' }} maxLength="60" placeholder="Example@example.com" name="email" required onChange={(e) => { handleAddQuestion(e); }} />
+                <p style={{ fontSize: '10px' }}>For authentication reasons, you will not be emailed.</p>
+                <button
+                  style={{ fontSize: '15px', cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
 
-            <h4>Ask Your Question</h4>
-
-            <form onSubmit={handleSubmit}>
-              <h5>
-                About the
-                {' '}
-                [
-                {productName}
-                ]
-              </h5>
-              <p>(1) Your Question *</p>
-              <textarea maxLength="1000" name="questionBody" placeholder="Why did you like the product or not?" required onChange={(e) => { handleAddQuestion(e); }} />
-              <p>(2) What is your nickname? *</p>
-              <input maxLength="60" placeholder="Example: jackson11!" name="nickname" required onChange={(e) => { handleAddQuestion(e); }} />
-              <p>For privacy reasons, do not use your full name or email address</p>
-              <p>(3) Your email *</p>
-              <input maxLength="60" placeholder="Example@example.com" name="email" required onChange={(e) => { handleAddQuestion(e); }} />
-              <p>For authentication reasons, you will not be emailed.</p>
-              <button type="submit">Submit</button>
-              <button type="button" onClick={handleClose}>Cancel</button>
-            </form>
+                </button>
+                <button style={{ marginLeft: '50px', fontSize: '15px', cursor: 'pointer' }} type="button" onClick={handleClose}>Cancel</button>
+              </form>
+            </Modal>
           </Container>
         )
         : null}
@@ -109,13 +131,3 @@ const AddQuestion = ({ productId }) => {
 };
 
 export default AddQuestion;
-
-// position: fixed;
-// z-index: 1;
-// left: 0;
-// top: 0;
-// width: 100%;
-// height: 100%;
-// overflow: auto;
-// background-color: rgb(0,0,0);
-// background-color: rgba(0,0,0,0.4);

@@ -1,7 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
+
+const ButtonStyle = styled.button`
+border: none;
+background-color: white;
+cursor: pointer;
+&:hover{
+  color: red;
+}
+`;
+
+const MoreAnswersButton = styled.button`
+border: none;
+cursor: pointer;
+font-size: 15px;
+margin: 10px;
+font-style: italic;
+background-color: white;
+font-weight: bold;
+&:hover{
+  color: blue;
+}
+`;
 
 const Question = ({ question, productId }) => {
   const [answers, showMoreAnswers] = useState(2);
@@ -36,7 +59,6 @@ const Question = ({ question, productId }) => {
 
   const handleUpdate = (event) => {
     event.preventDefault();
-    console.log(question.question_id);
     if (!helpful && event.target.name === 'helpful') {
       axios.put(`http://localhost:3000/qa/questions/helpful?question_id=${question.question_id}`).then(() => {
         setHelpfulCount(helpfulCount + 1);
@@ -74,15 +96,27 @@ const Question = ({ question, productId }) => {
           {' '}
 &nbsp; &nbsp;Helpful?
           {' '}
-          <button type="button" name="helpful" onClick={handleUpdate} style={{ border: 'none' }}>
+          <ButtonStyle
+            type="button"
+            name="helpful"
+            onClick={handleUpdate}
+          >
             {' '}
             Yes
-          </button>
-          {' '}
+          </ButtonStyle>
           {`(${helpfulCount})`}
-&nbsp;| &nbsp;
+&nbsp; |  &nbsp;
           {reported ? 'Reported'
-            : <button type="button" name="report" onClick={handleUpdate} style={{ border: 'none' }}> Report </button>}
+            : (
+              <ButtonStyle
+                type="button"
+                name="report"
+                onClick={handleUpdate}
+              >
+                {' '}
+                Report
+              </ButtonStyle>
+            )}
           <AddAnswer
             productName={productName}
             questionId={question.question_id}
@@ -95,7 +129,13 @@ const Question = ({ question, productId }) => {
       </span>
       &nbsp;&nbsp;&nbsp;
       {' '}
-      {sortedAnswers.length > 2 ? <button type="button" onClick={handleShowAnswers}>{showAllAnswers ? '--Collapse answers--' : '--See more answers--'}</button> : null}
+      {sortedAnswers.length > 2 ? (
+        <MoreAnswersButton
+          onClick={handleShowAnswers}
+        >
+          {showAllAnswers ? '--Collapse answers--' : '--See more answers--'}
+        </MoreAnswersButton>
+      ) : null}
     </div>
   );
 };
