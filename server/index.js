@@ -1,7 +1,9 @@
 
 /* eslint-disable */
 const express = require('express');
-const controller = require('./controllers')
+const controller = require('./controllers');
+const path = require("path");
+const serveIndex = require('serve-index');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -56,3 +58,10 @@ app.route('/reviews/report')
 //RELATED ROUTES
 app.route('/related')
   .get(controller.related.get)
+
+//CART ROUTES
+app.route('/cart')
+  .get(controller.cart.get)
+  .post(controller.cart.post)
+
+app.use('/*', express.static(__dirname + '/../client/dist'), serveIndex(__dirname + '/../client/dist'));
