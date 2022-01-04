@@ -8,12 +8,10 @@ import RelatedItem from './RelatedItem';
 const RelatedItemWrapperStyle = styled.section`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-column: 1 / 5;
-  grid-row: 1;
-  padding: 2em 10em 5em 10em;
+  flex-direction: row;
+  padding: 2em 15em 5em 15em;
   font-family: Helvetica;
-  display: grid;
+  display: flex;
   height: 325px;
 `;
 

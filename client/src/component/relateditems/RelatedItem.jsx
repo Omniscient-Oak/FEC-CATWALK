@@ -12,16 +12,16 @@ const RelatedItem = (props) => {
   return (
 
     <Link to={`/store/${props.item.id}`}>
-
-      <div className='related-item' onClick={()=>setProductId(props.item.id)}>
       <ItemStyle>
-      <img src={props.item.photo} width="300" height="300" />
-      </ItemStyle>,
+      <div className='related-item' onClick={()=>setProductId(props.item.id)}>
+
+      <img src={props.item.photo} width="auto" height="300" />
       {props.item.name},
       ${props.item.default_price},
       Rating: {props.item.rating}
 
       </div>
+      </ItemStyle>
 
     </Link>
 
