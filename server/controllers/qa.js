@@ -41,7 +41,7 @@ module.exports = {
           Authorization: auth,
         },
       })
-        .then((r) => { res.send(JSON.stringify(r.status)); })
+        .then((r) => {console.log(r); res.send(JSON.stringify(r.status)); })
         .catch((e) => { console.log(e); res.send(e); });
     },
 

@@ -1,43 +1,39 @@
-const axios = require('axios');
-const auth = require('../config.js');
 const productsModel = require('../models/products.js');
 const reviewsModel = require('../models/reviews.js')
 
 module.exports = {
   get: async (req, res) => {
-    try{
+    try {
       const relatedItems = await productsModel.related(req.query);
-      const relatedItemInfo = await Promise.all (relatedItems.map( async (item)=> {
-        let query = {product_id: item}
+      const relatedItemsUniq = Array.from(new Set(relatedItems));
+      const relatedItemInfo = await Promise.all(relatedItemsUniq.map(async (item) => {
+        const query = { product_id: item };
         const getReq = [productsModel.styles, productsModel.info, reviewsModel.meta];
-        const getRes = await Promise.all (getReq.map(async (get)=> {return get(query);}))
-        let styleInfo, itemInfo, reviewMeta;
+        const getRes = await Promise.all(getReq.map(async (get) => get(query)));
+        let styleInfo;
+        let itemInfo;
+        let reviewMeta;
         [styleInfo, itemInfo, reviewMeta] = [...getRes];
-        let photo = null
-        //Sets image to first image of default
+        let photo = null;
         for(let style of styleInfo.results) {
-          //console.log(style)
           if (style['default?']) {
-              photo = style.photos[0]['thumbnail_url'];
+            photo = style.photos[0]['thumbnail_url'];
           }
-        }
-        //If there is no default, image is first of the first style
+        };
         if (!photo) {
-          photo = styleInfo.results[0]['photos'][0]['thumbnail_url']
+          photo = styleInfo.results[0].photos[0].thumbnail_url;
         }
-
         if (Object.keys(reviewMeta.ratings).length > 0) {
-          //Calculate average rating by reducing ratings and then dividing,
-          //then rounding to nearest int
-          let rating = Math.round(
-          Object.values(reviewMeta.ratings).reduce(
-          (total, rating) => {return parseInt(total) + parseInt(rating)})
-          / Object.values(reviewMeta.ratings).length
-          );
-          return {...itemInfo, photo: photo, rating: rating};
-        } else {
-          return {...itemInfo, photo: photo, rating: 0};
+          const numReviews = (Object.values(reviewMeta.ratings).reduce(
+            (total, num) => { return parseInt(total) + parseInt(num); }));
+          const combinedRatings = (Object.keys(reviewMeta.ratings).reduce(
+            (total, rating) =>
+              (parseInt(total) + (parseInt(rating) * parseInt(reviewMeta.ratings[rating])))
+          ));
+          let rating = Math.round((combinedRatings / numReviews) * 100) / 100;
+          return { ...itemInfo, photo, rating };
         }
+        return { ...itemInfo, photo, rating: 0 };
       }));
       res.send(relatedItemInfo);
     } catch (e) {
@@ -45,5 +41,5 @@ module.exports = {
       res.send(e);
       console.error(e);
     }
-  }
-}
+  },
+};
