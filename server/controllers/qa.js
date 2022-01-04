@@ -15,7 +15,9 @@ module.exports = {
           page: req.query.page,
         },
       })
-        .then((questions) => { res.send(questions.data); })
+        .then((questions) => {
+          res.send(questions.data);
+        })
         .catch((e) => { console.log(e); res.send(e); });
     },
     post: (req, res) => {
@@ -30,8 +32,13 @@ module.exports = {
           Authorization: auth,
         },
       })
-        .then((r) => { res.send(JSON.stringify(r.status)); })
-        .catch((e) => { res.send(e); });
+        .then((r) => {
+          res.sendStatus(r.status);
+        })
+        .catch((e) => {
+          console.log(e);
+          res.send(e);
+        });
     },
 
     helpful: (req, res) => {
@@ -40,7 +47,7 @@ module.exports = {
           Authorization: auth,
         },
       })
-        .then((r) => { res.send(JSON.stringify(r.status)); })
+        .then((r) => { res.sendStatus(r.status); })
         .catch((e) => { console.log(e); res.send(e); });
     },
 
@@ -86,7 +93,7 @@ module.exports = {
           question_id: req.query.question_id,
         },
       })
-        .then((r) => { res.send(JSON.stringify(r.status)); })
+        .then((r) => { res.sendStatus(r.status); })
         .catch((e) => { res.send(e); });
     },
 
@@ -96,7 +103,7 @@ module.exports = {
           Authorization: auth,
         },
       })
-        .then((r) => { res.send(JSON.stringify(r.status)); })
+        .then((r) => { res.sendStatus(r.status); })
         .catch((e) => { console.log(e); res.send(e); });
     },
 
@@ -106,7 +113,7 @@ module.exports = {
           Authorization: auth,
         },
       })
-        .then((r) => { res.send(JSON.stringify(r.status)); })
+        .then((r) => { res.sendStatus(r.status); })
         .catch((e) => { console.log(e); res.send(e); });
     },
   },
