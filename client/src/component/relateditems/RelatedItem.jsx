@@ -22,7 +22,7 @@ const ItemStyle = styled.div`
   box-shadow: 2px 2px 3px #D3D3D3;
   margin-right: 1em;
   margin-left: 1em;
-  justify-content: space-around;
+  justify-content: row;
   animation-name: ${fadeIn};
   animation-duration: .5s;
   transition-timing-function: ease-in;

@@ -36,7 +36,6 @@ module.exports = {
     },
 
     helpful: (req, res) => {
-      console.log(req.query.question_id);
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${req.query.question_id}/helpful`, {}, {
         headers: {
           Authorization: auth,

@@ -83,7 +83,6 @@ const RelatedItemsMenu = () => {
   };
 
   const scrollHandler = (e) => {
-    e.preventDefault();
     if (e.deltaY < 0) {
       handleCarouselRight();
     } else {
@@ -92,7 +91,6 @@ const RelatedItemsMenu = () => {
   };
 
   useEffect(() => {
-    console.log(productId);
     axios.get('/related', {
       params: {
         product_id: productId,
@@ -108,7 +106,7 @@ const RelatedItemsMenu = () => {
       <RelatedTitleStyle>
         <h3>Related Items</h3>
       </RelatedTitleStyle>
-      <RelatedItemWrapperStyle onWheel={(e)=>{scrollHandler(e)}}>
+      <RelatedItemWrapperStyle onWheel={(e) => { scrollHandler(e);}}>
         {toShow.length > 0 && <CarouselButton onClick={handleCarouselLeft}>&lt;</CarouselButton>}
         {toShow.map((item) => <RelatedItem item={item} key={item.name} />)}
         {toShow.length > 0 && <CarouselButton onClick={handleCarouselRight}>&gt;</CarouselButton>}
