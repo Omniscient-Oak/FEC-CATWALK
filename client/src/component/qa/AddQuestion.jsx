@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const Modal = require('react-bootstrap-modal');
-
 const Container = styled.div`
-position: fixed;
+position: absolute;
 z-index: 1;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
+left: 100px;
+top: 100px;
+
 overflow: auto;
 background-color: rgb(0,0,0);
-background-color: rgba(0,0,0,0.4);
+background-color: rgba(0,0,0,0.6);
 `;
 
 const AddQuestion = ({ productId }) => {
@@ -68,13 +65,13 @@ const AddQuestion = ({ productId }) => {
 
   return (
     <div>
-      <button type="button" variant="primary" onClick={handleShow}> Add A Question </button>
-      <Container>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Ask Your Question</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+      <button type="button" onClick={handleShow}> Add A Question </button>
+      {show
+        ? (
+          <Container>
+
+            <h4>Ask Your Question</h4>
+
             <form onSubmit={handleSubmit}>
               <h5>
                 About the
@@ -93,11 +90,21 @@ const AddQuestion = ({ productId }) => {
               <p>For authentication reasons, you will not be emailed.</p>
               <button type="submit" onClick={handleClose}>Submit</button>
             </form>
-          </Modal.Body>
-        </Modal>
-      </Container>
+          </Container>
+        )
+        : null}
     </div>
   );
 };
 
 export default AddQuestion;
+
+// position: fixed;
+// z-index: 1;
+// left: 0;
+// top: 0;
+// width: 100%;
+// height: 100%;
+// overflow: auto;
+// background-color: rgb(0,0,0);
+// background-color: rgba(0,0,0,0.4);

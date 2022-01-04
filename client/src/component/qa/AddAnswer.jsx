@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const Modal = require('react-bootstrap-modal');
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -43,13 +41,12 @@ const AddAnswer = (productName, questionId, questionBody) => {
 
   return (
     <div>
-      <button type="button" variant="primary" onClick={handleShow} style={{ float: 'right' }}>Add Answer</button>
-      <Container>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Submit Your Answer</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+      <button type="button" onClick={handleShow} style={{ float: 'right' }}>Add Answer</button>
+      {show
+        ? (
+          <Container>
+            <h4>Submit Your Answer</h4>
+
             <form onSubmit={postAnswer}>
               <h5>
                 {productName}
@@ -67,9 +64,9 @@ const AddAnswer = (productName, questionId, questionBody) => {
               <p>For authentication reasons, you will not be emailed.</p>
               <button type="submit" onClick={handleClose}>Submit</button>
             </form>
-          </Modal.Body>
-        </Modal>
-      </Container>
+          </Container>
+        )
+        : null}
     </div>
   );
 };
