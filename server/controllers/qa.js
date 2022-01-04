@@ -24,7 +24,6 @@ module.exports = {
         name: req.body.name,
         email: req.body.email,
         product_id: req.body.product_id,
-        photos: req.body.photos,
       },
       {
         headers: {

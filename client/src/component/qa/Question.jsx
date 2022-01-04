@@ -38,19 +38,19 @@ const Question = ({ question, productId }) => {
     event.preventDefault();
     console.log(question.question_id);
     if (!helpful && event.target.name === 'helpful') {
-      axios.put(`qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+      axios.put(`http://localhost:3000/qa/questions/helpful?question_id=${question.question_id}`).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      axios.put(`qa/questions/report?question_id=${question.question_id}`).then(() => {
+      axios.put(`http://localhost:3000/qa/questions/report?question_id=${question.question_id}`).then(() => {
         markReport(true);
         setStatus(!status);
       }).catch((err) => console.log('handle question report error', err));
     }
   };
 
-  axios.get('/products/info/', { params: { product_id: productId } })
+  axios.get(`http://localhost:3000/products/info/?product_id=${productId}`)
     .then((response) => {
       setProductName(response.data.name);
     })
@@ -74,7 +74,7 @@ const Question = ({ question, productId }) => {
           {' '}
 &nbsp; &nbsp;Helpful?
           {' '}
-          <button type="button" name="helpful" onClick={handleUpdate}>
+          <button type="button" name="helpful" onClick={handleUpdate} style={{ border: 'none' }}>
             {' '}
             Yes
           </button>
@@ -82,8 +82,7 @@ const Question = ({ question, productId }) => {
           {`(${helpfulCount})`}
 &nbsp;| &nbsp;
           {reported ? 'Reported'
-            : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
-&nbsp; | &nbsp;
+            : <button type="button" name="report" onClick={handleUpdate} style={{ border: 'none' }}> Report </button>}
           <AddAnswer
             productName={productName}
             questionId={question.question_id}

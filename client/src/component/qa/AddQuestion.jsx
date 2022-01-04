@@ -3,14 +3,24 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const Container = styled.div`
-position: absolute;
-z-index: 1;
-left: 100px;
-top: 100px;
+justifyContent: center;
+backgroundColor: rgba(0, 0, 0, 0.5)
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 
-overflow: auto;
-background-color: rgb(0,0,0);
-background-color: rgba(0,0,0,0.6);
+const AddButton = styled.button`
+height: 40px;
+width: 200px;
+background-color: white;
+margin: 10px;
+font-size: 15px;
+border-radius: 10px;
+&:hover{
+  color: blue;
+}
 `;
 
 const AddQuestion = ({ productId }) => {
@@ -23,7 +33,7 @@ const AddQuestion = ({ productId }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  axios.get('/products/info/', { params: { product_id: productId } })
+  axios.get('http://localhost:3000/products/info/', { params: { product_id: productId } })
     .then((response) => {
       setProductName(response.data.name);
     })
@@ -55,17 +65,17 @@ const AddQuestion = ({ productId }) => {
       product_id: productId,
     };
 
-    if (question.length < 1 || name.length < 1 || email.length < 1 || !validateEmail(email)) {
-      // return <p>You must enter the following:</p>;
-    }
-    axios.post('/qa/questions', newQuestion).then(() => {
+    // if (question.length < 1 || name.length < 1 || email.length < 1 || !validateEmail(email)) {
+
+    // }
+    axios.post('http://localhost:3000/qa/questions', newQuestion).then(() => {
       console.log('sent');
     }).catch((err) => { console.log('post question error', err); });
   });
 
   return (
     <div>
-      <button type="button" onClick={handleShow}> Add A Question </button>
+      <AddButton onClick={handleShow}> Add A Question </AddButton>
       {show
         ? (
           <Container>
@@ -88,7 +98,8 @@ const AddQuestion = ({ productId }) => {
               <p>(3) Your email *</p>
               <input maxLength="60" placeholder="Example@example.com" name="email" required onChange={(e) => { handleAddQuestion(e); }} />
               <p>For authentication reasons, you will not be emailed.</p>
-              <button type="submit" onClick={handleClose}>Submit</button>
+              <button type="submit">Submit</button>
+              <button type="button" onClick={handleClose}>Cancel</button>
             </form>
           </Container>
         )

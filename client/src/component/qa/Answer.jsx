@@ -14,12 +14,12 @@ const Answer = ({ answer }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     if (!helpful && event.target.name === 'helpful') {
-      axios.put(`qa/answers/helpful?answer_id=${answer.id}`).then(() => {
+      axios.put(`http://localhost:3000/qa/answers/helpful?answer_id=${answer.id}`).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle answer helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      axios.put(`qa/answers/report?answer_id=${answer.id}`).then(() => {
+      axios.put(`http://localhost:3000/qa/answers/report?answer_id=${answer.id}`).then(() => {
         markReport(true);
       }).catch((err) => console.log('handle answer report error', err));
     }

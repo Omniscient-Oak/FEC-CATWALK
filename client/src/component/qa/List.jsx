@@ -13,6 +13,18 @@ justify-items: right;
 font-family: Helvetica;
 `;
 
+const MoreQuestionsButton = styled.button`
+height: 40px;
+width: 200px;
+background-color: white;
+margin: 10px;
+font-size: 15px;
+border-radius: 10px;
+&:hover{
+  color: blue;
+}
+`;
+
 const List = () => {
   const { productId } = useContext(ProductContext);
   const [questions, setQuestion] = useState([]);
@@ -23,7 +35,7 @@ const List = () => {
 
   const params = {
     product_id: productId,
-    count: 500,
+    count: 1000,
     page: 1,
   };
 
@@ -69,12 +81,12 @@ const List = () => {
           {isSearch ? filteredQuestions.slice(0, questionShowed).map((q) => (
             <Question question={q} productId={productId} key={q.question_id} />
           )) : questions.slice(0, questionShowed).map((q) => (
-            <Question question={q} key={q.question_id} />
+            <Question question={q} productId={productId} key={q.question_id} />
           ))}
         </div>
         <div>
           {' '}
-          {questions.length > 4 ? <button type="button" onClick={handleShowQuestions}>{showAllQuestions ? 'Collapsed' : 'More Answered Questions'}</button> : null}
+          {questions.length > 4 ? <MoreQuestionsButton onClick={handleShowQuestions}>{showAllQuestions ? 'Collapsed' : 'More Answered Questions'}</MoreQuestionsButton> : null}
           {' '}
         </div>
         <AddQuestion productId={productId} />
