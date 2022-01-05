@@ -12,8 +12,9 @@ const fadeIn = keyframes`
 
 const ItemStyle = styled.div`
   height: 100%;
-  min-width: 250px;
-  width: 15%;
+  width: 12vw;
+  min-height: 200px;
+  min-width: 150px;
   object-fit: cover;
   flex: 0 0 auto;
   padding: 5%;

@@ -15,13 +15,13 @@ const RelatedItemWrapperStyle = styled.div`
   border-bottom: 1px solid black;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 2em 15em 5em 15em;
+  padding: 2em 0em 5em 0em;
   font-family: Helvetica;
   display: flex;
   height: 18vw;
-  min-height: 350px;
+  min-height: 225px;
   width: auto;
-
+  justify-content: center;
 `;
 const MaxWidthStyle = styled.div`
   width: 70%
