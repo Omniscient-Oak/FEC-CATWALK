@@ -13,6 +13,12 @@
       "@babel/plugin-syntax-jsx"
     ]
   },
+  "jest": {
+    "rootDir": "./",
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"]
+  }
+  ,
   "keywords": [],
   "author": "",
   "license": "ISC",
