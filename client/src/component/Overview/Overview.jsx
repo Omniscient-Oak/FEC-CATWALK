@@ -28,6 +28,9 @@ const Overview = () => {
   const [product, setProduct] = useState([]);
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [mainImage, setMainImage] = useState(0);
+  const [selectedSize, changeSize] = useState('Select Size');
+  const [currentQuantity, changeQuantity] = useState('-');
+  const [sku, addSkuNumber] = useState(0);
 
   useEffect(() => {
     axios
@@ -44,6 +47,9 @@ const Overview = () => {
     return function cleanup() {
       setCurrentStyleIndex(0);
       setMainImage(0);
+      changeSize('Select Size');
+      changeQuantity('-');
+      addSkuNumber(0);
     };
   }, [productContext.productId]);
 
@@ -96,10 +102,17 @@ const Overview = () => {
 
         <SizeDropdownWrapper>
           {product.styles && (
-            <SizeDropdown skus={product.styles[currentStyleIndex].skus} />
+            <SizeDropdown
+              skus={product.styles[currentStyleIndex].skus}
+              changeSize={changeSize}
+              changeQuantity={changeQuantity}
+              addSkuNumber={addSkuNumber}
+              selectedSize={selectedSize}
+              currentQuantity={currentQuantity}
+              sku={sku}
+            />
           )}
         </SizeDropdownWrapper>
-        
       </WrapperStyled>
     </div>
   );

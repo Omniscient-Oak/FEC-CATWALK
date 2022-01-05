@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Quantity = ({ currentQuantity, selectedSize }) => {
+const Quantity = ({ currentQuantity, selectedSize, changeQuantity }) => {
   const quantityOptions = [];
 
   if (currentQuantity > 0 && currentQuantity >= 15) {
@@ -21,7 +21,7 @@ const Quantity = ({ currentQuantity, selectedSize }) => {
     );
   }
   return (
-    <select>
+    <select onChange={(event) => changeQuantity(event.target.value)}>
       {quantityOptions.map((number) => (
         <option>{number}</option>
       ))}

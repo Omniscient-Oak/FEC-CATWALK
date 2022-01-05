@@ -1,38 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Quantity from './Quantity.jsx';
 import AddToCart from './AddToCart.jsx';
 
-const SizeDropdown = ({ skus }) => {
-  const [selectedSize, changeSize] = useState('Size');
-  const [currentQuantity, changeQuantity] = useState('-');
-
+const SizeDropdown = ({
+  skus,
+  changeSize,
+  changeQuantity,
+  addSkuNumber,
+  selectedSize,
+  currentQuantity,
+  sku,
+}) => {
   const currentStock = {};
   const sizes = [];
+
+  useEffect(() => {
+    if (currentStock[selectedSize] !== undefined) {
+      addSkuNumber(currentStock[selectedSize].skus);
+      changeQuantity(currentStock[selectedSize].quantity);
+    }
+  }, [selectedSize]);
 
   for (const key in skus) {
     currentStock[skus[key].size] = {
       quantity: skus[key].quantity,
-      skus: skus[key],
+      skus: key,
     };
     sizes.push(skus[key].size);
   }
 
   return (
     <div>
-      <select
-        onChange={(event) => (
-          changeSize(event.target.value),
-          changeQuantity(currentStock[event.target.value].quantity)
-        )}
-      >
-        <option>Select Size</option>
+      <select onChange={(event) => changeSize(event.target.value)}>
+        <option>{selectedSize}</option>
         {sizes.map((size) => (
           <option>{size}</option>
         ))}
       </select>
-      <Quantity currentQuantity={currentQuantity} selectedSize={selectedSize} />
+      <Quantity
+        currentQuantity={currentQuantity}
+        selectedSize={selectedSize}
+        changeQuantity={changeQuantity}
+      />
       <div>
-        <AddToCart />
+        <AddToCart
+          selectedSize={selectedSize}
+          currentQuantity={currentQuantity}
+          sku={sku}
+        />
       </div>
     </div>
   );
