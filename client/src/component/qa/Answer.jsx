@@ -4,11 +4,11 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const ButtonStyle = styled.button`
-border: none;
-background-color: white;
-cursor: pointer;
-&:hover{
-  color: red;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  &:hover{
+    color: red;
 }
 `;
 

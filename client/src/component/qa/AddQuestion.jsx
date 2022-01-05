@@ -3,41 +3,41 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const Container = styled.div`
-position: fixed;
-z-index: 100;
-top: 0;
-left: 0;
-justifyContent: center;
-display: flex;
-align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  justifyContent: center;
+  display: flex;
+  align-items: center;
 `;
 
 const Modal = styled.div`
-border-radius: 10px;
-background-color: black;
-color: white;
-text-align: center;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-border: 2px solid;
-z-index: 100;
-width: 60%;
-height: 60%;
-overflow: auto;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  z-index: 100;
+  width: 60%;
+  height: 70%;
+  overflow: auto;
 `;
 
 const AddButton = styled.button`
-height: 40px;
-width: 200px;
-background-color: white;
-margin: 10px;
-font-size: 15px;
-border-radius: 10px;
-cursor: pointer;
-&:hover{
-  color: blue;
+  height: 40px;
+  width: 200px;
+  background-color: white;
+  margin: 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    color: blue;
 }
 `;
 
@@ -84,7 +84,6 @@ const AddQuestion = ({ productId }) => {
     };
 
     axios.post('http://localhost:3000/qa/questions', newQuestion).then(() => {
-      console.log('sent');
     }).catch((err) => { console.log('post question error', err); });
   });
 

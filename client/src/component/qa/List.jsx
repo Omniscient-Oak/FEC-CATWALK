@@ -8,21 +8,21 @@ import AddQuestion from './AddQuestion.jsx';
 const axios = require('axios');
 
 const ListStyle = styled.section`
-padding: 2em 10em 5em 10em;
-justify-items: right;
-font-family: Helvetica;
+  padding: 2em 10em 5em 10em;
+  justify-items: right;
+  font-family: Helvetica;
 `;
 
 const MoreQuestionsButton = styled.button`
-height: 40px;
-width: 200px;
-background-color: white;
-margin: 10px;
-font-size: 15px;
-border-radius: 10px;
-cursor: pointer;
-&:hover{
-  color: blue;
+  height: 40px;
+  width: 200px;
+  background-color: white;
+  margin: 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    color: blue;
 }
 `;
 

@@ -3,40 +3,46 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const Container = styled.div`
-position: fixed;
-z-index: 100;
-top: 0;
-left: 0;
-justifyContent: center;
-display: flex;
-align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  justifyContent: center;
+  display: flex;
+  align-items: center;
 `;
 
 const Modal = styled.div`
-border-radius: 10px;
-background-color: black;
-color: white;
-text-align: center;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-border: 2px solid;
-z-index: 100;
-width: 60%;
-height: 60%;
-overflow: auto;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  z-index: 100;
+  width: 60%;
+  height: 70%;
+  overflow: auto;
 `;
 
 const ButtonStyle = styled.button`
-float: right;
-border: none;
-background-color: white;
-cursor: pointer;
-&:hover{
-  color: red;
-}
+  float: right;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  &:hover{
+    color: red;
+  }
 
+`;
+
+const CancelStyle = styled.button`
+  margin-left: 50px;
+  font-size: 15px;
+  cursor: pointer;
 `;
 
 const AddAnswer = ({ productName, questionId, questionBody }) => {
@@ -70,7 +76,6 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
       email,
     };
     axios.post(`http://localhost:3000/qa/questions/answers?question_id=${questionId}`, newAnswer).then(() => {
-      console.log('sent');
     }).catch((err) => { console.log('post question error', err); });
   });
 
@@ -104,13 +109,12 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
                 <input style={{ width: '80%', height: '8%' }} maxLength="60" name="email" placeholder="Example: jack@email.com" required onChange={(e) => { handleAddAnswer(e); }} />
                 <p style={{ fontSize: '10px' }}>For authentication reasons, you will not be emailed.</p>
                 <button style={{ fontSize: '15px', cursor: 'pointer' }} type="submit">Submit</button>
-                <button
-                  style={{ 'margin-left': '50px', fontSize: '15px', cursor: 'pointer' }}
+                <CancelStyle
                   type="button"
                   onClick={handleClose}
                 >
                   Cancel
-                </button>
+                </CancelStyle>
               </form>
             </Modal>
           </Container>

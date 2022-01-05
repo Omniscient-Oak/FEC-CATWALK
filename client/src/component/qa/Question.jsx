@@ -5,24 +5,24 @@ import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
 
 const ButtonStyle = styled.button`
-border: none;
-background-color: white;
-cursor: pointer;
-&:hover{
-  color: red;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  &:hover{
+    color: red;
 }
 `;
 
 const MoreAnswersButton = styled.button`
-border: none;
-cursor: pointer;
-font-size: 15px;
-margin: 10px;
-font-style: italic;
-background-color: white;
-font-weight: bold;
-&:hover{
-  color: blue;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 10px;
+  font-style: italic;
+  background-color: white;
+  font-weight: bold;
+  &:hover{
+    color: blue;
 }
 `;
 
