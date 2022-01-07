@@ -5,15 +5,13 @@ const axios = require('axios');
 
 const AddToCart = ({ selectedSize, currentQuantity, sku }) => (
   <StyledAddToCartButton
-    onClick={() =>
-      axios
-        .post('/cart', {
-          sku_id: sku,
-          size: selectedSize,
-          quantity: currentQuantity,
-        })
-        .then(() => console.log(selectedSize, currentQuantity, sku))
-    }
+    onClick={() => axios
+      .post('/cart', {
+        sku_id: sku,
+        size: selectedSize,
+        quantity: currentQuantity,
+      })
+      .then(() => console.log(selectedSize, currentQuantity, sku))}
   >
     Add to Cart
   </StyledAddToCartButton>
