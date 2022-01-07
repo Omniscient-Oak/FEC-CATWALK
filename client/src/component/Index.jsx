@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { ShoppingCart, Home } from '@styled-icons/fa-solid';
 import styled from 'styled-components';
+import ContentPreview from './ContentPreview.jsx';
 
 const NavStyle = {
   background: 'black',
@@ -12,7 +13,6 @@ const NavStyle = {
 };
 
 const LinkStyle = {
-  background: 'black',
   color: 'white',
   margin: '10px 0px 0px 10px',
   'font-size': '40px',
@@ -56,6 +56,7 @@ const Index = () => (
       </nav>
       <Outlet />
     </Wrapper>
+    <ContentPreview />
   </div>
 );
 
@@ -86,13 +87,16 @@ const Wrapper = styled.div`
 `;
 
 const HomeGrid = styled.div`
-  margin: 0px 10px;
+  padding: 0px 75px;
   display: inline-grid;
   grid-column-start: 1;
   justify-self: center;
   grid-template-columns: 1fr 1fr;
   justify-items: end;
   height: 74px;
+  &:hover {
+    background-color: crimson;
+  }
 `;
 const ShoppingGrid = styled.div`
   display: inline-grid;
@@ -101,4 +105,8 @@ const ShoppingGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: end;
   height: 74px;
+  padding: 0px 75px;
+  &:hover {
+    background-color: crimson;
+  }
 `;

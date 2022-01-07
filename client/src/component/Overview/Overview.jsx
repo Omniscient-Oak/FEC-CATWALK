@@ -135,7 +135,7 @@ const ImageWrapperStyled = styled.section`
 `;
 
 const WrapperStyled = styled.section`
-  padding: 2% 7% 5% 13%;
+  padding: 0.5% 7% 5% 13%;
   display: grid;
   grid-template-columns: 7fr 3fr;
   grid-column-gap: 10px;

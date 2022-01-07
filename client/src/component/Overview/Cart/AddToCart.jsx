@@ -35,4 +35,8 @@ const StyledAddToCartButton = styled.button`
   font-family: Verdana;
   border: white;
   margin: 10px 0px 10px 0px;
+  &:hover {
+    background-color: crimson;
+    cursor: pointer;
+  }
 `;
