@@ -10,6 +10,16 @@ const ContentPreview = () => {
   const productContext = useContext(ProductContext);
   const [product, setProduct] = useState(63613);
   const [photos, setPhotos] = useState([]);
+  const colors = [
+    'crimson',
+    'firebrick',
+    'indianred',
+    'lightsalmon',
+    'mediumvioletred',
+  ];
+
+  const generateColors = (array) =>
+    array[Math.floor(Math.random() * colors.length - 1)];
 
   useEffect(() => {
     axios
@@ -19,9 +29,12 @@ const ContentPreview = () => {
       .then((response) => {
         // setPhotos(response.data.styles);
         const images = [];
+        if (photos.length > 0) {
+          photos.forEach((url) => images.push(url));
+        }
         response.data.styles.forEach((element) => {
           element.photos.forEach((photo) => {
-            images.push(photo.url);
+            images.push(photo.thumbnail_url);
           });
         });
         setPhotos(images);
@@ -39,10 +52,16 @@ const ContentPreview = () => {
       <Text>hello world!</Text>
       <ImageWrapper>
         {photos.map((url) => (
-          <HomepageImages url={url} />
+          <HomepageBorder>
+            <HomepageImages url={url} color={generateColors(colors)} />
+          </HomepageBorder>
         ))}
       </ImageWrapper>
-      <button onClick={() => setProduct(product + 1)}>load more images</button>
+      <ButtonAlignment>
+        <LoadMoreImagesButton onClick={() => setProduct(product + 1)}>
+          load more images
+        </LoadMoreImagesButton>
+      </ButtonAlignment>
     </PreviewWrapper>
   );
 };
@@ -51,27 +70,56 @@ export default ContentPreview;
 
 const PreviewWrapper = styled.span``;
 const ImageWrapper = styled.div`
-  height: 100%;
-  overflow: scroll;
+  height: 65%;
+  overflow: auto;
 `;
-
+const HomepageBorder = styled.span`
+  &:hover {
+    opacity: 75%;
+  }
+`;
 const HomepageImages = styled.img`
   background-image: url(${(props) => props.url});
   background-repeat: no-repeat;
-  margin: 10px;
+  margin: 20px;
+  padding: 5px;
   background-size: cover;
-  width: 200px;
-  height: 200px;
+  width: 150;
+  height: 150;
   border-radius: 75%;
-  padding: 15px;
-  &:hover {
-    opacity: 0.75;
-    color: red;
-    background-color: palevioletred;
-  }
+  border-style: solid;
+  border-width: 5px;
+  border-color: ${(props) => props.color};
 `;
 
 const Text = styled.div`
   font-size: 100px;
   text-align: center;
+`;
+
+const LoadMoreImagesButton = styled.button`
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+  width: 500px;
+  height: 50px;
+  opacity: 90%;
+  border-radius: 15px;
+  background: crimson;
+  font-size: 30px;
+  color: white;
+  font-family: Verdana;
+  border: white;
+  margin: 15px 0px 10px 0px;
+  &:hover {
+    background-color: crimson;
+    cursor: pointer;
+  }
+  justify-self: center;
+`;
+
+const ButtonAlignment = styled.div`
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #11ffee00;
 `;

@@ -139,7 +139,7 @@ const WrapperStyled = styled.section`
   display: grid;
   grid-template-columns: 7fr 3fr;
   grid-column-gap: 10px;
-  font-family: Verdana;
+  font-family: sans-serif;
 `;
 
 const PriceStyledWrapper = styled.section`
