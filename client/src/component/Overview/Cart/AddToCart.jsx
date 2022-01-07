@@ -34,4 +34,5 @@ const StyledAddToCartButton = styled.button`
   color: white;
   font-family: Verdana;
   border: white;
+  margin: 10px 0px 10px 0px;
 `;
