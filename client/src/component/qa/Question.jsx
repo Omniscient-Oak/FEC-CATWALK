@@ -9,21 +9,31 @@ const ButtonStyle = styled.button`
   background-color: white;
   cursor: pointer;
   &:hover{
-    color: red;
+    color: blue;
+    text-decoration: underline;
 }
 `;
 
+const DivStyle = styled.div`
+  width: 70%;
+`;
+
+const SpanStyle = styled.span`
+  float: right;
+  font-size: 12px;
+`;
+
 const MoreAnswersButton = styled.button`
-  border: none;
   cursor: pointer;
   font-size: 15px;
   margin: 10px;
   font-style: italic;
   background-color: white;
   font-weight: bold;
+  border-radius: 10px;
   &:hover{
     color: blue;
-}
+  }
 `;
 
 const Question = ({ question, productId }) => {
@@ -84,15 +94,15 @@ const Question = ({ question, productId }) => {
     <div>
       <br />
       <span>
-        <div style={{ width: '70%' }}>
+        <DivStyle>
           <b>
             Q:
             {' '}
             {question.question_body}
             {' '}
           </b>
-        </div>
-        <span style={{ float: 'right', fontSize: '12px' }}>
+        </DivStyle>
+        <SpanStyle>
           {' '}
 &nbsp; &nbsp;Helpful?
           {' '}
@@ -122,7 +132,7 @@ const Question = ({ question, productId }) => {
             questionId={question.question_id}
             questionBody={question.question_body}
           />
-        </span>
+        </SpanStyle>
       </span>
       <span>
         {sortedAnswers.slice(0, answers).map((ans) => (<Answer answer={ans} key={ans.id} />))}

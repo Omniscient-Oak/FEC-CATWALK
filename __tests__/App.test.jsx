@@ -26,12 +26,6 @@ test('render the correct content in App', () => {
   expect(getByText('QUESTIONS & ANSWERS'));
   expect(screen.getByText('Add A Question')).toBeInTheDocument();
 
-<<<<<<< HEAD
-xtest('renders a message', () => {
-  const { container, getByText } = render(<App />);
-  expect(getByText('hello world!'));
-=======
->>>>>>> master
 });
 
 // test('allow user to report', () => {

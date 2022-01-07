@@ -32,6 +32,7 @@ const AddButton = styled.button`
   height: 40px;
   width: 200px;
   background-color: white;
+  font-weight : bold;
   margin: 10px;
   font-size: 15px;
   border-radius: 10px;
@@ -39,6 +40,52 @@ const AddButton = styled.button`
   &:hover{
     color: blue;
 }
+`;
+
+const FormStyle = styled.form`
+  display: inline-block;
+`;
+
+const Title = styled.h4`
+  font-size: 20px;
+`;
+
+const Subtitle = styled.h5`
+  font-size: 12px;
+`;
+
+const WarningStyle = styled.p`
+  color: red;
+  font-size: 10px;
+`;
+
+const QuestionTextStyle = styled.p`
+  font-size: 15px;
+`;
+
+const QuestionInputStyle = styled.textarea`
+  width: 80%;
+  height: 15%;
+`;
+
+const InputStyle = styled.input`
+  width: 80%;
+  height: 8%;
+`;
+
+const SubmitStyle = styled.button`
+  font-size: 15px;
+  cursor: pointer;
+`;
+
+const CancelStyle = styled.button`
+  margin-left: 50px;
+  font-size: 15px;
+  cursor: pointer;
+`;
+
+const ContentStyle = styled.p`
+  font-size: 10px;
 `;
 
 const AddQuestion = ({ productId }) => {
@@ -51,7 +98,7 @@ const AddQuestion = ({ productId }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  axios.get(`http://localhost:3000/products/info/?product_id=${productId}`)
+  axios.get(`../../products/info/?product_id=${productId}`)
     .then((response) => {
       setProductName(response.data.name);
     })
@@ -89,38 +136,48 @@ const AddQuestion = ({ productId }) => {
 
   return (
     <div>
-      <AddButton onClick={handleShow}> Add A Question </AddButton>
+      <AddButton onClick={handleShow}> Add A Question + </AddButton>
       {show
         ? (
           <Container>
             <Modal>
-              <form style={{ display: 'inline-block' }} onSubmit={handleSubmit}>
-                <h4 style={{ fontSize: '20px' }}>Ask Your Question</h4>
-                <h5 style={{ fontSize: '12px' }}>
+              <FormStyle onSubmit={handleSubmit}>
+                <Title>Ask Your Question</Title>
+                <Subtitle>
                   About the
                   {' '}
                   [
                   {productName}
                   ]
-                </h5>
-                {question.length <= 0 || name.length <= 0 || email.length <= 0 ? <p style={{ color: 'red', fontSize: '10px' }}>You must enter the followings:</p> : null}
-                <p style={{ fontSize: '15px' }}>(1) Your Question *</p>
-                <textarea style={{ width: '80%', height: '15%' }} maxLength="1000" name="questionBody" placeholder="Why did you like the product or not?" required onChange={(e) => { handleAddQuestion(e); }} />
-                <p style={{ fontSize: '15px' }}>(2) What is your nickname? *</p>
-                <input style={{ width: '80%', height: '8%' }} maxLength="60" placeholder="Example: jackson11!" name="nickname" required onChange={(e) => { handleAddQuestion(e); }} />
-                <p style={{ fontSize: '10px' }}>For privacy reasons, do not use your full name or email address</p>
-                <p style={{ fontSize: '15px' }}>(3) Your email *</p>
-                <input style={{ width: '80%', height: '8%' }} maxLength="60" placeholder="Example@example.com" name="email" required onChange={(e) => { handleAddQuestion(e); }} />
-                <p style={{ fontSize: '10px' }}>For authentication reasons, you will not be emailed.</p>
-                <button
-                  style={{ fontSize: '15px', cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
+                </Subtitle>
+                {question.length <= 0 || name.length <= 0 || email.length <= 0
+                  ? <WarningStyle>You must enter the followings:</WarningStyle> : null}
 
-                </button>
-                <button style={{ marginLeft: '50px', fontSize: '15px', cursor: 'pointer' }} type="button" onClick={handleClose}>Cancel</button>
-              </form>
+                <QuestionTextStyle>(1) Your Question *</QuestionTextStyle>
+
+                <QuestionInputStyle maxLength="1000" name="questionBody" placeholder="Why did you like the product or not?" required onChange={(e) => { handleAddQuestion(e); }} />
+
+                <QuestionTextStyle>(2) What is your nickname? *</QuestionTextStyle>
+
+                <InputStyle maxLength="60" placeholder="Example: jackson11!" name="nickname" required onChange={(e) => { handleAddQuestion(e); }} />
+
+                <ContentStyle>
+                  For privacy reasons, do not use your full name or email address
+                </ContentStyle>
+
+                <QuestionTextStyle>(3) Your email *</QuestionTextStyle>
+
+                <InputStyle maxLength="60" placeholder="Example@example.com" name="email" required onChange={(e) => { handleAddQuestion(e); }} />
+
+                <ContentStyle>For authentication reasons, you will not be emailed.</ContentStyle>
+
+                <SubmitStyle type="submit">
+                  Submit
+                </SubmitStyle>
+
+                <CancelStyle onClick={handleClose}>Cancel</CancelStyle>
+
+              </FormStyle>
             </Modal>
           </Container>
         )
