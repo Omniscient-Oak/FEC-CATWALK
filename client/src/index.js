@@ -9,7 +9,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Index />}>
-        <Route path="/" element={<ContentPreview />} />
+        <Route exact path="/" element={<ContentPreview />} />
         <Route path="store" element={<App />}>
           <Route path=":productId" element={<App />} />
         </Route>

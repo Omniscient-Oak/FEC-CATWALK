@@ -43,7 +43,6 @@ const Index = () => (
             Home
           </Link>
         </HomeGrid>
-
         <ShoppingGrid>
           <StyledShoppingCartGridPosition>
             <StyledShoppingCartIcon />
