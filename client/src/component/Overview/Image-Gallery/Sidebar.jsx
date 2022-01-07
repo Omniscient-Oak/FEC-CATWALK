@@ -17,8 +17,7 @@ const Sidebar = ({ images, setMainImage }) => {
 export default Sidebar;
 
 const SidebarScroll = styled.div`
-  height: 530px;
-  overflow: scroll;
-  padding: 10px;
-  margin: 5px;
+  height: 640px;
+  overflow: auto;
+  padding: 0px 10px 30px 10px;
 `;

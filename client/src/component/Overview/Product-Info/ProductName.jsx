@@ -8,6 +8,6 @@ const ProductName = ({ name }) => (
 export default ProductName;
 
 const ProductNameStyled = styled.div`
-  font-size: 30px;
+  font-size: 50px;
   margin: 2px 0px 2px 0px;
 `;

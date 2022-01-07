@@ -23,6 +23,6 @@ const MainImageStyled = styled.img`
   align-self: center;
   object-fit: cover;
   justify-self: left;
-  height: 730px;
+  height: 700px;
   width: 490px;
 `;

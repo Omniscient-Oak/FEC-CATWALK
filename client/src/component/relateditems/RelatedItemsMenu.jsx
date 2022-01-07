@@ -182,6 +182,9 @@ const IconDisplay = styled.div`
   height: 22px;
   width: 22px;
   margin: 0px 5px 0px 5px;
+  &:hover {
+    color: teal;
+  }
 `;
 
 const IconGrid = styled.div`
@@ -190,6 +193,5 @@ const IconGrid = styled.div`
 `;
 
 const RelatedGrid = styled.div`
-  display: grid;
-  grid-template-column: 1fr 1fr 1fr 1fr;
+  opacity: 90%;
 `;

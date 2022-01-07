@@ -131,7 +131,7 @@ const ImageWrapperStyled = styled.section`
   display: grid;
   height: 650px;
   object-fit: cover;
-  margin: 0px 10px 0px 0px;
+  margin: 0px 20px 0px 0px;
 `;
 
 const WrapperStyled = styled.section`
@@ -144,8 +144,9 @@ const WrapperStyled = styled.section`
 `;
 
 const PriceStyledWrapper = styled.section`
-  grid-row-start: 2;
+  grid-row-start: 4;
   margin: 10px 0px 0px 0px;
+  font-size: 20px;
 `;
 
 const ProductStylesWrapper = styled.section`
@@ -154,7 +155,7 @@ const ProductStylesWrapper = styled.section`
 `;
 
 const SelectedStyleWrapper = styled.section`
-  grid-row-start: 4;
+  grid-row-start: 2;
 `;
 
 const SizeDropdownWrapper = styled.section`
@@ -168,7 +169,7 @@ const ProductDescriptionWrapper = styled.section`
 
 const ProductCategoryWrapper = styled.section`
   align-self: end;
-  grid-row-start: 3;
+  grid-row-start: 1;
   font-size: 12px;
   font-style: italic;
   margin: 10px 0px 0px 0px;
