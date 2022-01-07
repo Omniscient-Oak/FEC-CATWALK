@@ -11,7 +11,7 @@ const ProductDescription = ({ currentProduct }) => (
 export default ProductDescription;
 
 const DescriptionStyled = styled.div`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const SloganStyled = styled.div`

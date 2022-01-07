@@ -13,14 +13,18 @@ const TinyImage = ({ photo, index, setMainImage }) => (
 export default TinyImage;
 
 const ImageStyled = styled.img`
-  padding: 0.5em;
+  margin: 5px;
+  padding: 5px;
   object-fit: cover;
-  width: 75px;
-  height: 75px;
+  width: 90px;
+  height: 90px;
+  opacity: 0.7;
   &:hover {
-    background-color: palevioletred;
     color: white;
-    opacity: 0.95;
+    opacity: 1;
+    cursor: pointer;
+    border-bottom: 6px solid red;
+    transition: all 0.2s ease-in-out;
   }
 `;
 
