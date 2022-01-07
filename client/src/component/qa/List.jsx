@@ -13,6 +13,11 @@ const ListStyle = styled.section`
   font-family: Helvetica;
 `;
 
+const DivStyle = styled.div`
+  max-height: 100%;
+  overflow: auto;
+`;
+
 const MoreQuestionsButton = styled.button`
   height: 40px;
   width: 200px;
@@ -21,6 +26,7 @@ const MoreQuestionsButton = styled.button`
   font-size: 15px;
   border-radius: 10px;
   cursor: pointer;
+  font-weight : bold;
   &:hover{
     color: blue;
 }
@@ -76,18 +82,22 @@ const List = () => {
   return (
     <div id="qa">
       <ListStyle>
-        <h3>QUESTIONS & ANSWERS</h3>
+        <h3>
+          QUESTIONS & ANSWERS (
+          {questions.length}
+          )
+        </h3>
         <Search handleSearch={handleSearch} />
-        <div style={{ maxHeight: '100%', overflow: 'auto' }}>
+        <DivStyle>
           {isSearch ? filteredQuestions.slice(0, questionShowed).map((q) => (
             <Question question={q} productId={productId} key={q.question_id} />
           )) : questions.slice(0, questionShowed).map((q) => (
             <Question question={q} productId={productId} key={q.question_id} />
           ))}
-        </div>
+        </DivStyle>
         <div>
           {' '}
-          {questions.length > 4 ? <MoreQuestionsButton onClick={handleShowQuestions}>{showAllQuestions ? 'Collapsed' : 'More Answered Questions'}</MoreQuestionsButton> : null}
+          {questions.length > 4 ? <MoreQuestionsButton onClick={handleShowQuestions}>{showAllQuestions ? 'Show Less' : 'More Answered Questions'}</MoreQuestionsButton> : null}
           {' '}
         </div>
         <AddQuestion productId={productId} />

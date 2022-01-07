@@ -33,10 +33,51 @@ const ButtonStyle = styled.button`
   border: none;
   background-color: white;
   cursor: pointer;
+  font-weight : bold;
   &:hover{
-    color: red;
+    color: blue;
+    text-decoration: underline;
   }
+`;
 
+const FormStyle = styled.form`
+  display: inline-block;
+`;
+
+const Title = styled.h4`
+  font-size: 20px;
+`;
+
+const Subtitle = styled.h5`
+  font-size: 12px;
+`;
+
+const WarningStyle = styled.p`
+  color: red;
+  font-size: 10px;
+`;
+
+const TextStyle = styled.p`
+  font-size: 15px;
+`;
+
+const AnswerInputStyle = styled.textarea`
+  width: 80%;
+  height: 15%;
+`;
+
+const InputStyle = styled.input`
+  width: 80%;
+  height: 8%;
+`;
+
+const ContentStyle = styled.p`
+  font-size: 10px;
+`;
+
+const SubmitStyle = styled.button`
+  font-size: 15px;
+  cursor: pointer;
 `;
 
 const CancelStyle = styled.button`
@@ -75,7 +116,7 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
       name,
       email,
     };
-    axios.post(`http://localhost:3000/qa/questions/answers?question_id=${questionId}`, newAnswer).then(() => {
+    axios.post(`../../qa/questions/answers?question_id=${questionId}`, newAnswer).then(() => {
     }).catch((err) => { console.log('post question error', err); });
   });
 
@@ -91,31 +132,34 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
         ? (
           <Container>
             <Modal>
-              <form style={{ display: 'inline-block' }} onSubmit={postAnswer}>
-                <h4 style={{ fontSize: '20px' }}>Submit your Answer</h4>
-                <h5 style={{ fontSize: '12px' }}>
+              <FormStyle onSubmit={postAnswer}>
+                <Title>Submit your Answer</Title>
+                <Subtitle>
                   {productName}
                   :
                   {' '}
                   {questionBody}
-                </h5>
-                {answer.length <= 0 || name.length <= 0 || email.length <= 0 ? <p style={{ color: 'red', fontSize: '10px' }}>You must enter the followings:</p> : null}
-                <p style={{ fontSize: '15px' }}>(1) Your Answer *</p>
-                <textarea style={{ width: '80%', height: '15%' }} name="answerBody" maxLength="1000" required onChange={(e) => { handleAddAnswer(e); }} />
-                <p style={{ fontSize: '15px' }}>(2) What is your nickname? *</p>
-                <input style={{ width: '80%', height: '8%' }} maxLength="60" name="nickname" placeholder="Example: jack543!" required onChange={(e) => { handleAddAnswer(e); }} />
-                <p style={{ fontSize: '10px' }}>For privacy reasons, do not use your full name or email address</p>
-                <p style={{ fontSize: '15px' }}>(3) Your email *</p>
-                <input style={{ width: '80%', height: '8%' }} maxLength="60" name="email" placeholder="Example: jack@email.com" required onChange={(e) => { handleAddAnswer(e); }} />
-                <p style={{ fontSize: '10px' }}>For authentication reasons, you will not be emailed.</p>
-                <button style={{ fontSize: '15px', cursor: 'pointer' }} type="submit">Submit</button>
+                </Subtitle>
+                {answer.length <= 0 || name.length <= 0 || email.length <= 0
+                  ? <WarningStyle>You must enter the followings:</WarningStyle> : null}
+                <TextStyle>(1) Your Answer *</TextStyle>
+                <AnswerInputStyle name="answerBody" maxLength="1000" required onChange={(e) => { handleAddAnswer(e); }} />
+                <TextStyle>(2) What is your nickname? *</TextStyle>
+                <InputStyle maxLength="60" name="nickname" placeholder="Example: jack543!" required onChange={(e) => { handleAddAnswer(e); }} />
+                <ContentStyle>
+                  For privacy reasons, do not use your full name or email address
+                </ContentStyle>
+                <TextStyle>(3) Your email *</TextStyle>
+                <InputStyle maxLength="60" name="email" placeholder="Example: jack@email.com" required onChange={(e) => { handleAddAnswer(e); }} />
+                <ContentStyle>For authentication reasons, you will not be emailed.</ContentStyle>
+                <SubmitStyle type="submit">Submit</SubmitStyle>
                 <CancelStyle
                   type="button"
                   onClick={handleClose}
                 >
                   Cancel
                 </CancelStyle>
-              </form>
+              </FormStyle>
             </Modal>
           </Container>
         )
