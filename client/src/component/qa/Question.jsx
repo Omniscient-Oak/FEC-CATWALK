@@ -65,14 +65,14 @@ const Question = ({ question, productId }) => {
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      axios.put(`http://localhost:3000/qa/questions/report?question_id=${question.question_id}`).then(() => {
+      axios.put(`../../qa/questions/report?question_id=${question.question_id}`).then(() => {
         markReport(true);
         setStatus(!status);
       }).catch((err) => console.log('handle question report error', err));
     }
   };
 
-  axios.get(`http://localhost:3000/products/info/?product_id=${productId}`)
+  axios.get(`/products/info/?product_id=${productId}`)
     .then((response) => {
       setProductName(response.data.name);
     })
