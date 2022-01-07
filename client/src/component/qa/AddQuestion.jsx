@@ -98,7 +98,7 @@ const AddQuestion = ({ productId }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  axios.get(`../../products/info/?product_id=${productId}`)
+  axios.get(`/products/info/?product_id=${productId}`)
     .then((response) => {
       setProductName(response.data.name);
     })
@@ -130,7 +130,7 @@ const AddQuestion = ({ productId }) => {
       product_id: Number(productId),
     };
 
-    axios.post('http://localhost:3000/qa/questions', newQuestion).then(() => {
+    axios.post('../..qa/questions', newQuestion).then(() => {
     }).catch((err) => { console.log('post question error', err); });
   });
 
