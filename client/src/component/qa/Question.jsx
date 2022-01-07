@@ -70,12 +70,12 @@ const Question = ({ question, productId }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     if (!helpful && event.target.name === 'helpful') {
-      axios.put(`http://localhost:3000/qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+      axios.put(`../../qa/questions/helpful?question_id=${question.question_id}`).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      axios.put(`http://localhost:3000/qa/questions/report?question_id=${question.question_id}`).then(() => {
+      axios.put(`../../qa/questions/report?question_id=${question.question_id}`).then(() => {
         markReport(true);
         setStatus(!status);
       }).catch((err) => console.log('handle question report error', err));

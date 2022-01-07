@@ -98,7 +98,7 @@ const AddQuestion = ({ productId }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  axios.get(`http://localhost:3000/products/info/?product_id=${productId}`)
+  axios.get(`../../products/info/?product_id=${productId}`)
     .then((response) => {
       setProductName(response.data.name);
     })

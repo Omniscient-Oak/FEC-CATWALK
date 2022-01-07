@@ -116,7 +116,7 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
       name,
       email,
     };
-    axios.post(`http://localhost:3000/qa/questions/answers?question_id=${questionId}`, newAnswer).then(() => {
+    axios.post(`../../qa/questions/answers?question_id=${questionId}`, newAnswer).then(() => {
     }).catch((err) => { console.log('post question error', err); });
   });
 
