@@ -30,9 +30,7 @@ const Answer = ({ answer }) => {
       <br />
       <div style={{ width: '70%' }}>
         <span>
-          <b>A: </b>
-          {' '}
-          {answer.body}
+          <b>A: </b> {answer.body}
         </span>
       </div>
       <span style={{ fontSize: '12px' }}>

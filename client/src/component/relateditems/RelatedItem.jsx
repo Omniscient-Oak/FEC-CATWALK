@@ -19,21 +19,21 @@ const ItemStyle = styled.div`
   object-fit: cover;
   flex: 0 0 auto;
   padding: 5%;
-  background: #EEEEEE;
+  background: #eeeeee;
   text-align: center;
   box-sizing: border-box;
-  box-shadow: 2px 2px 3px #D3D3D3;
+  box-shadow: 2px 2px 3px #d3d3d3;
   margin-right: 1em;
   margin-left: 1em;
   justify-content: row;
   animation-name: ${fadeIn};
-  animation-duration: 1.5s;
+  animation-duration: 0.5s;
   transition-timing-function: ease-in;
   animation-fill-mode: both;
   transition: all 0.2s;
   &:hover ${ItemStyle} {
-    box-shadow: 4px 4px 5px #D3D3D3;
-    background: #E8E8E8;
+    box-shadow: 4px 4px 5px #d3d3d3;
+    background: #e8e8e8;
   }
 `;
 const TextBoxStyle = styled.div`
@@ -64,8 +64,8 @@ const ImageStyle = styled.img`
   width: 100%;
   max-width: 100%;
   object-fit: cover;
-  box-shadow: 2px 2px 3px #D3D3D3;
-  background: #D3D3D3;
+  box-shadow: 2px 2px 3px #d3d3d3;
+  background: #d3d3d3;
 `;
 
 const CompareButtonDivStyle = styled.div`
@@ -73,20 +73,20 @@ const CompareButtonDivStyle = styled.div`
 `;
 
 const CompareButtonStyle = styled.button`
-margin-top: 1em;
-background: light-grey;
-color: grey;
-border: 0px;
-padding: 5px;
-animation-name: ${fadeIn};
-animation-duration: .5s;
-transition-timing-function: ease-in;
-animation-fill-mode: both;
-transition: all 0.1s;
-&:hover ${CompareButtonStyle} {
-  box-shadow: 4px 4px 5px #D3D3D3;
-  background: #E8E8E8;
-}
+  margin-top: 1em;
+  background: light-grey;
+  color: grey;
+  border: 0px;
+  padding: 5px;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+  transition: all 0.1s;
+  &:hover ${CompareButtonStyle} {
+    box-shadow: 4px 4px 5px #d3d3d3;
+    background: #e8e8e8;
+  }
 `;
 
 const RelatedItem = ({ item }) => {
@@ -115,8 +115,13 @@ const RelatedItem = ({ item }) => {
         </ItemStyle>
       </Link>
       <CompareButtonDivStyle>
-        {popup && <CompareModal content={<CompareTable currentProduct={item} compareProduct={item}/>} toggle={setPopup} />}
-        <CompareButtonStyle onClick={() => { setPopup(!popup); }}>Compare</CompareButtonStyle>
+        {popup && <CompareModal content={
+        <CompareTable currentProduct={item} compareProduct={item}/>
+        } toggle={setPopup} />}
+        <CompareButtonStyle onClick={() => {
+          setPopup(!popup);
+          }}>Compare
+        </CompareButtonStyle>
       </CompareButtonDivStyle>
     </div>
   );

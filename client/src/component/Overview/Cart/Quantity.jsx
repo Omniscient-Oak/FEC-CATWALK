@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Quantity = ({ currentQuantity, selectedSize }) => {
+const styleSelector = {
+  margin: '0px 10px 0px 0px',
+  background: '#fff',
+  border: '1px solid #cfcfcf',
+  color: '#000',
+  cursor: 'pointer',
+};
+
+const Quantity = ({ currentQuantity, selectedSize, changeQuantity }) => {
   const quantityOptions = [];
 
   if (currentQuantity > 0 && currentQuantity >= 15) {
@@ -15,13 +23,16 @@ const Quantity = ({ currentQuantity, selectedSize }) => {
 
   if (currentQuantity === '-' || selectedSize === 'Select Size') {
     return (
-      <select>
+      <select style={styleSelector}>
         <option>-</option>
       </select>
     );
   }
   return (
-    <select>
+    <select
+      style={styleSelector}
+      onChange={(event) => changeQuantity(event.target.value)}
+    >
       {quantityOptions.map((number) => (
         <option>{number}</option>
       ))}
