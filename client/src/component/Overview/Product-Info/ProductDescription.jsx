@@ -2,24 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ProductDescription = ({ currentProduct }) => (
-  <Wrapper>
+  <div>
     <SloganStyled>{currentProduct.slogan}</SloganStyled>
     <DescriptionStyled>{currentProduct.description}</DescriptionStyled>
-  </Wrapper>
+  </div>
 );
 
 export default ProductDescription;
 
 const DescriptionStyled = styled.div`
-  font-size: 15px;
-  font-type: bold;
+  font-size: 12px;
 `;
 
 const SloganStyled = styled.div`
   font-size: 20px;
-`;
 
-const Wrapper = styled.div`
-  grid-column-start: 2;
-  grid-row-start: 2;
+  font-weight: bold;
+  font-variant: all-petite-caps;
+  margin: 5px 0px 5px 0px;
 `;

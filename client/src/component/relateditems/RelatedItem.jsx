@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ProductContext from '../ProductContext';
 import CompareModal from './CompareModal';
@@ -16,21 +16,21 @@ const ItemStyle = styled.div`
   object-fit: cover;
   flex: 0 0 auto;
   padding: 5%;
-  background: #EEEEEE;
+  background: #eeeeee;
   text-align: center;
   box-sizing: border-box;
-  box-shadow: 2px 2px 3px #D3D3D3;
+  box-shadow: 2px 2px 3px #d3d3d3;
   margin-right: 1em;
   margin-left: 1em;
   justify-content: row;
   animation-name: ${fadeIn};
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   transition-timing-function: ease-in;
   animation-fill-mode: both;
   transition: all 0.2s;
   &:hover ${ItemStyle} {
-    box-shadow: 4px 4px 5px #D3D3D3;
-    background: #E8E8E8;
+    box-shadow: 4px 4px 5px #d3d3d3;
+    background: #e8e8e8;
   }
 `;
 const TextBoxStyle = styled.div`
@@ -61,29 +61,29 @@ const ImageStyle = styled.img`
   width: 100%;
   max-width: 100%;
   object-fit: cover;
-  box-shadow: 2px 2px 3px #D3D3D3;
-  background: #D3D3D3;
+  box-shadow: 2px 2px 3px #d3d3d3;
+  background: #d3d3d3;
 `;
 
 const CompareButtonDivStyle = styled.div`
   text-align: center;
-`
+`;
 
 const CompareButtonStyle = styled.button`
-margin-top: 1em;
-background: light-grey;
-color: grey;
-border: 0px;
-padding: 5px;
-animation-name: ${fadeIn};
-animation-duration: .5s;
-transition-timing-function: ease-in;
-animation-fill-mode: both;
-transition: all 0.1s;
-&:hover ${CompareButtonStyle} {
-  box-shadow: 4px 4px 5px #D3D3D3;
-  background: #E8E8E8;
-}
+  margin-top: 1em;
+  background: light-grey;
+  color: grey;
+  border: 0px;
+  padding: 5px;
+  animation-name: ${fadeIn};
+  animation-duration: 0.5s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+  transition: all 0.1s;
+  &:hover ${CompareButtonStyle} {
+    box-shadow: 4px 4px 5px #d3d3d3;
+    background: #e8e8e8;
+  }
 `;
 
 const RelatedItem = (props) => {
@@ -93,20 +93,17 @@ const RelatedItem = (props) => {
   return (
     <div>
       <Link to={`/store/${props.item.id}`}>
-        <ItemStyle onClick={()=>setProductId(props.item.id)}>
+        <ItemStyle onClick={() => setProductId(props.item.id)}>
           <ImageStyle src={props.item.photo} />
           <TextBoxStyle>
-            <NameTitleStyle>
-              {props.item.name}
-            </NameTitleStyle>
+            <NameTitleStyle>{props.item.name}</NameTitleStyle>
             <TextStyle>
               ${props.item.default_price}
-              {props.item.rating > 0
-              && (
-              <div>
-                Rating:
-                {props.item.rating}
-              </div>
+              {props.item.rating > 0 && (
+                <div>
+                  Rating:
+                  {props.item.rating}
+                </div>
               )}
             </TextStyle>
           </TextBoxStyle>
@@ -114,7 +111,13 @@ const RelatedItem = (props) => {
       </Link>
       <CompareButtonDivStyle>
         {popup && <CompareModal content={<div>Test</div>} toggle={setPopup} />}
-        <CompareButtonStyle onClick={() => { setPopup(!popup); }}>Compare</CompareButtonStyle>
+        <CompareButtonStyle
+          onClick={() => {
+            setPopup(!popup);
+          }}
+        >
+          Compare
+        </CompareButtonStyle>
       </CompareButtonDivStyle>
     </div>
   );

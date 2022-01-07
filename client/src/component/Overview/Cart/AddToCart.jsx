@@ -1,9 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const axios = require('axios');
 
 const AddToCart = ({ selectedSize, currentQuantity, sku }) => (
-  <button
+  <StyledAddToCartButton
     onClick={() =>
       axios
         .post('/cart', {
@@ -15,7 +16,22 @@ const AddToCart = ({ selectedSize, currentQuantity, sku }) => (
     }
   >
     Add to Cart
-  </button>
+  </StyledAddToCartButton>
 );
 
 export default AddToCart;
+
+const StyledAddToCartButton = styled.button`
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+  width: 250px;
+  height: 50px;
+  background: #dc143c;
+  opacity: 90%;
+  border-radius: 15px;
+  background: crimson;
+  font-size: large;
+  color: white;
+  font-family: Verdana;
+  border: white;
+`;

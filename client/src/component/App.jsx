@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import ProductContext from './ProductContext';
 import Overview from './Overview/Overview.jsx';
 import List from './qa/List.jsx';
@@ -10,14 +11,18 @@ const App = () => {
   const [productId, setProductId] = useState(params.productId);
   useEffect(() => {}, []);
   return (
-    <div>
+    <StyledApp>
       <ProductContext.Provider value={{ productId, setProductId }}>
         <Overview />
         <RelatedItemsMenu />
         <List />
       </ProductContext.Provider>
-    </div>
+    </StyledApp>
   );
 };
 
 export default App;
+
+const StyledApp = styled.section`
+  font-family: Verdana;
+`;

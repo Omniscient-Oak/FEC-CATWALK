@@ -56,7 +56,9 @@ const Overview = () => {
   return (
     <div className='overview'>
       <WrapperStyled>
-        {product.category && <Category category={product.category} />}
+        <ProductCategoryWrapper>
+          {product.category && <Category category={product.category} />}
+        </ProductCategoryWrapper>
         {product.name && <ProductName name={product.name} />}
 
         <ImageWrapperStyled>
@@ -73,8 +75,10 @@ const Overview = () => {
               setMainImage={setMainImage}
             />
           )}
-          {product.styles && <ProductDescription currentProduct={product} />}
         </ImageWrapperStyled>
+        <ProductDescriptionWrapper>
+          {product.styles && <ProductDescription currentProduct={product} />}
+        </ProductDescriptionWrapper>
 
         <ProductStylesWrapper>
           {product.styles && (
@@ -126,21 +130,21 @@ const ImageWrapperStyled = styled.section`
   grid-row: 1 / span 10;
   display: grid;
   height: 650px;
-  width: 750px;
+  object-fit: cover;
+  margin: 0px 10px 0px 0px;
 `;
 
 const WrapperStyled = styled.section`
-  padding: 2% 15% 2% 15%;
+  padding: 2% 7% 5% 13%;
   display: grid;
   grid-template-columns: 7fr 3fr;
   grid-column-gap: 10px;
-  grid-template-rows: 0.05fr 0.1fr 0.05fr 0.1fr 0.15fr 0.05fr 1fr 1fr 1fr 0.2fr;
-  font-family: Helvetica;
+  font-family: Verdana;
 `;
 
 const PriceStyledWrapper = styled.section`
-  display: grid;
-  grid-row-start: 5;
+  grid-row-start: 2;
+  margin: 10px 0px 0px 0px;
 `;
 
 const ProductStylesWrapper = styled.section`
@@ -154,4 +158,17 @@ const SelectedStyleWrapper = styled.section`
 
 const SizeDropdownWrapper = styled.section`
   grid-row-start: 7;
+`;
+
+const ProductDescriptionWrapper = styled.section`
+  grid-row-start: 5;
+  width: 300px;
+`;
+
+const ProductCategoryWrapper = styled.section`
+  align-self: end;
+  grid-row-start: 3;
+  font-size: 12px;
+  font-style: italic;
+  margin: 10px 0px 0px 0px;
 `;

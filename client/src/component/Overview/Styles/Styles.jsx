@@ -26,7 +26,8 @@ export default Styles;
 const ThumbnailGrid = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 1em 10em 1em 0em;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  padding: 1em 10em 0em 0em;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  margin: 5px 0px 5px 0px;
 `;

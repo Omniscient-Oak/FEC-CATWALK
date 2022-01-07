@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import Quantity from './Quantity.jsx';
 import AddToCart from './AddToCart.jsx';
+
+const styleSelector = {
+  color: 'blue',
+};
 
 const SizeDropdown = ({
   skus,
@@ -31,7 +36,10 @@ const SizeDropdown = ({
 
   return (
     <div>
-      <select onChange={(event) => changeSize(event.target.value)}>
+      <select
+        style={styleSelector}
+        onChange={(event) => changeSize(event.target.value)}
+      >
         <option>{selectedSize}</option>
         {sizes.map((size) => (
           <option>{size}</option>
