@@ -17,7 +17,6 @@ const App = () => {
         <Overview />
         <RelatedItemsMenu />
         <List />
-        <ContentPreview />
       </ProductContext.Provider>
     </StyledApp>
   );

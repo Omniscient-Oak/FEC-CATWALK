@@ -44,7 +44,6 @@ const Index = () => (
             Home
           </Link>
         </HomeGrid>
-
         <ShoppingGrid>
           <StyledShoppingCartGridPosition>
             <StyledShoppingCartIcon />
@@ -56,7 +55,6 @@ const Index = () => (
       </nav>
       <Outlet />
     </Wrapper>
-    <ContentPreview />
   </div>
 );
 
