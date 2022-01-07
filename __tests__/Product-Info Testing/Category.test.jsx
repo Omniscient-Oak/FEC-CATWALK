@@ -27,4 +27,5 @@ it('renders with or without a name', () => {
   act(() => {
     render(<Category category={string} />, container);
   });
+  expect(container.textContent).toBe(string);
 });

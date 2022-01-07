@@ -14,14 +14,20 @@ const Answer = ({ answer }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     if (!helpful && event.target.name === 'helpful') {
-      axios.put(`qa/answers/helpful?answer_id=${answer.id}`).then(() => {
-        setHelpfulCount(helpfulCount + 1);
-        markHelpful(true);
-      }).catch((err) => console.log('handle answer helpful error', err));
+      axios
+        .put(`qa/answers/helpful?answer_id=${answer.id}`)
+        .then(() => {
+          setHelpfulCount(helpfulCount + 1);
+          markHelpful(true);
+        })
+        .catch((err) => console.log('handle answer helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      axios.put(`qa/answers/report?answer_id=${answer.id}`).then(() => {
-        markReport(true);
-      }).catch((err) => console.log('handle answer report error', err));
+      axios
+        .put(`qa/answers/report?answer_id=${answer.id}`)
+        .then(() => {
+          markReport(true);
+        })
+        .catch((err) => console.log('handle answer report error', err));
     }
   };
 
@@ -30,29 +36,26 @@ const Answer = ({ answer }) => {
       <br />
       <div style={{ width: '70%' }}>
         <span>
-          <b>A: </b>
-          {' '}
-          {answer.body}
+          <b>A: </b> {answer.body}
         </span>
       </div>
       <span style={{ fontSize: '12px' }}>
-&nbsp;&nbsp;&nbsp; by
-        {' '}
-        {isSeller ? <b>Seller</b> : answer.answerer_name}
-        ,
-        {moment(answer.date).format(' MMMM D, YYYY')}
-        {' '}
-&nbsp; | &nbsp;Helpful?
-        {' '}
-        <button type="button" name="helpful" onClick={handleUpdate}>
+        &nbsp;&nbsp;&nbsp; by {isSeller ? <b>Seller</b> : answer.answerer_name},
+        {moment(answer.date).format(' MMMM D, YYYY')} &nbsp; | &nbsp;Helpful?{' '}
+        <button type='button' name='helpful' onClick={handleUpdate}>
           {' '}
           Yes
-        </button>
-        {' '}
+        </button>{' '}
         {`(${helpfulCount})`}
-&nbsp;| &nbsp;
-        {reported ? 'Reported'
-          : <button type="button" name="report" onClick={handleUpdate}> Report </button>}
+        &nbsp;| &nbsp;
+        {reported ? (
+          'Reported'
+        ) : (
+          <button type='button' name='report' onClick={handleUpdate}>
+            {' '}
+            Report{' '}
+          </button>
+        )}
       </span>
       <br />
     </div>
