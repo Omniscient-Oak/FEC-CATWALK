@@ -1,32 +1,56 @@
-import React from 'react';
+import React, {useEffect, useContext, useState} from 'react';
+import axios from 'axios';
+import ProductContext from '../ProductContext';
 
 const CompareTable = (props) => {
-  const { currentProduct, compareProduct } = props;
+  const { compareProduct } = props;
+  const [currentProduct, changeCurrentProduct] = useState();
   const products = [compareProduct, currentProduct];
-  let featuresArr = [];
-  products.forEach((product) => { for(const key in product.features) {
-    if (!featuresArr.includes(product.features[key].feature)) {
-      featuresArr = [...featuresArr, product.features[key].feature];
-    }
-  }});
+  const [featuresArr, setFeaturesArr] = useState([]);
+  const { productId } = useContext(ProductContext);
+
+  const setFeatureList = () => {
+    let feats = [];
+    products.forEach((product) => { for(const key in product.features) {
+      if (!feats.includes(product.features[key].feature)) {
+        feats.push(product.features[key].feature);
+      }
+    };
+    });
+    console.log(feats);
+    setFeaturesArr(feats);
+  };
+
+  useEffect(() => {
+    axios.get('/products/info',{
+      params: { product_id: productId },
+    })
+      .then((response) => {
+        changeCurrentProduct(response.data);
+      })
+      .then(() => { setFeatureList(); })
+      .catch((err) => {
+        throw err;
+      });
+  }, []);
+
   return (
     <div>
-    <table>
-      <tr>
-        <th>&nbsp;</th>
-        <th>{currentProduct.name}</th>
-        <th>{compareProduct.name}</th>
-      </tr>
-      {featuresArr.map((feature) =>
-        (
+      <table>
+        <tr>
+          <th>&nbsp;</th>
+          <th>{currentProduct && currentProduct.name}</th>
+          <th>{compareProduct.name}</th>
+        </tr>
+        {currentProduct && featuresArr.map((feature) => (
           <tr>
             <td>
               {feature}
             </td>
           </tr>
-      ))}
-    </table>
-    <div>{console.log(featuresArr)}</div>
+        ))}
+      </table>
+      <div>{console.log(featuresArr)}</div>
     </div>
   );
 };

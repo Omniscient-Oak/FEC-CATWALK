@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ModalBoxStyle = styled.div`
@@ -46,8 +46,8 @@ const CloseButtonStyle = styled.section`
 const Modal = (props) => (
   <ModalBoxStyle>
     <BoxStyle>
-      <CloseButtonStyle onClick={()=>{props.toggle(false)}}>X</CloseButtonStyle>
-      {props.content}
+      <CloseButtonStyle onClick={() => { props.toggle(false); }}>X</CloseButtonStyle>
+      { props.content }
     </BoxStyle>
   </ModalBoxStyle>
 );
