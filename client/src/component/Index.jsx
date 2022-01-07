@@ -56,7 +56,6 @@ const Index = () => (
       </nav>
       <Outlet />
     </Wrapper>
-    <ContentPreview />
   </div>
 );
 

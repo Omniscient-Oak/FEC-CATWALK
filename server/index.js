@@ -6,7 +6,7 @@ const serveIndex = require('serve-index');
 const expressStaticGzip = require('express-static-gzip')
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
