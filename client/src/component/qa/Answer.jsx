@@ -43,25 +43,6 @@ const Answer = ({ answer }) => {
           <b>A: </b> {answer.body}
         </span>
       </div>
-<<<<<<< HEAD
-      <span style={{ fontSize: '12px' }}>
-        &nbsp;&nbsp;&nbsp; by {isSeller ? <b>Seller</b> : answer.answerer_name},
-        {moment(answer.date).format(' MMMM D, YYYY')} &nbsp; | &nbsp;Helpful?{' '}
-        <button type='button' name='helpful' onClick={handleUpdate}>
-          {' '}
-          Yes
-        </button>{' '}
-        {`(${helpfulCount})`}
-        &nbsp;| &nbsp;
-        {reported ? (
-          'Reported'
-        ) : (
-          <button type='button' name='report' onClick={handleUpdate}>
-            {' '}
-            Report{' '}
-          </button>
-        )}
-=======
       <span style={{ fontSize: '13px', marginTop: '5px' }}>
 &nbsp;&nbsp;&nbsp; by
         {' '}
@@ -80,7 +61,6 @@ const Answer = ({ answer }) => {
 &nbsp;| &nbsp;
         {reported ? 'Reported'
           : <ButtonStyle name="report" onClick={handleUpdate}> Report </ButtonStyle>}
->>>>>>> master
       </span>
       <br />
     </div>
