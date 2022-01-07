@@ -11,5 +11,4 @@ import App from '../client/src/component/App.jsx';
 afterEach(cleanup);
 
 test('render the correct content in App', () => {
-  const { getByText } = render(<App />);
 });

@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, lazy } from 'react';
 import { Link } from "react-router-dom";
 import styled, { keyframes } from 'styled-components';
 import ProductContext from '../ProductContext';
-import CompareModal from './CompareModal';
+
+const CompareTable = lazy(() => import('./CompareTable'));
+const CompareModal = lazy(() => import('./CompareModal'));
 
 const fadeIn = keyframes`
   0% {opacity: 0;}
@@ -11,8 +13,9 @@ const fadeIn = keyframes`
 
 const ItemStyle = styled.div`
   height: 100%;
-  min-width: 250px;
-  width: 15%;
+  width: 12vw;
+  min-height: 275px;
+  min-width: 150px;
   object-fit: cover;
   flex: 0 0 auto;
   padding: 5%;
@@ -24,7 +27,7 @@ const ItemStyle = styled.div`
   margin-left: 1em;
   justify-content: row;
   animation-name: ${fadeIn};
-  animation-duration: .5s;
+  animation-duration: 1.5s;
   transition-timing-function: ease-in;
   animation-fill-mode: both;
   transition: all 0.2s;
@@ -36,7 +39,7 @@ const ItemStyle = styled.div`
 const TextBoxStyle = styled.div`
   margin-top: 15px;
   background: white;
-  height: 25%;
+  height: 30%;
   box-sizing: border-box;
   padding-top: 1%;
   text-align: left;
@@ -45,19 +48,19 @@ const TextBoxStyle = styled.div`
 const NameTitleStyle = styled.p`
   margin-left: 5%;
   margin-top: 3%;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: black;
 `;
 
-const TextStyle = styled.section`
+const TextStyle = styled.p`
   margin-left: 5%;
   font-size: 14px;
   color: black;
 `;
 
 const ImageStyle = styled.img`
-  height: 70%;
+  height: 65%;
   width: 100%;
   max-width: 100%;
   object-fit: cover;
@@ -67,7 +70,7 @@ const ImageStyle = styled.img`
 
 const CompareButtonDivStyle = styled.div`
   text-align: center;
-`
+`;
 
 const CompareButtonStyle = styled.button`
 margin-top: 1em;
@@ -86,26 +89,25 @@ transition: all 0.1s;
 }
 `;
 
-const RelatedItem = (props) => {
+const RelatedItem = ({ item }) => {
   const { setProductId } = useContext(ProductContext);
   const [popup, setPopup] = useState(false);
-
   return (
     <div>
-      <Link to={`/store/${props.item.id}`}>
-        <ItemStyle onClick={()=>setProductId(props.item.id)}>
-          <ImageStyle src={props.item.photo} />
+      <Link to={`/store/${item.id}`}>
+        <ItemStyle onClick={()=>setProductId(item.id)}>
+          <ImageStyle src={item.photo} />
           <TextBoxStyle>
             <NameTitleStyle>
-              {props.item.name}
+              {item.name}
             </NameTitleStyle>
             <TextStyle>
-              ${props.item.default_price}
-              {props.item.rating > 0
+              ${item.default_price}
+              {item.rating > 0
               && (
               <div>
                 Rating:
-                {props.item.rating}
+                {item.rating}
               </div>
               )}
             </TextStyle>
@@ -113,7 +115,7 @@ const RelatedItem = (props) => {
         </ItemStyle>
       </Link>
       <CompareButtonDivStyle>
-        {popup && <CompareModal content={<div>Test</div>} toggle={setPopup} />}
+        {popup && <CompareModal content={<CompareTable currentProduct={item} compareProduct={item}/>} toggle={setPopup} />}
         <CompareButtonStyle onClick={() => { setPopup(!popup); }}>Compare</CompareButtonStyle>
       </CompareButtonDivStyle>
     </div>

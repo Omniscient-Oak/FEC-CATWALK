@@ -15,11 +15,11 @@ module.exports = {
         let reviewMeta;
         [styleInfo, itemInfo, reviewMeta] = [...getRes];
         let photo = null;
-        for(let style of styleInfo.results) {
+        styleInfo.results.forEach((style) => {
           if (style['default?']) {
-            photo = style.photos[0]['thumbnail_url'];
+            photo = style.photos[0].thumbnail_url;
           }
-        };
+        });
         if (!photo) {
           photo = styleInfo.results[0].photos[0].thumbnail_url;
         }

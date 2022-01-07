@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, lazy, Suspense } from 'react';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 
 import ProductContext from '../ProductContext';
-import RelatedItem from './RelatedItem';
+// import RelatedItem from './RelatedItem';
 
+import RelatedItem from './RelatedItem';
 const fadeIn = keyframes`
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -15,13 +16,13 @@ const RelatedItemWrapperStyle = styled.div`
   border-bottom: 1px solid black;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 2em 15em 5em 15em;
+  padding: 2em 0em 5em 0em;
   font-family: Helvetica;
   display: flex;
   height: 18vw;
-  min-height: 350px;
+  min-height: 300px;
   width: auto;
-
+  justify-content: center;
 `;
 const MaxWidthStyle = styled.div`
   width: 70%
@@ -108,7 +109,7 @@ const RelatedItemsMenu = () => {
       </RelatedTitleStyle>
       <RelatedItemWrapperStyle onWheel={(e) => { scrollHandler(e);}}>
         {toShow.length > 0 && <CarouselButton onClick={handleCarouselLeft}>&lt;</CarouselButton>}
-        {toShow.map((item) => <RelatedItem item={item} key={item.name} />)}
+        {toShow.map((item) => <Suspense fallback={<div>Loading...</div>}><RelatedItem item={item} key={item.name} /></Suspense>)}
         {toShow.length > 0 && <CarouselButton onClick={handleCarouselRight}>&gt;</CarouselButton>}
       </RelatedItemWrapperStyle>
     </div>
