@@ -10,7 +10,7 @@ const Thumbnails = ({
 }) => {
   const renderCheckmark = currentStyleIndex === index;
   return (
-    <div>
+    <Wrapper>
       <ThumbnailStyled
         onClick={() => setCurrentStyleIndex(index)}
         imageUrl={style.photos[0].thumbnail_url}
@@ -18,7 +18,8 @@ const Thumbnails = ({
       >
         {renderCheckmark && <StyledIcon />}
       </ThumbnailStyled>
-    </div>
+      <ThumbnailText>{style.name}</ThumbnailText>
+    </Wrapper>
   );
 };
 
@@ -30,16 +31,32 @@ const ThumbnailStyled = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 75%;
+  padding: 15px;
+  &:hover {
+    opacity: 0.75;
+    color: red;
+    background-color: palevioletred;
+  }
 `;
 
 const StyledIcon = styled(CheckSquare)`
   position: absolute;
   color: green;
-  height: 9px;
-  width: 9px;
+  height: 10px;
+  width: 10px;
   top: 0;
   right: 0;
+`;
+
+const ThumbnailText = styled.div`
+  font-size: 10px;
+  text-align: center;
+  margin: 5px;
+`;
+
+const Wrapper = styled.section`
+  text-align: center;
 `;

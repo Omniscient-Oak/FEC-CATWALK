@@ -47,7 +47,7 @@ const List = () => {
   };
 
   const getData = () => {
-    axios.get('http://localhost:3000/qa/questions', { params }).then(
+    axios.get('/qa/questions', { params }).then(
       (res) => {
         setQuestion(res.data.results.sort((a, b) => (b.helpfulness - a.helpfulness)));
       },

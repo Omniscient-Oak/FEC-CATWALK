@@ -6,7 +6,7 @@ const serveIndex = require('serve-index');
 const expressStaticGzip = require('express-static-gzip')
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
@@ -25,7 +25,6 @@ app.listen(PORT, () => {
 
 app.use(expressStaticGzip(__dirname + '/../client/dist'));
 
-app.use('/store/*', expressStaticGzip(__dirname + '/../client/dist'), serveIndex(__dirname + '/../client/dist'));
 
 //PRODUCT ROUTES
 app.route('/products')
@@ -75,3 +74,4 @@ app.route('/cart')
   .get(controller.cart.get)
   .post(controller.cart.post)
 
+app.use('/store/*', expressStaticGzip(__dirname + '/../client/dist'), serveIndex(__dirname + '/../client/dist'));

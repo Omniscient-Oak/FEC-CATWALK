@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Category = ({ category }) => (
-  <ProductCategory>{category}</ProductCategory>
-);
+const Category = ({ category }) => <div>Category > {category}</div>;
 
 export default Category;
-
-const ProductCategory = styled.div`
-  font-size: 20px;
-  display: grid;
-  align-self: end;
-`;

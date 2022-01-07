@@ -3,5 +3,5 @@ server/config.js
 config.js
 client/dist/bundle.js
 node_modules
-coverage
-
+coverage/
+client/dist/bundle.js.gz
