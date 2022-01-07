@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext, lazy, Suspense } from 'react';
+import React, {
+  useState, useEffect, useContext, lazy, Suspense,
+} from 'react';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 
@@ -6,6 +8,7 @@ import ProductContext from '../ProductContext';
 // import RelatedItem from './RelatedItem';
 
 import RelatedItem from './RelatedItem';
+
 const fadeIn = keyframes`
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -105,7 +108,7 @@ const RelatedItemsMenu = () => {
       });
   }, [productId]);
   return (
-    <div className='relatedmenu'>
+    <div className="relatedmenu">
       <RelatedTitleStyle>
         <h3>Related Items</h3>
       </RelatedTitleStyle>

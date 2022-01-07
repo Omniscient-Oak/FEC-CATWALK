@@ -1,5 +1,5 @@
 const productsModel = require('../models/products.js');
-const reviewsModel = require('../models/reviews.js')
+const reviewsModel = require('../models/reviews.js');
 
 module.exports = {
   get: async (req, res) => {
@@ -25,12 +25,12 @@ module.exports = {
         }
         if (Object.keys(reviewMeta.ratings).length > 0) {
           const numReviews = (Object.values(reviewMeta.ratings).reduce(
-            (total, num) => { return parseInt(total) + parseInt(num); }));
-          const combinedRatings = (Object.keys(reviewMeta.ratings).reduce(
-            (total, rating) =>
-              (parseInt(total) + (parseInt(rating) * parseInt(reviewMeta.ratings[rating])))
+            (total, num) => parseInt(total) + parseInt(num),
           ));
-          let rating = Math.round((combinedRatings / numReviews) * 100) / 100;
+          const combinedRatings = (Object.keys(reviewMeta.ratings).reduce(
+            (total, rating) => (parseInt(total) + (parseInt(rating) * parseInt(reviewMeta.ratings[rating]))),
+          ));
+          const rating = Math.round((combinedRatings / numReviews) * 100) / 100;
           return { ...itemInfo, photo, rating };
         }
         return { ...itemInfo, photo, rating: 0 };
