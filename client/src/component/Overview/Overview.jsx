@@ -136,6 +136,7 @@ const ImageWrapperStyled = styled.section`
 
 const WrapperStyled = styled.section`
   padding: 0.5% 7% 5% 13%;
+  margin: 0px 0px 30px 0px;
   display: grid;
   grid-template-columns: 7fr 3fr;
   grid-column-gap: 10px;
