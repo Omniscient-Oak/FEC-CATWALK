@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState} from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import ProductContext from '../ProductContext';
 
@@ -10,19 +10,20 @@ const CompareTable = (props) => {
   const { productId } = useContext(ProductContext);
 
   const setFeatureList = () => {
-    let feats = [];
-    products.forEach((product) => { for(const key in product.features) {
-      if (!feats.includes(product.features[key].feature)) {
-        feats.push(product.features[key].feature);
+    const feats = [];
+    products.forEach((product) => {
+      for (const key in product.features) {
+        if (!feats.includes(product.features[key].feature)) {
+          feats.push(product.features[key].feature);
+        }
       }
-    };
     });
     console.log(feats);
     setFeaturesArr(feats);
   };
 
   useEffect(() => {
-    axios.get('/products/info',{
+    axios.get('/products/info', {
       params: { product_id: productId },
     })
       .then((response) => {

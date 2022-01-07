@@ -54,7 +54,7 @@ const Overview = () => {
   }, [productContext.productId]);
 
   return (
-    <div className='overview'>
+    <div className="overview">
       <WrapperStyled>
         <ProductCategoryWrapper>
           {product.category && <Category category={product.category} />}

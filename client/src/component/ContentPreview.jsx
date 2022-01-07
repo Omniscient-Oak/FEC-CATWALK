@@ -18,8 +18,7 @@ const ContentPreview = () => {
     'mediumvioletred',
   ];
 
-  const generateColors = (array) =>
-    array[Math.floor(Math.random() * colors.length - 1)];
+  const generateColors = (array) => array[Math.floor(Math.random() * colors.length - 1)];
 
   useEffect(() => {
     axios

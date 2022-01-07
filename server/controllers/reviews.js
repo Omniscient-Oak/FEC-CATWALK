@@ -1,22 +1,22 @@
 const axios = require('axios');
-const auth = require('../config.js')
+const auth = require('../config.js');
 
 module.exports = {
-  //Question GET, POST & PUTs
+  // Question GET, POST & PUTs
   get: (req, res) => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', {
       headers: {
-        Authorization: auth
+        Authorization: auth,
       },
       params: {
         product_id: req.query.product_id,
         count: req.query.count,
         page: req.query.page,
-        sort: req.body.sort
-      }
+        sort: req.body.sort,
+      },
     })
-    .then((questions)=>{res.send(questions.data)})
-    .catch((e)=>{console.log(e); res.send(e); })
+      .then((questions) => { res.send(questions.data); })
+      .catch((e) => { console.log(e); res.send(e); });
   },
   post: (req, res) => {
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews', {
@@ -28,44 +28,44 @@ module.exports = {
       name: req.body.name,
       email: req.body.email,
       photos: req.body.photos,
-      characteristics: req.body.characteristics
-  },
-  {
-    headers: {
-      Authorization: auth
-    }
-  })
-  .then((r)=>{res.send(JSON.stringify(r.status))})
-  .catch((e)=>{res.send(e); })
+      characteristics: req.body.characteristics,
+    },
+    {
+      headers: {
+        Authorization: auth,
+      },
+    })
+      .then((r) => { res.send(JSON.stringify(r.status)); })
+      .catch((e) => { res.send(e); });
   },
   meta: (req, res) => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta', {
       headers: {
-        Authorization: auth
+        Authorization: auth,
       },
       params: {
         product_id: req.query.product_id,
-      }
+      },
     })
-    .then((questions)=>{res.send(questions.data)})
-    .catch((e)=>{console.log(e); res.send(e); })
+      .then((questions) => { res.send(questions.data); })
+      .catch((e) => { console.log(e); res.send(e); });
   },
   helpful: (req, res) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/${req.query.review_id}/helpful`, {}, {
       headers: {
-        Authorization: auth
+        Authorization: auth,
       },
     })
-    .then((r)=>{res.send(JSON.stringify(r.status))})
-    .catch((e)=>{console.log(e); res.send(e); })
+      .then((r) => { res.send(JSON.stringify(r.status)); })
+      .catch((e) => { console.log(e); res.send(e); });
   },
   report: (req, res) => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/${req.query.review_id}/report`, {}, {
       headers: {
-        Authorization: auth
+        Authorization: auth,
       },
     })
-    .then((r)=>{res.send(JSON.stringify(r.status))})
-    .catch((e)=>{console.log(e); res.send(e); })
-  }
-}
+      .then((r) => { res.send(JSON.stringify(r.status)); })
+      .catch((e) => { console.log(e); res.send(e); });
+  },
+};
