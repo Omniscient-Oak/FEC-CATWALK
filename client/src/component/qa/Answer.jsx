@@ -8,8 +8,18 @@ const ButtonStyle = styled.button`
   background-color: white;
   cursor: pointer;
   &:hover{
-    color: red;
-}
+    color: blue;
+    text-decoration: underline;
+  }
+`;
+
+const DivStyle = styled.div`
+  width: 70%;
+`;
+
+const SpanStyle = styled.span`
+  font-size: 13px;
+  margin-top: 5px;
 `;
 
 const Answer = ({ answer }) => {
@@ -38,14 +48,14 @@ const Answer = ({ answer }) => {
   return (
     <div>
       <br />
-      <div style={{ width: '70%' }}>
+      <DivStyle>
         <span>
           <b>A: </b>
           {' '}
           {answer.body}
         </span>
-      </div>
-      <span style={{ fontSize: '13px', marginTop: '5px' }}>
+      </DivStyle>
+      <SpanStyle>
 &nbsp;&nbsp;&nbsp; by
         {' '}
         {isSeller ? <b>Seller</b> : answer.answerer_name}
@@ -63,7 +73,7 @@ const Answer = ({ answer }) => {
 &nbsp;| &nbsp;
         {reported ? 'Reported'
           : <ButtonStyle name="report" onClick={handleUpdate}> Report </ButtonStyle>}
-      </span>
+      </SpanStyle>
       <br />
     </div>
   );
