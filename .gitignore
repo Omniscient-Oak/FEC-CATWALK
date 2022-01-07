@@ -9,3 +9,4 @@ server/localconfig.js
 .eslintrc.js
 .vscode/
 .eslintignore
+.gitignore
