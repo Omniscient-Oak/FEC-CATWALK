@@ -19,7 +19,7 @@ const RelatedItemWrapperStyle = styled.div`
   padding: 2em 0em 5em 0em;
   font-family: Helvetica;
   display: flex;
-  height: 18vw;
+  height: 22vw;
   min-height: 300px;
   width: auto;
   justify-content: center;
@@ -34,9 +34,8 @@ const RelatedTitleStyle = styled.section`
 const CarouselButton = styled.button`
   font-size: 24px;
   font-weight: bold;
-  background: #eeeeee;
+  background: #dc143c;
   text-transform: uppercase;
-  color: grey;
   box-shadow: 1px 1px 2px #d3d3d3;
   border: 0;
   animation-name: ${fadeIn};
@@ -44,9 +43,13 @@ const CarouselButton = styled.button`
   animation-duration: 0.5s;
   transition-timing-function: ease-in;
   animation-fill-mode: both;
+  color: white;
+  border-radius: 5px;
+  margin-right: 1em;
+  margin-left: 1em;
   &:hover ${CarouselButton} {
     box-shadow: 4px 4px 5px #d3d3d3;
-    background: #e8e8e8;
+    filter: brightness(95%);
   }
 `;
 

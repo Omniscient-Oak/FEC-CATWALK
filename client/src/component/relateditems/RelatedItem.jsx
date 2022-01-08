@@ -12,8 +12,9 @@ const fadeIn = keyframes`
 `;
 
 const ItemStyle = styled.div`
+  border-radius: 5px;
   height: 100%;
-  width: 12vw;
+  width: 13vw;
   min-height: 275px;
   min-width: 150px;
   object-fit: cover;
