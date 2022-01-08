@@ -29,3 +29,4 @@ const SloganStyled = styled.div`
 const Paragraph = styled.div`
   padding: 5px;
 `;
+//
