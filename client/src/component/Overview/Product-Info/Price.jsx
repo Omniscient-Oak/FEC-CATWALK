@@ -3,12 +3,21 @@ import styled from 'styled-components';
 
 const Price = ({ currentStyle }) => {
   if (currentStyle.sale_price === null) {
-    return <div>Price: ${currentStyle.original_price}</div>;
+    return (
+      <div>
+        Price: $
+        {currentStyle.original_price}
+      </div>
+    );
   }
   return (
     <div>
-      Price: $<OriginalPrice>{currentStyle.original_price}</OriginalPrice>
-      <SalePrice>Sale: ${currentStyle.sale_price}</SalePrice>
+      Price: $
+      <OriginalPrice>{currentStyle.original_price}</OriginalPrice>
+      <SalePrice>
+        Sale: $
+        {currentStyle.sale_price}
+      </SalePrice>
     </div>
   );
 };

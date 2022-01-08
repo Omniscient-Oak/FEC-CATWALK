@@ -28,17 +28,23 @@ export default Thumbnails;
 const ThumbnailStyled = styled.div`
   position: relative;
   background-image: url(${(props) => props.imageUrl});
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-position: center;
   background-size: cover;
   width: 40px;
   height: 40px;
-  border-radius: 75%;
+  border-radius: 80%;
   padding: 15px;
+  border: 3px solid transparent;
+  object-fit: cover;
   &:hover {
-    opacity: 0.75;
     color: red;
     background-color: palevioletred;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 3px;
+    border-color: red;
+    opacity: 90%;
   }
 `;
 
@@ -59,4 +65,9 @@ const ThumbnailText = styled.div`
 
 const Wrapper = styled.section`
   text-align: center;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    transform: translateY(-5px);
+  }
 `;

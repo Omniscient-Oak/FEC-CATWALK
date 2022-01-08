@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 const CompareTable = ({ compareProduct, currentProduct }) => {
-  // const [currentProduct, changeCurrentProduct] = useState(ProductContext.productInfo);
   const products = [compareProduct, currentProduct];
   const [featuresArr, setFeaturesArr] = useState([]);
 
@@ -11,7 +10,6 @@ const CompareTable = ({ compareProduct, currentProduct }) => {
       if (!feats.includes(product.features[key].feature)) {
         feats.push(product.features[key].feature);
       }
-    };
     });
     setFeaturesArr(feats);
   };

@@ -128,7 +128,7 @@ const AddQuestion = ({ productId }) => {
       product_id: Number(productId),
     };
 
-    axios.post('http://localhost:3000/qa/questions', newQuestion).then(() => {
+    axios.post('../../qa/questions', newQuestion).then(() => {
     }).catch((err) => { console.log('post question error', err); });
   });
 

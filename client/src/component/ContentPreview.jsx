@@ -18,8 +18,7 @@ const ContentPreview = () => {
     'mediumvioletred',
   ];
 
-  const generateColors = (array) =>
-    array[Math.floor(Math.random() * colors.length - 1)];
+  const generateColors = (array) => array[Math.floor(Math.random() * colors.length - 1)];
 
   useEffect(() => {
     axios
@@ -75,7 +74,6 @@ const ImageWrapper = styled.div`
 `;
 const HomepageBorder = styled.span`
   &:hover {
-    opacity: 75%;
   }
 `;
 const HomepageImages = styled.img`
@@ -89,7 +87,16 @@ const HomepageImages = styled.img`
   border-radius: 75%;
   border-style: solid;
   border-width: 5px;
+  opacity: 80%;
   border-color: ${(props) => props.color};
+  background-color: #0000ff;
+  transition: transform 2s;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    opacity: 100%;
+    transform: rotate(360deg);
+  }
 `;
 
 const Text = styled.div`

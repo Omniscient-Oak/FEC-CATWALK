@@ -4,39 +4,47 @@ import styled from 'styled-components';
 const axios = require('axios');
 
 const AddToCart = ({ selectedSize, currentQuantity, sku }) => (
-  <StyledAddToCartButton
-    onClick={() =>
-      axios
+  <ButtonAlign>
+    <StyledAddToCartButton
+      onClick={() => axios
         .post('/cart', {
           sku_id: sku,
           size: selectedSize,
           quantity: currentQuantity,
         })
-        .then(() => console.log(selectedSize, currentQuantity, sku))
-    }
-  >
-    Add to Cart
-  </StyledAddToCartButton>
+        .then(() => console.log(selectedSize, currentQuantity, sku))}
+    >
+      Add to Cart
+    </StyledAddToCartButton>
+  </ButtonAlign>
 );
 
 export default AddToCart;
 
 const StyledAddToCartButton = styled.button`
+  padding: 10px;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
-  width: 250px;
+  width: 150px;
   height: 50px;
   background: #dc143c;
-  opacity: 90%;
+  opacity: 85%;
   border-radius: 15px;
   background: crimson;
-  font-size: large;
+  font-size: 14px;
   color: white;
   font-family: Verdana;
   border: white;
   margin: 10px 0px 10px 0px;
   &:hover {
-    background-color: crimson;
     cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.5s ease-in-out;
+    opacity: 100%;
   }
+`;
+
+const ButtonAlign = styled.div`
+  display: grid;
+  margin: 10px;
 `;
