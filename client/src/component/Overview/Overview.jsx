@@ -33,16 +33,7 @@ const Overview = () => {
   const [sku, addSkuNumber] = useState(0);
 
   useEffect(() => {
-    axios
-      .get('/products/allinfo/', {
-        params: { product_id: productContext.productId },
-      })
-      .then((response) => {
-        setProduct(response.data);
-      })
-      .catch((err) => {
-        throw err;
-      });
+    setProduct(productContext.productInfo);
 
     return function cleanup() {
       setCurrentStyleIndex(0);
@@ -51,7 +42,7 @@ const Overview = () => {
       changeQuantity('-');
       addSkuNumber(0);
     };
-  }, [productContext.productId]);
+  }, [productContext.productInfo]);
 
   return (
     <div className="overview">

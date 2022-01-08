@@ -1,4 +1,4 @@
-import React, { useContext, useState, lazy } from 'react';
+import React, { useContext, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ProductContext from '../ProductContext';
@@ -12,8 +12,9 @@ const fadeIn = keyframes`
 `;
 
 const ItemStyle = styled.div`
+  border-radius: 5px;
   height: 100%;
-  width: 12vw;
+  width: 13vw;
   min-height: 275px;
   min-width: 150px;
   object-fit: cover;
@@ -90,7 +91,7 @@ const CompareButtonStyle = styled.button`
 `;
 
 const RelatedItem = ({ item }) => {
-  const { setProductId } = useContext(ProductContext);
+  const { setProductId, productInfo } = useContext(ProductContext);
   const [popup, setPopup] = useState(false);
   return (
     <div>
@@ -117,12 +118,19 @@ const RelatedItem = ({ item }) => {
       </Link>
       <CompareButtonDivStyle>
         {popup && (
-        <CompareModal
-          content={
-            <CompareTable currentProduct={item} compareProduct={item} />
-        }
-          toggle={setPopup}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <CompareModal
+            content={
+              (
+                <CompareTable
+                  currentProduct={productInfo}
+                  compareProduct={item}
+                />
+              )
+              }
+            toggle={setPopup}
+          />
+        </Suspense>
         )}
         <CompareButtonStyle onClick={() => {
           setPopup(!popup);

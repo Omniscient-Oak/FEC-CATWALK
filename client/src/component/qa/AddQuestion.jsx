@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import ProductContext from '../ProductContext';
 
 const Container = styled.div`
   position: fixed;
@@ -96,17 +97,14 @@ const AddQuestion = ({ productId }) => {
   const [question, setQuestion] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const productContext = useContext(ProductContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  axios.get(`/products/info/?product_id=${productId}`)
-    .then((response) => {
-      setProductName(response.data.name);
-    })
-    .catch((err) => {
-      throw err;
-    });
+  useEffect(() => {
+    setProductName(productContext.productInfo.name);
+  }, [productContext.productInfo]);
 
   const validateEmail = (address) => {
     const re = /\S+@\S+\.\S+/;
