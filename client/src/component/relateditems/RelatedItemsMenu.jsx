@@ -109,11 +109,7 @@ const RelatedItemsMenu = () => {
       <RelatedTitleStyle>
         <h3>Related Items</h3>
       </RelatedTitleStyle>
-      <RelatedItemWrapperStyle
-        onWheel={(e) => {
-          scrollHandler(e);
-        }}
-      >
+      <RelatedItemWrapperStyle>
         {toShow.length > 0 && (
           <CarouselButton onClick={handleCarouselLeft}>&lt;</CarouselButton>
         )}

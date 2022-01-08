@@ -21,19 +21,6 @@ const CompareTable = (props) => {
     setFeaturesArr(feats);
   };
 
-  useEffect(() => {
-    axios.get('/products/info',{
-      params: { product_id: productId },
-    })
-      .then((response) => {
-        changeCurrentProduct(response.data);
-      })
-      .then(() => { setFeatureList(); })
-      .catch((err) => {
-        throw err;
-      });
-  }, []);
-
   return (
     <div>
       <table>

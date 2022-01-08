@@ -1,14 +1,13 @@
 const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  plugins: [ new CompressionPlugin ],
-  mode: 'production',
-  entry: './client/src/index.js',
+  entry: './server/index.js',
+  target: 'node',
+  externals: [nodeExternals()],
   output: {
-    path: path.resolve('./client/dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
+    path: path.resolve('server-build'),
+    filename: 'index.js'
   },
   module: {
     rules: [

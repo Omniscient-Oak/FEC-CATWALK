@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ProductContext from '../ProductContext';
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
 
@@ -39,7 +40,7 @@ const MoreAnswersButton = styled.button`
 const Question = ({ question, productId }) => {
   const [answers, showMoreAnswers] = useState(2);
   const [showAllAnswers, setShowAnswers] = useState(false);
-
+  const productContext = useContext(ProductContext);
   const [helpful, markHelpful] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness);
   const [reported, markReport] = useState(false);
@@ -82,13 +83,9 @@ const Question = ({ question, productId }) => {
     }
   };
 
-  axios.get(`/products/info/?product_id=${productId}`)
-    .then((response) => {
-      setProductName(response.data.name);
-    })
-    .catch((err) => {
-      throw err;
-    });
+  useEffect(() => {
+    setProductName(productContext.productInfo.name);
+  }, [ProductContext.productInfo]);
 
   return (
     <div>

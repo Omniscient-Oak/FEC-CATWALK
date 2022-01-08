@@ -3,7 +3,12 @@ const express = require('express');
 const controller = require('./controllers');
 const path = require("path");
 const serveIndex = require('serve-index');
-const expressStaticGzip = require('express-static-gzip')
+const expressStaticGzip = require('express-static-gzip');
+const ExpressRedisCache = require('express-redis-cache');
+
+const cache = ExpressRedisCache({
+  expire: 120, // optional: expire every 10 seconds
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,13 +30,13 @@ app.route('/products/info')
 app.route('/products/styles')
   .get(controller.products.styles)
 app.route('/products/allinfo')
-  .get(controller.products.allinfo)
+  .get(cache.route(), controller.products.allinfo)
 app.route('/products/related')
   .get(controller.products.related)
 
 //QA ROUTES
 app.route('/qa/questions')
-  .get(controller.qa.q.get)
+  .get(cache.route(), controller.qa.q.get)
   .post(controller.qa.q.post)
 app.route('/qa/questions/answers')
   .get(controller.qa.a.get)
@@ -58,7 +63,7 @@ app.route('/reviews/report')
 
 //RELATED ROUTES
 app.route('/related')
-  .get(controller.related.get)
+  .get(cache.route(), controller.related.get)
 
 //CART ROUTES
 app.route('/cart')
