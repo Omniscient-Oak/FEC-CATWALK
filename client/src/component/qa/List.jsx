@@ -33,6 +33,7 @@ const MoreQuestionsButton = styled.button`
   &:hover{
     color: white;
     background: crimson;
+    opacity: 90%;
 }
 `;
 const Title = styled.div`
@@ -43,6 +44,7 @@ const Title = styled.div`
   font-size: 40px;
   font-variant: all-small-caps;
   font-family: sans-serif;
+  opacity: 90%;
 `;
 const IconDisplay = styled.div`
   display: inline-grid;

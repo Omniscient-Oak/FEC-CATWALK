@@ -40,6 +40,7 @@ const AddButton = styled.button`
   &:hover{
     color: white;
     background: crimson;
+    opacity: 90%;
 }
 `;
 
