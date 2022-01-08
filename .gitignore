@@ -9,5 +9,4 @@ server/localconfig.js
 .eslintrc.js
 .vscode/
 .eslintignore
-*.bundle.js
-dist/
+client/dist/
