@@ -28,7 +28,7 @@ afterEach(() => {
   container = null;
 });
 
-it('it can post new answer', () => {
+it('it can render AddAnswer', () => {
   act(() => {
     render(<AddAnswer />, container);
   });
