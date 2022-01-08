@@ -33,7 +33,6 @@ const ShippingStyle = {
 const Index = () => (
   <div>
     <Wrapper>
-      <div style={ShippingStyle}>Free shipping and returns!</div>
       <nav style={NavStyle}>
         <HomeGrid>
           <StyledHomeIconGridPosition>
@@ -97,6 +96,7 @@ const HomeGrid = styled.div`
   height: 50px;
   &:hover {
     background-color: crimson;
+    transition: all 0.1s ease-in-out;
   }
 `;
 const ShoppingGrid = styled.div`
@@ -109,5 +109,6 @@ const ShoppingGrid = styled.div`
   padding: 0px 50px;
   &:hover {
     background-color: crimson;
+    transition: all 0.1s ease-in-out;
   }
 `;

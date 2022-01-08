@@ -1,5 +1,5 @@
 import React, { useContext, useState, lazy } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ProductContext from '../ProductContext';
 
@@ -89,41 +89,48 @@ const CompareButtonStyle = styled.button`
   }
 `;
 
+const ContainerStyle = styled.div``;
+
 const RelatedItem = ({ item }) => {
   const { setProductId } = useContext(ProductContext);
   const [popup, setPopup] = useState(false);
   return (
-    <div>
+    <ContainerStyle>
       <Link to={`/store/${item.id}`}>
-        <ItemStyle onClick={()=>setProductId(item.id)}>
+        <ItemStyle onClick={() => setProductId(item.id)}>
           <ImageStyle src={item.photo} />
           <TextBoxStyle>
-            <NameTitleStyle>
-              {item.name}
-            </NameTitleStyle>
+            <NameTitleStyle>{item.name}</NameTitleStyle>
             <TextStyle>
               ${item.default_price}
-              {item.rating > 0
-              && (
-              <div>
-                Rating:
-                {item.rating}
-              </div>
+              {item.rating > 0 && (
+                <div>
+                  Rating:
+                  {item.rating}
+                </div>
               )}
             </TextStyle>
           </TextBoxStyle>
         </ItemStyle>
       </Link>
       <CompareButtonDivStyle>
-        {popup && <CompareModal content={
-        <CompareTable currentProduct={item} compareProduct={item}/>
-        } toggle={setPopup} />}
-        <CompareButtonStyle onClick={() => {
-          setPopup(!popup);
-          }}>Compare
+        {popup && (
+          <CompareModal
+            content={
+              <CompareTable currentProduct={item} compareProduct={item} />
+            }
+            toggle={setPopup}
+          />
+        )}
+        <CompareButtonStyle
+          onClick={() => {
+            setPopup(!popup);
+          }}
+        >
+          Compare
         </CompareButtonStyle>
       </CompareButtonDivStyle>
-    </div>
+    </ContainerStyle>
   );
 };
 

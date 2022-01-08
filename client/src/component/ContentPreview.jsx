@@ -49,7 +49,7 @@ const ContentPreview = () => {
 
   return (
     <PreviewWrapper>
-      <Text>hello world!</Text>
+      <Text>hello world! welcome to our shop!</Text>
       <ImageWrapper>
         {photos.map((url) => (
           <HomepageBorder>
@@ -70,7 +70,7 @@ export default ContentPreview;
 
 const PreviewWrapper = styled.span``;
 const ImageWrapper = styled.div`
-  height: 65%;
+  height: 75.5%;
   overflow: auto;
 `;
 const HomepageBorder = styled.span`
@@ -101,7 +101,7 @@ const HomepageImages = styled.img`
 `;
 
 const Text = styled.div`
-  font-size: 100px;
+  font-size: 75px;
   text-align: center;
 `;
 
