@@ -9,7 +9,8 @@ const ButtonStyle = styled.button`
   background-color: white;
   cursor: pointer;
   &:hover{
-    color: blue;
+    color: crimson;
+    font-weight: 900;
     text-decoration: underline;
 }
 `;
@@ -32,7 +33,7 @@ const MoreAnswersButton = styled.button`
   font-weight: bold;
   border-radius: 10px;
   &:hover{
-    color: blue;
+    color: crimson;
   }
 `;
 
