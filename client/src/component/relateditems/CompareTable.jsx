@@ -10,7 +10,7 @@ const CompareTable = ({ compareProduct, currentProduct }) => {
       if (!feats.includes(product.features[key].feature)) {
         feats.push(product.features[key].feature);
       }
-    });
+    }});
     setFeaturesArr(feats);
   };
 

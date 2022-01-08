@@ -1,30 +1,19 @@
-<<<<<<< HEAD
-import React, { useState, useEffect, useContext } from 'react';
-=======
-import React, {
-  useState, useEffect, useContext, lazy, Suspense,
-} from 'react';
->>>>>>> master
+import React, { useState, useEffect, useContext, lazy, Suspense } from 'react';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
-import {
-  Tshirt,
-  Socks,
-  HatWizard,
-  Heart,
-  LaughSquint,
-} from '@styled-icons/fa-solid';
+
 import ProductContext from '../ProductContext';
 // import RelatedItem from './RelatedItem';
 
 import RelatedItem from './RelatedItem';
-
 const fadeIn = keyframes`
   0% {opacity: 0;}
   100% {opacity: 1;}
 `;
 
 const RelatedItemWrapperStyle = styled.div`
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   flex-direction: row;
   flex-wrap: nowrap;
   padding: 2em 0em 5em 0em;
@@ -37,6 +26,9 @@ const RelatedItemWrapperStyle = styled.div`
 `;
 const MaxWidthStyle = styled.div`
   width: 70%;
+`;
+const RelatedTitleStyle = styled.section`
+  padding: 2em 10em 0em 10em;
 `;
 
 const CarouselButton = styled.button`
@@ -56,16 +48,6 @@ const CarouselButton = styled.button`
     box-shadow: 4px 4px 5px #d3d3d3;
     background: #e8e8e8;
   }
-`;
-
-const Title = styled.div`
-  padding: 10px 30px 10px 510px;
-  background: crimson;
-  width: max;
-  color: white;
-  font-size: 40px;
-  font-variant: all-small-caps;
-  font-family: sans-serif;
 `;
 
 const RelatedItemsMenu = () => {
@@ -100,6 +82,15 @@ const RelatedItemsMenu = () => {
     }
     changeToShow(relatedList.slice(currentRange[0], currentRange[1]));
   };
+
+  const scrollHandler = (e) => {
+    if (e.deltaY < 0) {
+      handleCarouselRight();
+    } else {
+      handleCarouselLeft();
+    }
+  };
+
   useEffect(() => {
     axios
       .get('/related', {
@@ -114,40 +105,10 @@ const RelatedItemsMenu = () => {
       });
   }, [productId]);
   return (
-    <div className="relatedmenu">
-      <RelatedGrid>
-        <Title>
-          You may also like
-          <IconGrid>
-            <IconWrapper>
-              <IconDisplay>
-                <LaughSquint />
-              </IconDisplay>
-              <IconDisplay>
-                <Heart />
-              </IconDisplay>
-              <IconDisplay>
-                <Heart />
-              </IconDisplay>
-              <IconDisplay>
-                <Heart />
-              </IconDisplay>
-              <IconDisplay>
-                <HatWizard />
-              </IconDisplay>
-              <IconDisplay>
-                <Tshirt />
-              </IconDisplay>
-              <IconDisplay>
-                <Socks />
-              </IconDisplay>
-              <IconDisplay>
-                <tShirt />
-              </IconDisplay>
-            </IconWrapper>
-          </IconGrid>
-        </Title>
-      </RelatedGrid>
+    <div className='relatedmenu'>
+      <RelatedTitleStyle>
+        <h3>Related Items</h3>
+      </RelatedTitleStyle>
       <RelatedItemWrapperStyle
         onWheel={(e) => {
           scrollHandler(e);
@@ -168,27 +129,3 @@ const RelatedItemsMenu = () => {
 };
 
 export default RelatedItemsMenu;
-
-const IconWrapper = styled.section`
-  color: white;
-  margin: 0px 0px 0px 30px;
-`;
-
-const IconDisplay = styled.div`
-  display: inline-grid;
-  height: 22px;
-  width: 22px;
-  margin: 0px 5px 0px 5px;
-  &:hover {
-    color: teal;
-  }
-`;
-
-const IconGrid = styled.div`
-  display: inline-grid;
-  grid-column-start: 2;
-`;
-
-const RelatedGrid = styled.div`
-  opacity: 90%;
-`;
