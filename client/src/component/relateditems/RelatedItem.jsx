@@ -90,18 +90,18 @@ const CompareButtonStyle = styled.button`
   }
 `;
 
+const ContainerStyle = styled.div``;
+
 const RelatedItem = ({ item }) => {
   const { setProductId, productInfo } = useContext(ProductContext);
   const [popup, setPopup] = useState(false);
   return (
-    <div>
+    <ContainerStyle>
       <Link to={`/store/${item.id}`}>
         <ItemStyle onClick={() => setProductId(item.id)}>
           <ImageStyle src={item.photo} />
           <TextBoxStyle>
-            <NameTitleStyle>
-              {item.name}
-            </NameTitleStyle>
+            <NameTitleStyle>{item.name}</NameTitleStyle>
             <TextStyle>
               $
               {item.default_price}
@@ -139,7 +139,7 @@ const RelatedItem = ({ item }) => {
           Compare
         </CompareButtonStyle>
       </CompareButtonDivStyle>
-    </div>
+    </ContainerStyle>
   );
 };
 
