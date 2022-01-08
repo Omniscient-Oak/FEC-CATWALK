@@ -22,6 +22,19 @@ const SpanStyle = styled.span`
   margin-top: 5px;
 `;
 
+const PhotoContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  display: flex;
+  margin-left: 15px;
+`;
+
+const PhotoStyle = styled.img`
+  margin-left: 10px;
+  max-width: 100%;
+  height: auto;
+`;
+
 const Answer = ({ answer }) => {
   const [helpful, markHelpful] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(answer.helpfulness);
@@ -54,6 +67,13 @@ const Answer = ({ answer }) => {
           {' '}
           { answer.body }
         </span>
+        {answer.photos.length > 0
+          ? (
+            <PhotoContainer>
+              {answer.photos.map((p) => <PhotoStyle src={p} alt="answer photo" />)}
+            </PhotoContainer>
+          )
+          : null}
       </DivStyle>
       <SpanStyle>
 &nbsp;&nbsp;&nbsp; by
