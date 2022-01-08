@@ -102,12 +102,14 @@ const RelatedItem = ({ item }) => {
           <TextBoxStyle>
             <NameTitleStyle>{item.name}</NameTitleStyle>
             <TextStyle>
-              ${item.default_price}
-              {item.rating > 0 && (
-                <div>
-                  Rating:
-                  {item.rating}
-                </div>
+              $
+              {item.default_price}
+              {item.rating > 0
+              && (
+              <div>
+                Rating:
+                {item.rating}
+              </div>
               )}
             </TextStyle>
           </TextBoxStyle>
@@ -115,17 +117,16 @@ const RelatedItem = ({ item }) => {
       </Link>
       <CompareButtonDivStyle>
         {popup && (
-          <CompareModal
-            content={
-              <CompareTable currentProduct={item} compareProduct={item} />
-            }
-            toggle={setPopup}
-          />
+        <CompareModal
+          content={
+            <CompareTable currentProduct={item} compareProduct={item} />
+        }
+          toggle={setPopup}
+        />
         )}
-        <CompareButtonStyle
-          onClick={() => {
-            setPopup(!popup);
-          }}
+        <CompareButtonStyle onClick={() => {
+          setPopup(!popup);
+        }}
         >
           Compare
         </CompareButtonStyle>

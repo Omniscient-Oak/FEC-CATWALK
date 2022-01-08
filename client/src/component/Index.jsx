@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { ShoppingCart, Home } from '@styled-icons/fa-solid';
 import styled from 'styled-components';
-import ContentPreview from './ContentPreview.jsx';
 
 const NavStyle = {
   background: 'black',
@@ -38,7 +37,7 @@ const Index = () => (
           <StyledHomeIconGridPosition>
             <StyledHomeIcon />
           </StyledHomeIconGridPosition>
-          <Link style={LinkStyle} to='/'>
+          <Link style={LinkStyle} to="/">
             Home
           </Link>
         </HomeGrid>

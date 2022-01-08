@@ -50,7 +50,9 @@ const Answer = ({ answer }) => {
       <br />
       <DivStyle>
         <span>
-          <b>A: </b> {answer.body}
+          <b>A: </b>
+          {' '}
+          { answer.body }
         </span>
       </DivStyle>
       <SpanStyle>
@@ -62,10 +64,10 @@ const Answer = ({ answer }) => {
         {' '}
 &nbsp; | &nbsp;Helpful?
         {' '}
-        <button type="button" name="helpful" onClick={handleUpdate}>
+        <ButtonStyle type="button" name="helpful" onClick={handleUpdate}>
           {' '}
           Yes
-        </button>
+        </ButtonStyle>
         {' '}
         {`(${helpfulCount})`}
 &nbsp;| &nbsp;

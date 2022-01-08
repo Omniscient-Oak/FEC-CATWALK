@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext, lazy, Suspense } from 'react';
+import React, {
+  useState, useEffect, useContext, lazy, Suspense,
+} from 'react';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 import {
@@ -117,7 +119,7 @@ const RelatedItemsMenu = () => {
       });
   }, [productId]);
   return (
-    <div className='relatedmenu'>
+    <div className="relatedmenu">
       <RelatedGrid>
         <Title>
           You may also like
