@@ -3,15 +3,18 @@
  */
 
 import React from 'react';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { render, unmountComponentAtNode } from 'react-dom';
-import {
-  fireEvent, cleanup, screen,
-} from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import List from '../client/src/component/qa/List.jsx';
 import Answer from '../client/src/component/qa/Answer.jsx';
 import AddAnswer from '../client/src/component/qa/AddAnswer.jsx';
+import AddQuestion from '../client/src/component/qa/AddQuestion.jsx';
 import Question from '../client/src/component/qa/Question.jsx';
+import mockData from '../mockData.js';
 
 let container = null;
 beforeEach(() => {
@@ -28,6 +31,13 @@ afterEach(() => {
 it('it can post new answer', () => {
   act(() => {
     render(<AddAnswer />, container);
+  });
+  expect(container.textContent).not.toBeNull();
+});
+
+it('it can render add question', () => {
+  act(() => {
+    render(<AddQuestion />, container);
   });
   expect(container.textContent).not.toBeNull();
 });
@@ -85,6 +95,13 @@ it('it can render question', () => {
   };
   act(() => {
     render(<Question question={fakeQuestion} productId={63617} />, container);
+  });
+  expect(container.textContent).not.toBeNull();
+});
+
+it('loads and displays List', async () => {
+  act(() => {
+    render(<List />, container);
   });
   expect(container.textContent).not.toBeNull();
 });
