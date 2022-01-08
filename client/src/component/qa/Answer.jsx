@@ -8,7 +8,8 @@ const ButtonStyle = styled.button`
   background-color: white;
   cursor: pointer;
   &:hover{
-    color: blue;
+    color: crimson;
+    font-weight: 900;
     text-decoration: underline;
   }
 `;
@@ -20,6 +21,19 @@ const DivStyle = styled.div`
 const SpanStyle = styled.span`
   font-size: 13px;
   margin-top: 5px;
+`;
+
+const PhotoContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  display: flex;
+  margin-left: 15px;
+`;
+
+const PhotoStyle = styled.img`
+  margin-left: 10px;
+  max-width: 100%;
+  height: auto;
 `;
 
 const Answer = ({ answer }) => {
@@ -54,6 +68,13 @@ const Answer = ({ answer }) => {
           {' '}
           { answer.body }
         </span>
+        {answer.photos.length > 0
+          ? (
+            <PhotoContainer>
+              {answer.photos.map((p) => <PhotoStyle src={p} alt="answer photo" />)}
+            </PhotoContainer>
+          )
+          : null}
       </DivStyle>
       <SpanStyle>
 &nbsp;&nbsp;&nbsp; by
