@@ -1,32 +1,36 @@
-import React, {useEffect, useContext, useState} from 'react';
-import axios from 'axios';
-import ProductContext from '../ProductContext';
+import React, { useEffect, useState } from 'react';
 
-const CompareTable = (props) => {
-  const { compareProduct } = props;
-  const [currentProduct, changeCurrentProduct] = useState();
+const CompareTable = ({ compareProduct, currentProduct }) => {
+  // const [currentProduct, changeCurrentProduct] = useState(ProductContext.productInfo);
   const products = [compareProduct, currentProduct];
   const [featuresArr, setFeaturesArr] = useState([]);
-  const { productId } = useContext(ProductContext);
 
   const setFeatureList = () => {
-    let feats = [];
+    const feats = [];
     products.forEach((product) => { for(const key in product.features) {
       if (!feats.includes(product.features[key].feature)) {
         feats.push(product.features[key].feature);
       }
     };
     });
-    console.log(feats);
     setFeaturesArr(feats);
   };
+
+  const findFeat = (product, feature) => {
+    const productFeat = Object.values(product.features).find((feat) => feat.feature === feature);
+    return productFeat ? productFeat.value : 'X';
+  };
+
+  useEffect(() => {
+    setFeatureList();
+  }, []);
 
   return (
     <div>
       <table>
         <tr>
           <th>&nbsp;</th>
-          <th>{currentProduct && currentProduct.name}</th>
+          <th>{currentProduct.name}</th>
           <th>{compareProduct.name}</th>
         </tr>
         {currentProduct && featuresArr.map((feature) => (
@@ -34,10 +38,11 @@ const CompareTable = (props) => {
             <td>
               {feature}
             </td>
+            <td>{findFeat(currentProduct, feature)}</td>
+            <td>{findFeat(compareProduct, feature)}</td>
           </tr>
         ))}
       </table>
-      <div>{console.log(featuresArr)}</div>
     </div>
   );
 };

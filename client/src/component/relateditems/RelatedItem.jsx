@@ -1,5 +1,5 @@
-import React, { useContext, useState, lazy } from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext, useState, lazy, Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ProductContext from '../ProductContext';
 
@@ -90,19 +90,20 @@ const CompareButtonStyle = styled.button`
 `;
 
 const RelatedItem = ({ item }) => {
-  const { setProductId } = useContext(ProductContext);
+  const { setProductId, productInfo } = useContext(ProductContext);
   const [popup, setPopup] = useState(false);
   return (
     <div>
       <Link to={`/store/${item.id}`}>
-        <ItemStyle onClick={()=>setProductId(item.id)}>
+        <ItemStyle onClick={() => setProductId(item.id)}>
           <ImageStyle src={item.photo} />
           <TextBoxStyle>
             <NameTitleStyle>
               {item.name}
             </NameTitleStyle>
             <TextStyle>
-              ${item.default_price}
+              $
+              {item.default_price}
               {item.rating > 0
               && (
               <div>
@@ -115,12 +116,26 @@ const RelatedItem = ({ item }) => {
         </ItemStyle>
       </Link>
       <CompareButtonDivStyle>
-        {popup && <CompareModal content={
-        <CompareTable currentProduct={item} compareProduct={item}/>
-        } toggle={setPopup} />}
+        {popup && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <CompareModal
+            content={
+              (
+                <CompareTable
+                  currentProduct={productInfo}
+                  compareProduct={item}
+                />
+              )
+              }
+            toggle={setPopup}
+          />
+        </Suspense>
+        )}
         <CompareButtonStyle onClick={() => {
           setPopup(!popup);
-          }}>Compare
+        }}
+        >
+          Compare
         </CompareButtonStyle>
       </CompareButtonDivStyle>
     </div>
