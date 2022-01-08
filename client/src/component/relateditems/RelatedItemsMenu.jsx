@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useContext, lazy, Suspense } from 'react';
 import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
+import {
+  Tshirt,
+  Socks,
+  HatWizard,
+  Heart,
+  LaughSquint,
+} from '@styled-icons/fa-solid';
 
 import ProductContext from '../ProductContext';
 // import RelatedItem from './RelatedItem';
@@ -9,6 +16,40 @@ import RelatedItem from './RelatedItem';
 const fadeIn = keyframes`
   0% {opacity: 0;}
   100% {opacity: 1;}
+`;
+
+const Title = styled.div`
+  padding: 10px 30px 10px 500px;
+  background: crimson;
+  width: max;
+  color: white;
+  font-size: 40px;
+  font-variant: all-small-caps;
+  font-family: sans-serif;
+`;
+
+const IconWrapper = styled.section`
+  color: white;
+  margin: 0px 0px 0px 30px;
+`;
+
+const IconDisplay = styled.div`
+  display: inline-grid;
+  height: 22px;
+  width: 22px;
+  margin: 0px 5px 0px 5px;
+  &:hover {
+    color: teal;
+  }
+`;
+
+const IconGrid = styled.div`
+  display: inline-grid;
+  grid-column-start: 2;
+`;
+
+const RelatedGrid = styled.div`
+  opacity: 90%;
 `;
 
 const RelatedItemWrapperStyle = styled.div`
@@ -109,9 +150,39 @@ const RelatedItemsMenu = () => {
   }, [productId]);
   return (
     <div className='relatedmenu'>
-      <RelatedTitleStyle>
-        <h3>Related Items</h3>
-      </RelatedTitleStyle>
+      <RelatedGrid>
+        <Title>
+          You may also like
+          <IconGrid>
+            <IconWrapper>
+              <IconDisplay>
+                <LaughSquint />
+              </IconDisplay>
+              <IconDisplay>
+                <Heart />
+              </IconDisplay>
+              <IconDisplay>
+                <Heart />
+              </IconDisplay>
+              <IconDisplay>
+                <Heart />
+              </IconDisplay>
+              <IconDisplay>
+                <HatWizard />
+              </IconDisplay>
+              <IconDisplay>
+                <Tshirt />
+              </IconDisplay>
+              <IconDisplay>
+                <Socks />
+              </IconDisplay>
+              <IconDisplay>
+                <tShirt />
+              </IconDisplay>
+            </IconWrapper>
+          </IconGrid>
+        </Title>
+      </RelatedGrid>
       <RelatedItemWrapperStyle
         onWheel={(e) => {
           scrollHandler(e);
