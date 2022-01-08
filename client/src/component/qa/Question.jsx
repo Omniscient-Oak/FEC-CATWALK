@@ -85,7 +85,7 @@ const Question = ({ question, productId }) => {
   };
 
   useEffect(() => {
-    setProductName(productContext.productInfo.name);
+    setProductName(productContext.productInfo.name );
   }, [ProductContext.productInfo]);
 
   return (
