@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import {
+  LaughSquint,
+} from '@styled-icons/fa-solid';
 import Search from './search.jsx';
 import Question from './Question.jsx';
 import ProductContext from '../ProductContext';
@@ -10,7 +13,7 @@ const axios = require('axios');
 const ListStyle = styled.section`
   padding: 2em 10em 5em 10em;
   justify-items: right;
-  font-family: Helvetica;
+  font-family: sans-serif;
 `;
 
 const DivStyle = styled.div`
@@ -28,8 +31,27 @@ const MoreQuestionsButton = styled.button`
   cursor: pointer;
   font-weight : bold;
   &:hover{
-    color: blue;
+    color: white;
+    background: crimson;
 }
+`;
+const Title = styled.div`
+  padding: 10px 30px 10px 500px;
+  background: crimson;
+  width: max;
+  color: white;
+  font-size: 40px;
+  font-variant: all-small-caps;
+  font-family: sans-serif;
+`;
+const IconDisplay = styled.div`
+  display: inline-grid;
+  height: 22px;
+  width: 22px;
+  margin: 0px 5px 0px 5px;
+  &:hover {
+    color: teal;
+  }
 `;
 
 const List = () => {
@@ -81,12 +103,17 @@ const List = () => {
 
   return (
     <div id="qa">
+
+      <Title>
+        QUESTIONS & ANSWERS (
+        {questions.length}
+        )
+        <IconDisplay>
+          <LaughSquint />
+        </IconDisplay>
+
+      </Title>
       <ListStyle>
-        <h3>
-          QUESTIONS & ANSWERS (
-          {questions.length}
-          )
-        </h3>
         <Search handleSearch={handleSearch} />
         <DivStyle>
           {isSearch ? filteredQuestions.slice(0, questionShowed).map((q) => (

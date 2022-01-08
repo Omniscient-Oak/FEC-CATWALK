@@ -38,7 +38,8 @@ const AddButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   &:hover{
-    color: blue;
+    color: white;
+    background: crimson;
 }
 `;
 

@@ -35,7 +35,7 @@ const ButtonStyle = styled.button`
   cursor: pointer;
   font-weight : bold;
   &:hover{
-    color: blue;
+    color: crimson;
     text-decoration: underline;
   }
 `;
