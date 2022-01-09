@@ -46,7 +46,7 @@ const CloseButtonStyle = styled.section`
 const Modal = (props) => (
   <ModalBoxStyle>
     <BoxStyle>
-      <CloseButtonStyle onClick={() => { props.toggle(false); }}>X</CloseButtonStyle>
+      <CloseButtonStyle onClick={() => { event.stopPropagation(); props.toggle(false); }}>X</CloseButtonStyle>
       { props.content }
     </BoxStyle>
   </ModalBoxStyle>

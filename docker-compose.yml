@@ -1,0 +1,12 @@
+#rebuild with docker-compose build
+#launch with docer-compose up
+version: "3.9"
+services:
+  web:
+    build: .
+    volumes:
+      - .:/FEC
+    ports:
+      - "3000:3000"
+  redis:
+    image: "redis:alpine"

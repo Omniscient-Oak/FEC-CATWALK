@@ -126,7 +126,7 @@ const Question = ({ question, productId }) => {
               </ButtonStyle>
             )}
           <AddAnswer
-            productName={productName}
+            productName={productContext.productInfo.name}
             questionId={question.question_id}
             questionBody={question.question_body}
           />
