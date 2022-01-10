@@ -7,8 +7,7 @@ import Search from './search.jsx';
 import Question from './Question.jsx';
 import ProductContext from '../ProductContext';
 import AddQuestion from './AddQuestion.jsx';
-
-const axios = require('axios');
+import { getQuestions } from '../../serverCalls';
 
 const ListStyle = styled.section`
   padding: 2em 10em 5em 10em;
@@ -71,7 +70,7 @@ const List = () => {
   };
 
   const getData = () => {
-    axios.get('/qa/questions', { params }).then(
+    getQuestions(params).then(
       (res) => {
         setQuestion(res.data.results.sort((a, b) => (b.helpfulness - a.helpfulness)));
       },

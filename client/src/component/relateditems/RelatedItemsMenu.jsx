@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, lazy, Suspense } from 'react';
-import axios from 'axios';
+import { getRelated } from '../../serverCalls'
 import styled, { keyframes } from 'styled-components';
 import {
   Tshirt,
@@ -136,12 +136,7 @@ const RelatedItemsMenu = () => {
   };
 
   useEffect(() => {
-    axios
-      .get('/related', {
-        params: {
-          product_id: productId,
-        },
-      })
+    getRelated(productId)
       .then((related) => {
         changeToShow(related.data.slice(0, 5));
         changeUpperBound(related.data.length);

@@ -68,13 +68,11 @@ const ImageStyle = styled.img`
   box-shadow: 2px 2px 3px #d3d3d3;
   background: #d3d3d3;
 `;
-
 const CompareButtonDivStyle = styled.div`
   text-align: center;
 `;
 
 const CompareButtonStyle = styled.button`
-  margin-top: 1em;
   background: light-grey;
   color: grey;
   border: 0px;
@@ -92,12 +90,22 @@ const CompareButtonStyle = styled.button`
 
 const ContainerStyle = styled.div``;
 
+
+
 const RelatedItem = ({ item }) => {
   const { setProductId, productInfo } = useContext(ProductContext);
   const [popup, setPopup] = useState(false);
+  const modalClick =(event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(event)
+    setPopup(!popup);
+  }
+
+
   return (
     <ContainerStyle>
-      <Link to={`/store/${item.id}`}>
+        <Link to={`/store/${item.id}`}>
         <ItemStyle onClick={() => setProductId(item.id)}>
           <ImageStyle src={item.photo} />
           <TextBoxStyle>
@@ -112,13 +120,19 @@ const RelatedItem = ({ item }) => {
                 {item.rating}
               </div>
               )}
+              <CompareButtonDivStyle>
+                <CompareButtonStyle onClick={
+                    modalClick}
+                >
+                Compare
+                </CompareButtonStyle>
+              </CompareButtonDivStyle>
             </TextStyle>
           </TextBoxStyle>
         </ItemStyle>
-      </Link>
-      <CompareButtonDivStyle>
+        </Link>
         {popup && (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div></div>}>
           <CompareModal
             content={
               (
@@ -132,13 +146,6 @@ const RelatedItem = ({ item }) => {
           />
         </Suspense>
         )}
-        <CompareButtonStyle onClick={() => {
-          setPopup(!popup);
-        }}
-        >
-          Compare
-        </CompareButtonStyle>
-      </CompareButtonDivStyle>
     </ContainerStyle>
   );
 };

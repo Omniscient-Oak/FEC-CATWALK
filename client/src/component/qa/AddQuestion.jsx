@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { postQuestion } from '../../serverCalls';
+
+
 import ProductContext from '../ProductContext';
 
 const Container = styled.div`
@@ -130,7 +132,7 @@ const AddQuestion = ({ productId }) => {
       product_id: Number(productId),
     };
 
-    axios.post('../../qa/questions', newQuestion).then(() => {
+    postQuestion(newQuestion).then(() => {
     }).catch((err) => { console.log('post question error', err); });
   });
 

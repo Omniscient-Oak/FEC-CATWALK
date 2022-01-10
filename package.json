@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.js --watch",
     "run-server": "nodemon server/index.js",
-    "build:prod": "pm2 start server/index.js",
+    "build:prod": "webpack --config webpack.config.js",
+    "server:prod": "node server/index.js",
     "test": "jest"
   },
   "babel": {
@@ -52,12 +53,14 @@
     "axios": "^0.24.0",
     "compression": "^1.7.4",
     "compression-webpack-plugin": "^9.2.0",
+    "concurrently": "^7.0.0",
     "express": "^4.17.2",
     "express-redis-cache": "^1.1.3",
     "express-static-gzip": "^2.1.1",
     "jest": "^27.4.5",
     "moment": "^2.29.1",
     "msw": "^0.36.3",
+    "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-bootstrap-modal": "^4.2.0",
     "react-dom": "^17.0.2",

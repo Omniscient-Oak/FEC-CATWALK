@@ -39,9 +39,8 @@ module.exports = {
   },
   allinfo: async (req, res) => {
     try {
-      const info = await model.info(req.query);
-      const styles = await model.styles(req.query);
-      const combined = { ...info, styles: styles.results };
+      const data = await Promise.all([model.styles(req.query), model.info(req.query)])
+      const combined = { ...data[1], styles: data[0].results };
       res.send(combined);
     } catch (error) {
       res.send(error.data);

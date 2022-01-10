@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const axios = require('axios');
+import { postCart } from '../../../serverCalls';
 
 const AddToCart = ({ selectedSize, currentQuantity, sku }) => (
   <ButtonAlign>
     <StyledAddToCartButton
-      onClick={() => axios
-        .post('/cart', {
+      onClick={() =>
+        postCart({
           sku_id: sku,
           size: selectedSize,
           quantity: currentQuantity,
