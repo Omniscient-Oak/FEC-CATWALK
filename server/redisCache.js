@@ -20,7 +20,7 @@ client.connect();
 
 module.exports = {
   checkCache: async (req, res, next) => {
-    const resData = await client.GET(req.url).catch((e)=>{throw err})
+    const resData = await client.get(req.url).catch((e)=>{throw err})
     if (resData) {
       res.send(resData)
     } else {
