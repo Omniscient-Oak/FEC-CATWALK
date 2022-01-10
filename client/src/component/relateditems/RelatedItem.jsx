@@ -106,7 +106,7 @@ const RelatedItem = ({ item }) => {
   return (
     <ContainerStyle>
         <Link to={`/store/${item.id}`}>
-        <ItemStyle onClick={(event) => {console.log(event); setProductId(item.id)}}>
+        <ItemStyle onClick={() => setProductId(item.id)}>
           <ImageStyle src={item.photo} />
           <TextBoxStyle>
             <NameTitleStyle>{item.name}</NameTitleStyle>
@@ -122,9 +122,7 @@ const RelatedItem = ({ item }) => {
               )}
               <CompareButtonDivStyle>
                 <CompareButtonStyle onClick={
-                  (event) => {
-                    modalClick(event)
-                  }}
+                    modalClick}
                 >
                 Compare
                 </CompareButtonStyle>
