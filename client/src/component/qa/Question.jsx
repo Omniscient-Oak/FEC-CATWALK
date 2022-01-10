@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ProductContext from '../ProductContext';
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
+import {putQuestionHelpful} from '../../serverCalls'
 
 const ButtonStyle = styled.button`
   border: none;
@@ -72,7 +73,7 @@ const Question = ({ question, productId }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     if (!helpful && event.target.name === 'helpful') {
-      axios.put(`../../qa/questions/helpful?question_id=${question.question_id}`).then(() => {
+      serverCalls.putQuestionHelpful(question.question_id).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));

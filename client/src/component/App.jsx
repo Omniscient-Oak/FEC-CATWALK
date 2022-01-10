@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
 import ProductContext from './ProductContext';
-import Overview from './Overview/Overview.jsx';
-import List from './qa/List.jsx';
-import RelatedItemsMenu from './relateditems/RelatedItemsMenu.jsx';
+import Overview from './Overview/Overview';
+import List from './qa/List';
+import RelatedItemsMenu from './relateditems/RelatedItemsMenu';
+import { getProductAllInfo } from '../serverCalls'
 
 const App = () => {
   const params = useParams();
   const [productId, setProductId] = useState(params.productId);
   const [productInfo, setProductInfo] = useState({});
   useEffect(() => {
-    axios
-      .get('/products/allinfo/', {
-        params: { product_id: productId },
-      })
+      getProductAllInfo(productId)
       .then((response) => {
         setProductInfo(response.data);
       })

@@ -7,7 +7,7 @@ const expressStaticGzip = require('express-static-gzip');
 const ExpressRedisCache = require('express-redis-cache');
 
 const cache = ExpressRedisCache({
-  host: 'redis',
+  host: '127.0.0.1',
   port: 6379,
   expire: 120,
 });
