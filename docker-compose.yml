@@ -6,5 +6,7 @@ services:
     image: fec_web
     depends_on:
       - redis
+    links:
+      - "6379:redis"
   redis:
     image: "redis:alpine"
