@@ -4,13 +4,7 @@ const controller = require('./controllers');
 const path = require('path');
 const serveIndex = require('serve-index');
 const expressStaticGzip = require('express-static-gzip');
-const ExpressRedisCache = require('express-redis-cache');
-
-const cache = ExpressRedisCache({
-  host: 'redis',
-  port: 6379,
-  expire: 120,
-});
+const { checkCache } = require('./redisCache');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,19 +19,19 @@ app.use(expressStaticGzip(__dirname + '/../client/dist'));
 
 //PRODUCT ROUTES
 app.route('/products')
-  .get(controller.products.get)
+  .get(checkCache, controller.products.get)
 app.route('/products/info')
   .get(controller.products.info)
 app.route('/products/styles')
   .get(controller.products.styles)
 app.route('/products/allinfo')
-  .get(cache.route(), controller.products.allinfo)
+  .get(checkCache, controller.products.allinfo)
 app.route('/products/related')
   .get(controller.products.related)
 
 //QA ROUTES
 app.route('/qa/questions')
-  .get(cache.route(), controller.qa.q.get)
+  .get(checkCache, controller.qa.q.get)
   .post(controller.qa.q.post)
 app.route('/qa/questions/answers')
   .get(controller.qa.a.get)
@@ -55,7 +49,7 @@ app.route('/reviews/report').put(controller.reviews.report);
 
 //RELATED ROUTES
 app.route('/related')
-  .get(cache.route(), controller.related.get)
+  .get(checkCache, controller.related.get)
 
 //CART ROUTES
 app.route('/cart').get(controller.cart.get).post(controller.cart.post);

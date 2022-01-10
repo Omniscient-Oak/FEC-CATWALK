@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import {putAnswerHelpful, putAnswerReport} from '../../serverCalls'
+import {putAnswerHelpful, putAnswerReport} from '../../serverCalls';
 import styled from 'styled-components';
 
 const ButtonStyle = styled.button`
