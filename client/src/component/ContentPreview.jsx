@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { getProductAllInfo } from '../serverCalls'
+import { Link } from 'react-router-dom';
 
 // context
 import ProductContext from './ProductContext';
@@ -21,10 +23,7 @@ const ContentPreview = () => {
   const generateColors = (array) => array[Math.floor(Math.random() * colors.length - 1)];
 
   useEffect(() => {
-    axios
-      .get('/products/allinfo/', {
-        params: { product_id: product },
-      })
+    getProductAllInfo(product)
       .then((response) => {
         // setPhotos(response.data.styles);
         const images = [];
@@ -33,7 +32,7 @@ const ContentPreview = () => {
         }
         response.data.styles.forEach((element) => {
           element.photos.forEach((photo) => {
-            images.push(photo.thumbnail_url);
+            images.push([photo.thumbnail_url, product]);
           });
         });
         setPhotos(images);
@@ -50,14 +49,16 @@ const ContentPreview = () => {
     <PreviewWrapper>
       <Text>hello world! welcome to our shop!</Text>
       <ImageWrapper>
-        {photos.map((url) => (
+        {photos.map((photo) => (
           <HomepageBorder>
-            <HomepageImages url={url} color={generateColors(colors)} />
+            <Link to={`/store/${photo[1]}`}>
+              <HomepageImages url={photo[0]} id={photo[1]} color={generateColors(colors)} />
+            </Link>
           </HomepageBorder>
         ))}
       </ImageWrapper>
       <ButtonAlignment>
-        <LoadMoreImagesButton onClick={() => setProduct(product + 1)}>
+        <LoadMoreImagesButton onClick={() => {setProduct(product + 1)}}>
           load more images
         </LoadMoreImagesButton>
       </ButtonAlignment>
