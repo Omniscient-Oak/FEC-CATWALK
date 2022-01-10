@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { postAnswer } from '../../serverCalls';
+
 
 const Container = styled.div`
   position: fixed;
@@ -116,7 +117,7 @@ const AddAnswer = ({ productName, questionId, questionBody }) => {
       name,
       email,
     };
-    axios.post(`../../qa/questions/answers?question_id=${questionId}`, newAnswer).then(() => {
+    postAnswer(questionId, newAnswer).then(() => {
     }).catch((err) => { console.log('post question error', err); });
   });
 

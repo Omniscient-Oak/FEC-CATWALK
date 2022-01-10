@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import ProductContext from '../ProductContext';
 import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
-import {putQuestionHelpful} from '../../serverCalls'
+import {putQuestionHelpful, putQuestionReport} from '../../serverCalls'
 
 const ButtonStyle = styled.button`
   border: none;
@@ -73,12 +72,12 @@ const Question = ({ question, productId }) => {
   const handleUpdate = (event) => {
     event.preventDefault();
     if (!helpful && event.target.name === 'helpful') {
-      serverCalls.putQuestionHelpful(question.question_id).then(() => {
+      putQuestionHelpful(question.question_id).then(() => {
         setHelpfulCount(helpfulCount + 1);
         markHelpful(true);
       }).catch((err) => console.log('handle question helpful error', err));
     } else if (!reported && event.target.name === 'report') {
-      axios.put(`../../qa/questions/report?question_id=${question.question_id}`).then(() => {
+      putQuestionReport(question.question_id).then(() => {
         markReport(true);
         setStatus(!status);
       }).catch((err) => console.log('handle question report error', err));
