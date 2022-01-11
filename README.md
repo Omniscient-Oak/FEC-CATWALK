@@ -11,7 +11,7 @@ This repo is best run using Docker, as it requires using a Redis Cache.
 ### Development Mode
 Development is the default mode.
 
-While running in development mode, Webpack will run in --watch development mode and the server will run using nodemon. Redis will also be accessable on the host via port 6379, and the server will be exposed on port 3000.
+While running in development mode, Webpack will run in --watch mode and the server will run using nodemon. Redis will also be accessable on the host via port 6379, and the server will be exposed on port 3000.
 
 The repo folder will be mounted as a volume on the Docker website container, so any changes made to the server or app will be reflected in the
 
