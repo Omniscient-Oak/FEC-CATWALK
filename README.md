@@ -1,6 +1,6 @@
 # Omniscient Oak FEC
 ##### Contributors: Eric Lie, Michael Wu, Yulan Rong
-###### Honorable Mention: Daniel Esquivel-Reynoso :')
+
 This is a Front End Capstone created as part of the Hack Reactor SFO-139 cohort.
 
 Students were challenged to implement the store page an e-commerce website according to a provided requirements document.
